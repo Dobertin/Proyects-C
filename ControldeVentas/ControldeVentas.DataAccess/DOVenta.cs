@@ -12,6 +12,11 @@ namespace ControldeVentas.DataAccess
     {
         private bool _disposed = false;
         private SqlConnection conexion = null;
+
+        public void actualizarMetaAsesor(int idAsesor, int cantidad)
+        {
+            throw new NotImplementedException();
+        }
         #region privados
         public DOVenta()
         {

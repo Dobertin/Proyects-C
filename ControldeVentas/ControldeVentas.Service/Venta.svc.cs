@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ControldeVentas.Bussiness;
+using ControldeVentas.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -11,8 +13,10 @@ namespace ControldeVentas.Service
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione Venta.svc o Venta.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class Venta : IVenta
     {
-        public void DoWork()
+        public void AsociarMeta(int idAsesor, int cantidad)
         {
+            BOVenta venta = new BOVenta();
+            venta.actualizarMetaAsesor(idAsesor, cantidad);
         }
     }
 }
