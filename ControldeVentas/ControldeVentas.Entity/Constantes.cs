@@ -8,6 +8,6 @@ namespace ControldeVentas.Entity
 {
     public class Constantes
     {
-        public const string STRINGCONECTION = "server=. ; database=VentasComerciales ; integrated security = true";
+        public const string STRINGCONECTION = "server=.; database=VentasComerciales; integrated security = true";
     }
 }

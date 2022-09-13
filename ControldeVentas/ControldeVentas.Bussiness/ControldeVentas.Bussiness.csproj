@@ -44,5 +44,11 @@
     <Compile Include="BOVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControldeVentas.DataAccess\ControldeVentas.DataAccess.csproj">
+      <Project>{3EBCF0DD-FCFB-4617-980E-DEF86A53FFBA}</Project>
+      <Name>ControldeVentas.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

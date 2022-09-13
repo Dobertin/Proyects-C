@@ -12,11 +12,7 @@ namespace ControldeVentas.DataAccess
     {
         private bool _disposed = false;
         private SqlConnection conexion = null;
-
-        public void actualizarMetaAsesor(int idAsesor, int cantidad)
-        {
-            throw new NotImplementedException();
-        }
+                
         #region privados
         public DOVenta()
         {
@@ -45,5 +41,14 @@ namespace ControldeVentas.DataAccess
             _disposed = true;
         }
         #endregion
+
+        public void actualizarMetaAsesor(int idAsesor, int cantidad)
+        {
+            StringBuilder sSQL = new StringBuilder();
+            sSQL.Append("Update asesores set meta_propuesta = " + cantidad);
+            sSQL.Append(" where idAsesor =" + idAsesor);
+            SqlCommand comando = new SqlCommand(sSQL.ToString(), conexion);
+            comando.ExecuteNonQuery();
+        }
     }
 }
