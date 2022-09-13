@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControldeVentas.Entity
 {
-    public class Constantes
+    class Constantes
     {
-        public const string STRINGCONECTION = "server=. ; database=VentasComerciales ; integrated security = true";
     }
 }

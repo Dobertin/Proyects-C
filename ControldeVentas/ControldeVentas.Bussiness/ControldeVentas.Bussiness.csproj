@@ -44,15 +44,5 @@
     <Compile Include="BOVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ControldeVentas.DataAccess\ControldeVentas.DataAccess.csproj">
-      <Project>{3ebcf0dd-fcfb-4617-980e-def86a53ffba}</Project>
-      <Name>ControldeVentas.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ControldeVentas.Entity\ControldeVentas.Entity.csproj">
-      <Project>{8122cf90-588e-4a92-993d-0d93a05b4d62}</Project>
-      <Name>ControldeVentas.Entity</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
