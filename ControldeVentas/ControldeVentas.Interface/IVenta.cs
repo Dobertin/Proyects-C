@@ -30,5 +30,23 @@ namespace ControldeVentas.Interface
            BodyStyle = WebMessageBodyStyle.WrappedRequest,
            UriTemplate = "/AgregarVenta")]
         Respuesta AgregarVenta(Ventas venta);
+
+        [OperationContract]
+        [WebInvoke(
+           Method = "POST",
+           RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           BodyStyle = WebMessageBodyStyle.WrappedRequest,
+           UriTemplate = "/CancelarVenta")]
+        void CancelarVenta(int idVenta);
+
+        [OperationContract]
+        [WebInvoke(
+           Method = "POST",
+           RequestFormat = WebMessageFormat.Json,
+           ResponseFormat = WebMessageFormat.Json,
+           BodyStyle = WebMessageBodyStyle.WrappedRequest,
+           UriTemplate = "/ListarVentas")]
+        List<VentasValidas> ListarVentas();
     }
 }

@@ -43,6 +43,7 @@ create table ventas
 	puntos_obtenidos int,
 	fecha_venta datetime,
 	monto_desembolsado decimal(10,3),
+	estado_registro int,
 	FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
 	FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
 	FOREIGN KEY (id_asesor) REFERENCES asesores(id_asesor)
@@ -57,3 +58,7 @@ insert into productos values ('Tarjeta de Crédito "Oro"','T',20);
 insert into productos values ('Tarjeta de Crédito "Platino"','T',40);
 insert into productos values ('Crédito Hipotecario','C',0.0050);
 insert into productos values ('Crédito Efectivo','C',0.0030);
+go
+insert into cliente values ('juan','contreras','dni','715232796','985006407','985006407');
+insert into cliente values ('juana','torres','dni','30145278','985005407','985005407');
+go

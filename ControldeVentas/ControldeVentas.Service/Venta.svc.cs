@@ -38,5 +38,31 @@ namespace ControldeVentas.Service
                 throw ex;
             }
         }
+        public void CancelarVenta(int idVenta)
+        {
+            try
+            {
+                BOVenta data = new BOVenta();
+                data.CancelarVenta(idVenta);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public List<VentasValidas> ListarVentas()
+        {
+            try
+            {
+                BOVenta data = new BOVenta();
+                return data.ListarVentas();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
