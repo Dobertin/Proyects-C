@@ -13,9 +13,9 @@ namespace ControldeVentas.Entity.DTO
         public int idAsesor { get; set; }
         public int idProducto { get; set; }
         public string periodo { get; set; }
-        public int puntosObtenidos { get; set; }
+        public decimal puntosObtenidos { get; set; }
         public string fechaVenta { get; set; }
-        public int montoDesembolsado { get; set; }
+        public decimal montoDesembolsado { get; set; }
         public Ventas()
         {
             this.idVenta = 0;

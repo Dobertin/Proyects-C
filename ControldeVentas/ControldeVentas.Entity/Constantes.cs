@@ -9,5 +9,7 @@ namespace ControldeVentas.Entity
     public class Constantes
     {
         public const string STRINGCONECTION = "server=.; database=VentasComerciales; integrated security = true";
+        public const string PRODUCTOTARJETA = "T";
+        public const string PRODUCTOCREDITO = "C";
     }
 }

@@ -46,5 +46,11 @@
     <Compile Include="IVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControldeVentas.Entity\ControldeVentas.Entity.csproj">
+      <Project>{8122CF90-588E-4A92-993D-0D93A05B4D62}</Project>
+      <Name>ControldeVentas.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

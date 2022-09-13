@@ -1,4 +1,5 @@
-Create database VentasComerciales;
+create database VentasComerciales;
+go
 
 use ventasComerciales;
 go
@@ -6,8 +7,9 @@ go
 create table productos
 (
 	id_producto int identity(1,1) primary key,
+	nombre_com varchar(70),
 	tipo char(7),
-	puntos decimal(2,2)
+	puntos decimal(7,4)
 )
 create table cliente
 (
@@ -40,9 +42,18 @@ create table ventas
 	periodo char(6),
 	puntos_obtenidos int,
 	fecha_venta datetime,
-	monto_desembolsado decimal(7,3),
+	monto_desembolsado decimal(10,3),
 	FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
 	FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
 	FOREIGN KEY (id_asesor) REFERENCES asesores(id_asesor)
 )
 go
+
+insert into asesores values ('rhuacca','roberto','huacca','dni','71532795',0,null);
+insert into asesores values ('jhuamani','juana','huamani','dni','30584634',0,null);
+go
+insert into productos values ('Tarjeta de Crédito "Clasica"','T',10);
+insert into productos values ('Tarjeta de Crédito "Oro"','T',20);
+insert into productos values ('Tarjeta de Crédito "Platino"','T',40);
+insert into productos values ('Crédito Hipotecario','C',0.0050);
+insert into productos values ('Crédito Efectivo','C',0.0030);

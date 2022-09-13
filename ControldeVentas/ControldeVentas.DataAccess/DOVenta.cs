@@ -1,6 +1,8 @@
 ﻿using ControldeVentas.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -16,7 +18,7 @@ namespace ControldeVentas.DataAccess
         #region privados
         public DOVenta()
         {
-            SqlConnection conexion = new SqlConnection(Constantes.STRINGCONECTION);
+            conexion = new SqlConnection(Constantes.STRINGCONECTION);
             conexion.Open();
         }
         public void Dispose()
@@ -40,13 +42,25 @@ namespace ControldeVentas.DataAccess
             }
             _disposed = true;
         }
+
+        public DataTable ObtenerTipoProducto(int idProducto)
+        {
+            StringBuilder sSQL = new StringBuilder();
+            sSQL.Append(" select tipo, puntos from productos where id_producto = " + idProducto);
+            SqlCommand comando = new SqlCommand(sSQL.ToString(), conexion);
+            SqlDataReader reader = comando.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            return dt;
+
+        }
         #endregion
 
         public void actualizarMetaAsesor(int idAsesor, int cantidad)
         {
             StringBuilder sSQL = new StringBuilder();
             sSQL.Append("Update asesores set meta_propuesta = " + cantidad);
-            sSQL.Append(" where idAsesor =" + idAsesor);
+            sSQL.Append(" where id_asesor =" + idAsesor);
             SqlCommand comando = new SqlCommand(sSQL.ToString(), conexion);
             comando.ExecuteNonQuery();
         }

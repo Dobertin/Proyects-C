@@ -1,4 +1,6 @@
 ﻿using ControldeVentas.Bussiness;
+using ControldeVentas.Entity;
+using ControldeVentas.Entity.DTO;
 using ControldeVentas.Interface;
 using System;
 using System.Collections.Generic;
@@ -13,9 +15,28 @@ namespace ControldeVentas.Service
     {
         public void AsociarMeta(int idAsesor, int cantidad)
         {
-            BOVenta data = new BOVenta();
-            data.actualizarMetaAsesor(idAsesor, cantidad);
+            try
+            {
+                BOVenta data = new BOVenta();
+                data.actualizarMetaAsesor(idAsesor, cantidad); 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Respuesta AgregarVenta(Ventas venta)
+        {
+            try
+            {
+                BOVenta data = new BOVenta();
+                return data.AgregarVenta(venta);
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
         }
     }
 }
