@@ -1,0 +1,7 @@
+[
+    { "ID": 1, "Nombre": "Descuento Verano", "Descripcion": "Descuento del 10% en productos de verano", "Tipo": "Descuento", "Valor": 0.10, "Productos": [1, 2] },
+    { "ID": 2, "Nombre": "Oferta Invierno", "Descripcion": "Oferta especial en productos de invierno", "Tipo": "Oferta Especial", "Valor": 5.00, "Productos": [3, 4] },
+    { "ID": 3, "Nombre": "Descuento Primavera", "Descripcion": "Descuento del 15% en productos de primavera", "Tipo": "Descuento", "Valor": 0.15, "Productos": [5, 1] },
+    { "ID": 4, "Nombre": "Promoción Otoño", "Descripcion": "Promoción de otoño", "Tipo": "Oferta Especial", "Valor": 3.00, "Productos": [2, 3] },
+    { "ID": 5, "Nombre": "Promoción Anual", "Descripcion": "Promoción válida todo el año", "Tipo": "Descuento", "Valor": 0.20, "Productos": [4, 5] }
+  ]

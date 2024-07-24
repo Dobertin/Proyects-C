@@ -1,0 +1,7 @@
+[
+    { "ID": 1, "Nombre": "Camiseta", "Descripcion": "Camiseta de algodón", "PrecioBase": 10.00, "Categoria": "Ropa", "FechaCreacion": "2022-01-01T00:00:00Z" },
+    { "ID": 2, "Nombre": "Pantalón", "Descripcion": "Pantalón de mezclilla", "PrecioBase": 20.00, "Categoria": "Ropa", "FechaCreacion": "2022-02-01T00:00:00Z" },
+    { "ID": 3, "Nombre": "Zapatos", "Descripcion": "Zapatos de cuero", "PrecioBase": 30.00, "Categoria": "Calzado", "FechaCreacion": "2022-03-01T00:00:00Z" },
+    { "ID": 4, "Nombre": "Gorra", "Descripcion": "Gorra deportiva", "PrecioBase": 15.00, "Categoria": "Accesorios", "FechaCreacion": "2022-04-01T00:00:00Z" },
+    { "ID": 5, "Nombre": "Chaqueta", "Descripcion": "Chaqueta impermeable", "PrecioBase": 50.00, "Categoria": "Ropa", "FechaCreacion": "2022-05-01T00:00:00Z" }
+  ]

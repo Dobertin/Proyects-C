@@ -1,0 +1,7 @@
+[
+    { "ID": 1, "Nombre": "Efectivo", "Descripcion": "Pago en efectivo" },
+    { "ID": 2, "Nombre": "Tarjeta de Crédito", "Descripcion": "Pago con tarjeta de crédito" },
+    { "ID": 3, "Nombre": "Transferencia Bancaria", "Descripcion": "Pago mediante transferencia bancaria" },
+    { "ID": 4, "Nombre": "PayPal", "Descripcion": "Pago a través de PayPal" },
+    { "ID": 5, "Nombre": "Crédito en la Tienda", "Descripcion": "Pago con crédito en la tienda" }
+  ]

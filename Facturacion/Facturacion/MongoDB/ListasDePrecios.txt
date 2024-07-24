@@ -1,0 +1,7 @@
+[
+    { "ID": 1, "Nombre": "Lista Verano", "FechaInicio": "2022-06-01T00:00:00Z", "FechaFin": "2022-08-31T00:00:00Z", "Productos": [{ "ProductoID": 1, "Precio": 9.00 }, { "ProductoID": 2, "Precio": 18.00 }] },
+    { "ID": 2, "Nombre": "Lista Invierno", "FechaInicio": "2022-12-01T00:00:00Z", "FechaFin": "2023-02-28T00:00:00Z", "Productos": [{ "ProductoID": 3, "Precio": 27.00 }, { "ProductoID": 4, "Precio": 13.50 }] },
+    { "ID": 3, "Nombre": "Lista Primavera", "FechaInicio": "2022-03-01T00:00:00Z", "FechaFin": "2022-05-31T00:00:00Z", "Productos": [{ "ProductoID": 5, "Precio": 45.00 }, { "ProductoID": 1, "Precio": 9.50 }] },
+    { "ID": 4, "Nombre": "Lista Otoño", "FechaInicio": "2022-09-01T00:00:00Z", "FechaFin": "2022-11-30T00:00:00Z", "Productos": [{ "ProductoID": 2, "Precio": 19.00 }, { "ProductoID": 3, "Precio": 28.50 }] },
+    { "ID": 5, "Nombre": "Lista Especial", "FechaInicio": "2022-01-01T00:00:00Z", "FechaFin": "2022-12-31T00:00:00Z", "Productos": [{ "ProductoID": 4, "Precio": 14.00 }, { "ProductoID": 5, "Precio": 48.00 }] }
+  ]

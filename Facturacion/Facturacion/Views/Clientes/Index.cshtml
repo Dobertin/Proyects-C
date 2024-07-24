@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Facturacion.Models.Cliente>
+
+<h2>Clientes</h2>
+
+<p>
+    <a href="@Url.Action("Create")">Añadir Cliente</a>
+    <a href="@Url.Action("Search")">Buscar Clientes</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Fecha de Registro</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Direccion</td>
+                <td>@item.Telefono</td>
+                <td>@item.Email</td>
+                <td>@item.FechaRegistro.ToShortDateString()</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.ID })">Editar</a> |
+                    <a href="@Url.Action("Delete", new { id = item.ID })">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

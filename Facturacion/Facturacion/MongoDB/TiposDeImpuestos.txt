@@ -1,0 +1,7 @@
+[
+    { "ID": 1, "Nombre": "IVA", "Porcentaje": 0.16 },
+    { "ID": 2, "Nombre": "Impuesto de Lujo", "Porcentaje": 0.10 },
+    { "ID": 3, "Nombre": "Impuesto Ambiental", "Porcentaje": 0.05 },
+    { "ID": 4, "Nombre": "Impuesto Especial", "Porcentaje": 0.08 },
+    { "ID": 5, "Nombre": "Impuesto Reducido", "Porcentaje": 0.04 }
+  ]
