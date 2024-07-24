@@ -22,31 +22,38 @@
     <button type="submit" class="btn btn-primary">Buscar</button>
 </form>
 
-<table class="table mt-3">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-            <th>Email</th>
-            <th>Fecha de Registro</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@if (Model != null && Model.Any())
+{
+    <table class="table mt-3">
+        <thead>
             <tr>
-                <td>@item.Nombre</td>
-                <td>@item.Direccion</td>
-                <td>@item.Telefono</td>
-                <td>@item.Email</td>
-                <td>@item.FechaRegistro.ToShortDateString()</td>
-                <td>
-                    <a href="@Url.Action("Edit", new { id = item.ID })">Editar</a> |
-                    <a href="@Url.Action("Delete", new { id = item.ID })">Eliminar</a>
-                </td>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Fecha de Registro</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Direccion</td>
+                    <td>@item.Telefono</td>
+                    <td>@item.Email</td>
+                    <td>@item.FechaRegistro.ToShortDateString()</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.ID })">Editar</a> |
+                        <a href="@Url.Action("Delete", new { id = item.ID })">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No se encontraron clientes con los criterios de búsqueda especificados.</p>
+}

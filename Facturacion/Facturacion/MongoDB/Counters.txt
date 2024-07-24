@@ -1,0 +1,4 @@
+[{
+  "CollectionName": "Clientes",
+  "SequenceValue": 6
+}]

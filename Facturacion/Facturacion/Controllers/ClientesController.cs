@@ -80,9 +80,23 @@ namespace Facturacion.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _repository.DeleteAsync(id);
+            try
+            {
+                await _repository.DeleteAsync(id);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"Error al eliminar el cliente: {ex.Message}");
+                var cliente = await _repository.GetByIdAsync(id);
+                if (cliente == null)
+                {
+                    return NotFound();
+                }
+                return View(cliente);
+            }
             return RedirectToAction(nameof(Index));
         }
+
 
         public IActionResult Search()
         {
