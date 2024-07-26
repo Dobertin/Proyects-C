@@ -1,6 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div class="text-center">
+    <h1 class="display-4">Sistema de Facturación</h1>
+    <p><a> Desarrollado con MVC y MongoDB</a>.</p>
+</div>
 
 <div class="list-group">
     <a href="@Url.Action("Index", "Clientes")" class="list-group-item list-group-item-action">Gestión de Clientes</a>
@@ -12,13 +16,9 @@
     <a href="@Url.Action("Index", "Facturas")" class="list-group-item list-group-item-action">Gestión de Facturas</a>
 </div>
 
-<div class="text-center">
-    <h1 class="display-4">Sistema de Facturación</h1>
-    <p><a> Desarrollado con MVC y MongoDB</a>.</p>
-</div>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Explore the reports:</p>
+    <h1 class="display-4">Bienvenido</h1>
+    <p>Explora los reportes:</p>
     <a asp-controller="Reportes" asp-action="Index" class="btn btn-primary">Generar Reportes</a>
 </div>

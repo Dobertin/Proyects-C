@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Reportes";
+    var clientes = ViewBag.Clientes as IEnumerable<Facturacion.Models.Cliente>;
+    var productos = ViewBag.Productos as IEnumerable<Facturacion.Models.Producto>;
 }
 
 <h2>Reportes</h2>
@@ -25,7 +27,13 @@
         <form asp-action="VentasPorCliente" method="get">
             <div class="form-group">
                 <label for="clienteNombre">Nombre del Cliente:</label>
-                <input type="text" id="clienteNombre" name="clienteNombre" class="form-control" required />
+                <select id="clienteNombre" name="clienteNombre" class="form-control" required>
+                    <option value="">Seleccione un Cliente</option>
+                    @foreach (var cliente in clientes)
+                    {
+                        <option value="@cliente.Nombre">@cliente.Nombre</option>
+                    }
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Generar Reporte</button>
         </form>
@@ -36,7 +44,13 @@
         <form asp-action="VentasPorProducto" method="get">
             <div class="form-group">
                 <label for="productoNombre">Nombre del Producto:</label>
-                <input type="text" id="productoNombre" name="productoNombre" class="form-control" required />
+                <select id="productoNombre" name="productoNombre" class="form-control" required>
+                    <option value="">Seleccione un Producto</option>
+                    @foreach (var producto in productos)
+                    {
+                        <option value="@producto.Nombre">@producto.Nombre</option>
+                    }
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Generar Reporte</button>
         </form>

@@ -34,7 +34,10 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index", "TiposPagos")">Pagos</a>
-                        </li>                        
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Reportes" asp-action="Index">Reportes</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -44,7 +47,7 @@
         </main>
         <footer class="border-top footer text-muted">
             <div class="container">
-                &copy; 2023 - Facturación
+                &copy; @DateTime.Now.Year - Facturacion - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </footer>
     </div>

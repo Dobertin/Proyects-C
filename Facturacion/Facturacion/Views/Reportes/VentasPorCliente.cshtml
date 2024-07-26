@@ -1,4 +1,4 @@
-﻿@model List<Facturacion.Models.Factura>
+﻿@model IEnumerable<dynamic>
 
 <h2>Reporte de Ventas para el Cliente (@ViewBag.ClienteNombre)</h2>
 
@@ -12,18 +12,18 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var factura in Model)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @foreach (var producto in factura.Productos)
+                    @foreach (var producto in item.Productos)
                     {
-                        <p>@producto.Nombre (Cantidad: @producto.Cantidad)</p>
+                        <p>@producto.ProductoNombre (Cantidad: @producto.Cantidad)</p>
                     }
                 </td>
-                <td>@factura.FechaEmision.ToString("dd/MM/yyyy HH:mm")</td>
-                <td>@factura.Total</td>
-                <td>@factura.ID</td>
+                <td>@item.Factura.FechaEmision.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@item.Factura.Total</td>
+                <td>@item.Factura.ID</td>
             </tr>
         }
     </tbody>

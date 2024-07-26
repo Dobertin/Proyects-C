@@ -5,6 +5,7 @@ using Rotativa.AspNetCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Facturacion.Controllers
 {
@@ -23,6 +24,8 @@ namespace Facturacion.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Clientes = await _clienteRepository.GetAllAsync();
+            ViewBag.Productos = await _productoRepository.GetAllAsync();
             return View();
         }
 
@@ -49,10 +52,25 @@ namespace Facturacion.Controllers
             var facturas = await _facturaRepository.GetAllAsync();
             var facturasCliente = facturas.Where(f => f.ClienteID == cliente.ID).ToList();
 
-            ViewBag.ClienteNombre = cliente.Nombre;
-            return new ViewAsPdf("VentasPorCliente", facturasCliente)
+            var productos = await _productoRepository.GetAllAsync();
+
+            var facturasClienteConProductos = facturasCliente.Select(f => new
             {
-                FileName = $"VentasPorCliente_{clienteNombre}.pdf"
+                Factura = f,
+                Productos = f.Productos.Select(fp => new
+                {
+                    fp.ProductoID,
+                    ProductoNombre = productos.FirstOrDefault(p => p.ID == fp.ProductoID)?.Nombre,
+                    fp.Cantidad,
+                    fp.Precio
+                }).ToList()
+            }).ToList();
+
+            ViewBag.ClienteNombre = cliente.Nombre;
+            string fileName = $"VentasPorCliente_{WebUtility.UrlEncode(clienteNombre)}.pdf";
+            return new ViewAsPdf("VentasPorCliente", facturasClienteConProductos)
+            {
+                FileName = fileName
             };
         }
 
@@ -77,9 +95,10 @@ namespace Facturacion.Controllers
             }).ToList();
 
             ViewBag.ProductoNombre = producto.Nombre;
+            string fileName = $"VentasPorProducto_{WebUtility.UrlEncode(productoNombre)}.pdf";
             return new ViewAsPdf("VentasPorProducto", facturasProductoConClienteNombre)
             {
-                FileName = $"VentasPorProducto_{productoNombre}.pdf"
+                FileName = fileName
             };
         }
     }
