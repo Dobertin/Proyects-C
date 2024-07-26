@@ -1,9 +1,9 @@
 using Facturacion.Data;
 using Facturacion.Repositories;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.DependencyInjection;
 using Facturacion.Models;
 using Rotativa.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +19,26 @@ builder.Services.AddScoped<PromocionRepository>();
 builder.Services.AddScoped<TipoImpuestoRepository>();
 builder.Services.AddScoped<TipoPagoRepository>();
 builder.Services.AddScoped<FacturaRepository>();
-builder.Services.AddControllersWithViews();
 
+// Add authentication and authorization services
+builder.Services.AddScoped<UsuarioRepository>();
+builder.Services.AddScoped<RolRepository>();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, config =>
+    {
+        config.Cookie.Name = "UserLoginCookie";
+        config.LoginPath = "/Account/Login";
+        config.LogoutPath = "/Account/Logout";
+    });
+
+builder.Services.AddAuthorization(config =>
+{
+    config.AddPolicy("Admin", policyBuilder => policyBuilder.RequireRole("Admin"));
+    config.AddPolicy("User", policyBuilder => policyBuilder.RequireRole("User"));
+});
+
+builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -41,6 +59,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication(); // Add this line to enable authentication
 app.UseAuthorization();
 
 app.MapControllerRoute(

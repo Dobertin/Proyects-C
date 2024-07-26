@@ -1,0 +1,13 @@
+[{
+    "ID": "1",
+    "Nombre": "Vendedor"
+},
+{
+    "ID": "2",
+    "Nombre": "Administrador"
+},
+{
+    "ID": "3",
+    "Nombre": "User"
+}
+]

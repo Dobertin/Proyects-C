@@ -1,0 +1,16 @@
+[
+{
+    "ID": "1",
+    "NombreUsuario": "juan carlos",
+    "Contraseña": "prueba123", 
+    "Email": "jcarlos@example.com",
+    "Roles": ["Vendedor", "User"]
+},
+{
+    "ID": "2",
+    "NombreUsuario": "Ricolas",
+    "Contraseña": "admin", 
+    "Email": "ricolas@example.com",
+    "Roles": ["Administrador", "User"]
+}
+]

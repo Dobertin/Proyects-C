@@ -1,9 +1,11 @@
 using Facturacion.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Facturacion.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -12,12 +14,12 @@ namespace Facturacion.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize(Roles = "Vendedor")]
         public IActionResult Index()
         {
             return View();
         }
-
+        [Authorize(Roles = "Administrador")]
         public IActionResult Privacy()
         {
             return View();
