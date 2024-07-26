@@ -15,6 +15,7 @@ namespace Facturacion.Data
         }
 
         public IMongoCollection<Cliente> Clientes => _database.GetCollection<Cliente>("Clientes");
+        public IMongoCollection<Producto> Productos => _database.GetCollection<Producto>("Productos");
         public IMongoCollection<Counter> Counters => _database.GetCollection<Counter>("Counters");
     }
 }

@@ -12,6 +12,7 @@ builder.Services.Configure<MongoDBSettings>(
 
 builder.Services.AddSingleton<MongoDBContext>();
 builder.Services.AddScoped<ClienteRepository>();
+builder.Services.AddScoped<ProductoRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

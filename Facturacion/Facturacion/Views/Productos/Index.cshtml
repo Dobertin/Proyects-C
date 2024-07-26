@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Facturacion.Models.Producto>
+
+<h2>Productos</h2>
+
+<p>
+    <a href="@Url.Action("Create")">Añadir Producto</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio Base</th>
+            <th>Categoría</th>
+            <th>Fecha de Creación</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>@item.PrecioBase</td>
+                <td>@item.Categoria</td>
+                <td>@item.FechaCreacion.ToShortDateString()</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.ID })">Editar</a> |
+                    <a href="@Url.Action("Delete", new { id = item.ID })">Eliminar</a> |
+                    <a href="@Url.Action("AsignarCategoria", new { id = item.ID })">Asignar Categoría</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
