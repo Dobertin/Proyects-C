@@ -1,0 +1,22 @@
+﻿@model Facturacion.Models.TipoPago
+
+<h2>Eliminar Tipo de Pago</h2>
+
+<h3>¿Está seguro de que desea eliminar este tipo de pago?</h3>
+
+<div>
+    <h4>Tipo de Pago</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Nombre</dt>
+        <dd class="col-sm-10">@Model.Nombre</dd>
+        <dt class="col-sm-2">Descripción</dt>
+        <dd class="col-sm-10">@Model.Descripcion</dd>
+    </dl>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="ID" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
