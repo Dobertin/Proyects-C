@@ -1,0 +1,149 @@
+﻿@model Facturacion.Models.FacturaDTO
+
+<h2>Crear Factura</h2>
+
+<form asp-action="Create" method="post" id="facturaForm">
+    <div class="form-group">
+        <label asp-for="ClienteID" class="control-label"></label>
+        <select asp-for="ClienteID" class="form-control">
+            <option value="">Seleccione un Cliente</option>
+            @foreach (var cliente in ViewBag.Clientes)
+            {
+                <option value="@cliente.ID">@cliente.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Productos" class="control-label">Productos</label>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.Productos.Count; i++)
+                {
+                    var producto = ViewBag.Productos[i];
+                    <tr>
+                        <td>
+                            <input type="hidden" name="Productos.Index" value="@i" />
+                            <input type="checkbox" name="Productos[@i].ProductoID" value="@producto.ID" class="producto-checkbox" />
+                            @producto.Nombre
+                        </td>
+                        <td>
+                            <input type="number" name="Productos[@i].Cantidad" class="form-control producto-cantidad" />
+                        </td>
+                        <td>
+                            <input type="number" name="Productos[@i].Precio" class="form-control" value="@producto.PrecioBase" readonly />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Impuestos" class="control-label">Impuestos</label>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo de Impuesto</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.TiposImpuestos.Count; i++)
+                {
+                    var tipoImpuesto = ViewBag.TiposImpuestos[i];
+                    <tr>
+                        <td>
+                            <input type="hidden" name="Impuestos.Index" value="@i" />
+                            <input type="checkbox" name="Impuestos[@i].TipoImpuestoID" value="@tipoImpuesto.ID" class="impuesto-checkbox" />
+                            @tipoImpuesto.Nombre
+                        </td>
+                        <td>
+                            <input type="number" name="Impuestos[@i].Monto" class="form-control impuesto-monto" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Descuentos" class="control-label">Descuentos</label>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Promoción</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < ViewBag.Promociones.Count; i++)
+                {
+                    var promocion = ViewBag.Promociones[i];
+                    <tr>
+                        <td>
+                            <input type="hidden" name="Descuentos.Index" value="@i" />
+                            <input type="checkbox" name="Descuentos[@i].PromocionID" value="@promocion.ID" class="descuento-checkbox" />
+                            @promocion.Nombre
+                        </td>
+                        <td>
+                            <input type="number" name="Descuentos[@i].Monto" class="form-control descuento-monto" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MetodoPagoID" class="control-label"></label>
+        <select asp-for="MetodoPagoID" class="form-control">
+            <option value="">Seleccione un Método de Pago</option>
+            @foreach (var tipoPago in ViewBag.TiposPagos)
+            {
+                <option value="@tipoPago.ID">@tipoPago.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Estado" class="control-label"></label>
+        <input asp-for="Estado" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#facturaForm').submit(function () {
+                $('.producto-checkbox').each(function () {
+                    if (!$(this).is(':checked')) {
+                        $(this).closest('tr').find('.producto-cantidad').prop('disabled', true);
+                    }
+                });
+
+                $('.impuesto-checkbox').each(function () {
+                    if (!$(this).is(':checked')) {
+                        $(this).closest('tr').find('.impuesto-monto').prop('disabled', true);
+                    }
+                });
+
+                $('.descuento-checkbox').each(function () {
+                    if (!$(this).is(':checked')) {
+                        $(this).closest('tr').find('.descuento-monto').prop('disabled', true);
+                    }
+                });
+            });
+        });
+    </script>
+}

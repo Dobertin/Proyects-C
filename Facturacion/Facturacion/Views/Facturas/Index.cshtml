@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Facturacion.Models.Factura>
+
+<h2>Facturas</h2>
+
+<p>
+    <a href="@Url.Action("Create")">Generar Nueva Factura</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha de Emisión</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.ClienteID</td>
+                <td>@item.FechaEmision.ToShortDateString()</td>
+                <td>@item.Total</td>
+                <td>@item.Estado</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.ID })">Editar</a> |
+                    <a href="@Url.Action("Delete", new { id = item.ID })">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

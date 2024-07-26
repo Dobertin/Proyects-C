@@ -20,6 +20,7 @@ namespace Facturacion.Data
         public IMongoCollection<Promocion> Promociones => _database.GetCollection<Promocion>("Promociones");
         public IMongoCollection<TipoImpuesto> TiposImpuestos => _database.GetCollection<TipoImpuesto>("TiposDeImpuestos");
         public IMongoCollection<TipoPago> TiposPagos => _database.GetCollection<TipoPago>("TiposDePago");
+        public IMongoCollection<Factura> Facturas => _database.GetCollection<Factura>("Facturas");
         public IMongoCollection<Counter> Counters => _database.GetCollection<Counter>("Counters");
     }
 }

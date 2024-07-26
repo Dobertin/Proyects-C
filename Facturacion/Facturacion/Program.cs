@@ -17,6 +17,7 @@ builder.Services.AddScoped<ListaPrecioRepository>();
 builder.Services.AddScoped<PromocionRepository>();
 builder.Services.AddScoped<TipoImpuestoRepository>();
 builder.Services.AddScoped<TipoPagoRepository>();
+builder.Services.AddScoped<FacturaRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
