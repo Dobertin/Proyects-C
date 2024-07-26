@@ -1,0 +1,22 @@
+﻿@model Facturacion.Models.TipoImpuesto
+
+<h2>Eliminar Tipo de Impuesto</h2>
+
+<h3>¿Está seguro de que desea eliminar este tipo de impuesto?</h3>
+
+<div>
+    <h4>Tipo de Impuesto</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Nombre</dt>
+        <dd class="col-sm-10">@Model.Nombre</dd>
+        <dt class="col-sm-2">Porcentaje</dt>
+        <dd class="col-sm-10">@Model.Porcentaje</dd>
+    </dl>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="ID" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

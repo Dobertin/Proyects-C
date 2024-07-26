@@ -18,6 +18,7 @@ namespace Facturacion.Data
         public IMongoCollection<Producto> Productos => _database.GetCollection<Producto>("Productos");
         public IMongoCollection<ListaPrecio> ListasPrecios => _database.GetCollection<ListaPrecio>("ListasDePrecios");
         public IMongoCollection<Promocion> Promociones => _database.GetCollection<Promocion>("Promociones");
+        public IMongoCollection<TipoImpuesto> TiposImpuestos => _database.GetCollection<TipoImpuesto>("TiposDeImpuestos");
         public IMongoCollection<Counter> Counters => _database.GetCollection<Counter>("Counters");
     }
 }

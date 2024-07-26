@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Facturacion.Models.TipoImpuesto>
+
+<h2>Tipos de Impuestos</h2>
+
+<p>
+    <a href="@Url.Action("Create")">Añadir Tipo de Impuesto</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Porcentaje</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Porcentaje</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.ID })">Editar</a> |
+                    <a href="@Url.Action("Delete", new { id = item.ID })">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

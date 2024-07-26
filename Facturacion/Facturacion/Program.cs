@@ -15,6 +15,7 @@ builder.Services.AddScoped<ClienteRepository>();
 builder.Services.AddScoped<ProductoRepository>();
 builder.Services.AddScoped<ListaPrecioRepository>();
 builder.Services.AddScoped<PromocionRepository>();
+builder.Services.AddScoped<TipoImpuestoRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
