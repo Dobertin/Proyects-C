@@ -20,6 +20,5 @@ namespace Facturacion.Models
         public string Tipo { get; set; } // Ejemplo: "Descuento", "Oferta especial"
         public decimal Valor { get; set; } // Ejemplo: porcentaje de descuento
         public List<int> ProductoIDs { get; set; } = new List<int>();
-        public List<string> Categorias { get; set; } = new List<string>();
     }
 }

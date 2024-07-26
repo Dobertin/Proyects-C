@@ -14,6 +14,7 @@
             <th>Precio Base</th>
             <th>Categoría</th>
             <th>Fecha de Creación</th>
+            <th>Tiene Descuento</th>
             <th></th>
         </tr>
     </thead>
@@ -26,6 +27,7 @@
                 <td>@item.PrecioBase</td>
                 <td>@item.Categoria</td>
                 <td>@item.FechaCreacion.ToShortDateString()</td>
+                <td>@(ViewBag.ProductosConPromocion[item.ID] ? "Sí" : "No")</td>
                 <td>
                     <a href="@Url.Action("Edit", new { id = item.ID })">Editar</a> |
                     <a href="@Url.Action("Delete", new { id = item.ID })">Eliminar</a> |

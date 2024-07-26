@@ -79,7 +79,7 @@ namespace Facturacion.Controllers
             return View(promocion);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _repository.DeleteAsync(id);
@@ -111,26 +111,6 @@ namespace Facturacion.Controllers
             promocion.ProductoIDs = productoIds;
 
             await _repository.UpdateAsync(id, promocion);
-            return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult AsignarCategorias(int id)
-        {
-            return View(new AsignarCategoriasViewModel { PromocionID = id });
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> AsignarCategorias(AsignarCategoriasViewModel model)
-        {
-            var promocion = await _repository.GetByIdAsync(model.PromocionID);
-            if (promocion == null)
-            {
-                return NotFound();
-            }
-
-            promocion.Categorias = model.Categorias;
-
-            await _repository.UpdateAsync(model.PromocionID, promocion);
             return RedirectToAction(nameof(Index));
         }
     }

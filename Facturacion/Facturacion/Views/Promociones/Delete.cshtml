@@ -1,0 +1,26 @@
+﻿@model Facturacion.Models.Promocion
+
+<h2>Eliminar Promoción</h2>
+
+<h3>¿Está seguro de que desea eliminar esta promoción?</h3>
+
+<div>
+    <h4>Promoción</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Nombre</dt>
+        <dd class="col-sm-10">@Model.Nombre</dd>
+        <dt class="col-sm-2">Descripción</dt>
+        <dd class="col-sm-10">@Model.Descripcion</dd>
+        <dt class="col-sm-2">Tipo</dt>
+        <dd class="col-sm-10">@Model.Tipo</dd>
+        <dt class="col-sm-2">Valor</dt>
+        <dd class="col-sm-10">@Model.Valor</dd>
+    </dl>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="ID" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
