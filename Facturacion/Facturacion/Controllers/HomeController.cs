@@ -14,12 +14,12 @@ namespace Facturacion.Controllers
         {
             _logger = logger;
         }
-        [Authorize(Roles = "Vendedor")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();
         }
-        [Authorize(Roles = "Administrador")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Privacy()
         {
             return View();

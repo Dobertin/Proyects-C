@@ -1,4 +1,5 @@
-﻿using Facturacion.Models;
+﻿using Facturacion.Data;
+using Facturacion.Models;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,9 +10,9 @@ namespace Facturacion.Repositories
     {
         private readonly IMongoCollection<Rol> _roles;
 
-        public RolRepository(IMongoDatabase database)
+        public RolRepository(MongoDBContext context)
         {
-            _roles = database.GetCollection<Rol>("Roles");
+            _roles = context.Database.GetCollection<Rol>("Roles");
         }
 
         public async Task<List<Rol>> GetAllAsync()
@@ -21,7 +22,7 @@ namespace Facturacion.Repositories
 
         public async Task<Rol> GetByIdAsync(string id)
         {
-            return await _roles.Find<Rol>(rol => rol.ID == id).FirstOrDefaultAsync();
+            return await _roles.Find<Rol>(rol => rol.Id == id).FirstOrDefaultAsync();
         }
 
         public async Task AddAsync(Rol rol)
@@ -31,12 +32,12 @@ namespace Facturacion.Repositories
 
         public async Task UpdateAsync(string id, Rol rolIn)
         {
-            await _roles.ReplaceOneAsync(rol => rol.ID == id, rolIn);
+            await _roles.ReplaceOneAsync(rol => rol.Id == id, rolIn);
         }
 
         public async Task DeleteAsync(string id)
         {
-            await _roles.DeleteOneAsync(rol => rol.ID == id);
+            await _roles.DeleteOneAsync(rol => rol.Id == id);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Facturacion.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string ID { get; set; }
+        public string Id { get; set; } // Usar 'Id' en lugar de 'ID' para evitar conflictos
 
         [BsonElement("Nombre")]
         public string Nombre { get; set; }

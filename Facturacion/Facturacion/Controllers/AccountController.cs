@@ -6,6 +6,7 @@ using Facturacion.Repositories;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using BCrypt.Net;
 
 namespace Facturacion.Controllers
 {
