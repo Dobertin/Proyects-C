@@ -1,4 +1,17 @@
 [{
   "CollectionName": "Clientes",
-  "SequenceValue": 6
-}]
+  "SequenceValue": 5
+},
+{
+  "CollectionName": "Productos",
+  "SequenceValue": 5
+},
+{
+  "CollectionName": "ListasPrecios",
+  "SequenceValue": 5
+},
+{
+  "CollectionName": "Facturas",
+  "SequenceValue": 5
+}
+]
