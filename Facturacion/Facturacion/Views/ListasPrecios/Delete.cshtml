@@ -1,0 +1,24 @@
+﻿@model Facturacion.Models.ListaPrecio
+
+<h2>Eliminar Lista de Precios</h2>
+
+<h3>¿Está seguro de que desea eliminar esta lista de precios?</h3>
+
+<div>
+    <h4>Lista de Precios</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Nombre</dt>
+        <dd class="col-sm-10">@Model.Nombre</dd>
+        <dt class="col-sm-2">Fecha Inicio</dt>
+        <dd class="col-sm-10">@Model.FechaInicio.ToShortDateString()</dd>
+        <dt class="col-sm-2">Fecha Fin</dt>
+        <dd class="col-sm-10">@Model.FechaFin.ToShortDateString()</dd>
+    </dl>
+
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="ID" />
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
