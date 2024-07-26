@@ -20,9 +20,9 @@ namespace Facturacion.Repositories
             return await _roles.Find(rol => true).ToListAsync();
         }
 
-        public async Task<Rol> GetByIdAsync(string id)
+        public async Task<Rol> GetByIdAsync(int id)
         {
-            return await _roles.Find<Rol>(rol => rol.Id == id).FirstOrDefaultAsync();
+            return await _roles.Find<Rol>(rol => rol.ID == id).FirstOrDefaultAsync();
         }
 
         public async Task AddAsync(Rol rol)
@@ -30,14 +30,14 @@ namespace Facturacion.Repositories
             await _roles.InsertOneAsync(rol);
         }
 
-        public async Task UpdateAsync(string id, Rol rolIn)
+        public async Task UpdateAsync(int id, Rol rolIn)
         {
-            await _roles.ReplaceOneAsync(rol => rol.Id == id, rolIn);
+            await _roles.ReplaceOneAsync(rol => rol.ID == id, rolIn);
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(int id)
         {
-            await _roles.DeleteOneAsync(rol => rol.Id == id);
+            await _roles.DeleteOneAsync(rol => rol.ID == id);
         }
     }
 }

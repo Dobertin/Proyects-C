@@ -24,7 +24,7 @@ namespace Facturacion.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

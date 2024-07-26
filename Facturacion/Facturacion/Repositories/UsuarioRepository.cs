@@ -20,9 +20,9 @@ namespace Facturacion.Repositories
             return await _usuarios.Find(usuario => true).ToListAsync();
         }
 
-        public async Task<Usuario> GetByIdAsync(string id)
+        public async Task<Usuario> GetByIdAsync(int id)
         {
-            return await _usuarios.Find<Usuario>(usuario => usuario.Id == id).FirstOrDefaultAsync();
+            return await _usuarios.Find<Usuario>(usuario => usuario.ID == id).FirstOrDefaultAsync();
         }
 
         public async Task<Usuario> GetByNombreUsuarioAsync(string nombreUsuario)
@@ -35,14 +35,14 @@ namespace Facturacion.Repositories
             await _usuarios.InsertOneAsync(usuario);
         }
 
-        public async Task UpdateAsync(string id, Usuario usuarioIn)
+        public async Task UpdateAsync(int id, Usuario usuarioIn)
         {
-            await _usuarios.ReplaceOneAsync(usuario => usuario.Id == id, usuarioIn);
+            await _usuarios.ReplaceOneAsync(usuario => usuario.ID == id, usuarioIn);
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(int id)
         {
-            await _usuarios.DeleteOneAsync(usuario => usuario.Id == id);
+            await _usuarios.DeleteOneAsync(usuario => usuario.ID == id);
         }
     }
 }
