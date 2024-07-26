@@ -1,0 +1,25 @@
+﻿@model IEnumerable<dynamic>
+
+<h2>Reporte de Ventas para el Producto (@ViewBag.ProductoNombre)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Fecha de Compra</th>
+            <th>Total</th>
+            <th>Nro de Factura (ID)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ClienteNombre</td>
+                <td>@item.Factura.FechaEmision.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@item.Factura.Total</td>
+                <td>@item.Factura.ID</td>
+            </tr>
+        }
+    </tbody>
+</table>

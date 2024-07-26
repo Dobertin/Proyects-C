@@ -3,6 +3,7 @@ using Facturacion.Repositories;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Facturacion.Models;
+using Rotativa.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddScoped<TipoImpuestoRepository>();
 builder.Services.AddScoped<TipoPagoRepository>();
 builder.Services.AddScoped<FacturaRepository>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -43,5 +46,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
+
+// Configure Rotativa
+RotativaConfiguration.Setup(app.Environment.WebRootPath);
 
 app.Run();

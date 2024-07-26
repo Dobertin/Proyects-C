@@ -1,0 +1,30 @@
+﻿@model List<Facturacion.Models.Factura>
+
+<h2>Reporte de Ventas para el Cliente (@ViewBag.ClienteNombre)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Productos Comprados</th>
+            <th>Fecha de Compra</th>
+            <th>Total</th>
+            <th>Nro de Factura (ID)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var factura in Model)
+        {
+            <tr>
+                <td>
+                    @foreach (var producto in factura.Productos)
+                    {
+                        <p>@producto.Nombre (Cantidad: @producto.Cantidad)</p>
+                    }
+                </td>
+                <td>@factura.FechaEmision.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@factura.Total</td>
+                <td>@factura.ID</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,25 @@
+﻿@model List<Facturacion.Models.Factura>
+
+<h2>Facturas por Periodo</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha de Emisión</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var factura in Model)
+        {
+            <tr>
+                <td>@factura.ID</td>
+                <td>@factura.ClienteID</td>
+                <td>@factura.FechaEmision.ToShortDateString()</td>
+                <td>@factura.Total</td>
+            </tr>
+        }
+    </tbody>
+</table>
