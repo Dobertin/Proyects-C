@@ -4,13 +4,13 @@
     "NombreUsuario": "juan carlos",
     "Contraseña": "$2a$12$wXJ1.vE3mvW4o5e5Pz/RcOaWQ9zEmt.j4kYjJH5X1lRgeP.jG/SgK", 
     "Email": "jcarlos@example.com",
-    "Roles": ["Vendedor", "User"]
+    "Roles": ["Admin", "User"]
 },
 {
     "ID": "2",
     "NombreUsuario": "Ricolas",
     "Contraseña": "$2a$12$wXJ1.vE3mvW4o5e5Pz/RcOaWQ9zEmt.j4kYjJH5X1lRgeP.jG/SgK", 
     "Email": "ricolas@example.com",
-    "Roles": ["Administrador", "User"]
+    "Roles": ["Admin", "User"]
 }
 ]
