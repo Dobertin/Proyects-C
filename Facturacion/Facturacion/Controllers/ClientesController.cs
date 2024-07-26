@@ -77,7 +77,7 @@ namespace Facturacion.Controllers
             return View(cliente);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             try
