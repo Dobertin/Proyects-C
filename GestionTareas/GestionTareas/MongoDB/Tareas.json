@@ -1,0 +1,10 @@
+[
+{
+	"tareaID":1,
+	"responsableID":1,
+	"estadoID":1,
+	"descripcion":"Tarea dummy",
+	"fechaCreacion":"29/07/2024 09:25:00",
+	"fechaModificacion":"29/07/2024 10:00:00"
+}
+]

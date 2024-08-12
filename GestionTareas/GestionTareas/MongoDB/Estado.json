@@ -1,0 +1,27 @@
+[
+{
+	"estadoID":1,
+	"estadoDesc":"En Curso",
+	"fechaCreacion":"29/07/2024 09:25:00"
+},
+{
+	"estadoID":2,
+	"estadoDesc":"Completado",
+	"fechaCreacion":"29/07/2024 09:25:00"
+},
+{
+	"estadoID":3,
+	"estadoDesc":"Detenido",
+	"fechaCreacion":"29/07/2024 09:25:00"
+},
+{
+	"estadoID":4,
+	"estadoDesc":"Abandonado",
+	"fechaCreacion":"29/07/2024 09:25:00"
+},
+{
+	"estadoID":5,
+	"estadoDesc":"rechazado",
+	"fechaCreacion":"29/07/2024 09:25:00"
+}
+]
