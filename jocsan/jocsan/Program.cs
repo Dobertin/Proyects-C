@@ -1,7 +1,24 @@
+using jocsan.Data;
+using jocsan.Repository.Interfaces;
+using jocsan.Repository.Repositorios;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Configurar el DbContext con SQL Server
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Registrar repositorio genérico
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+// Registrar repositorios específicos y UnitOfWork
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+
 
 var app = builder.Build();
 
@@ -22,6 +39,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+	pattern: "{controller=Home}/{action=Login}/{id?}");
 
 app.Run();

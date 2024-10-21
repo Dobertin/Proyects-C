@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Emitir Factura";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Si tienes un layout compartido
+}
+
+<div class="container">
+
+    <div class="main-content">
+        <div class="invoice-header">
+            <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
+            <h2>Factura NRO 6677</h2>
+        </div>
+
+        <form>
+            <div class="form-section">
+                <label for="cliente">Cliente:</label>
+                <select id="cliente" name="cliente">
+                    <option value="CUNGA">CUNGA</option>
+                </select>
+
+                <label for="dueño">Dueño:</label>
+                <input type="text" id="dueño" value="CUNGA" readonly />
+
+                <label for="porcentaje">Porcentaje:</label>
+                <input type="number" id="porcentaje" value="15%" readonly />
+
+                <label for="producto">Producto:</label>
+                <select id="producto" name="producto">
+                    <option value="CH">CH</option>
+                </select>
+
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" value="500" />
+            </div>
+
+            <div class="prices-section">
+                <div class="price-box">
+                    <h3>Precio Gasolina</h3>
+                    <p>3200</p>
+                    <input type="number" value="1" />
+                </div>
+                <div class="price-box">
+                    <h3>Precio Hielo</h3>
+                    <p>1700</p>
+                    <input type="number" value="1" />
+                </div>
+                <div class="price-box">
+                    <h3>Precio Producto</h3>
+                    <p>300</p>
+                    <button type="button" id="changePrice">Cambio de Precio Temporal</button>
+                </div>
+            </div>
+
+            <div class="totals-section">
+                <label for="subtotal-producto">Subtotal Producto:</label>
+                <input type="text" id="subtotal-producto" value="150,000.00" readonly />
+
+                <label for="gas-hielo">Gas y Hielo:</label>
+                <input type="text" id="gas-hielo" value="-4,900.00" readonly />
+
+                <label for="subtotal">Subtotal:</label>
+                <input type="text" id="subtotal" value="145,100.00" readonly />
+
+                <label for="terceros">Terceros:</label>
+                <input type="text" id="terceros" value="-200.00" readonly />
+
+                <!-- Más campos aquí según la imagen -->
+            </div>
+
+            <div class="action-buttons">
+                <button type="submit" class="emitir-btn">Emitir Factura</button>
+                <button type="button" class="cancel-btn">Cancelar</button>
+            </div>
+        </form>
+
+        <div class="product-list">
+            <h3>Lista de Productos Agregados</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chatarra</td>
+                        <td>300.00</td>
+                        <td>3700</td>
+                        <td>1,110,000.00</td>
+                    </tr>
+                    <!-- Más filas según la imagen -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Archivos CSS y JS -->
+<link rel="stylesheet" href="~/css/estilosFactura.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/js/funcionesFactura.js"></script>

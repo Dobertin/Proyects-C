@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Ingreso";
+    Layout = null;  // No se utiliza un layout para esta página de login
+}
+
+<div class="login-container">
+    <header>
+        <h1>Sistema de Pesca</h1>
+    </header>
+
+    <main class="login-main">
+        <h2>Ingreso</h2>
+        <p>Inicia sesión para continuar</p>
+
+        <form class="login-form" method="post" action="/Home/Login">
+            <div class="form-group">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" id="correo" name="correo" value="hola@ventas.com" required />
+            </div>
+
+            <div class="form-group">
+                <label for="contraseña">Contraseña</label>
+                <input type="password" id="contraseña" name="contraseña" value="******" required />
+            </div>
+
+            <button type="submit" class="login-btn">Ingreso</button>
+        </form>
+    </main>
+</div>
+
+<!-- Enlace a los archivos de estilos -->
+<link rel="stylesheet" href="~/css/estilosLogin.css" />

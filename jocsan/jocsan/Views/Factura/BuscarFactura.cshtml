@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Búsqueda de Facturas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="main-content">
+        <h2>Búsqueda de Facturas</h2>
+        <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
+
+        <!-- Formulario de búsqueda de facturas -->
+        <form class="search-form">
+            <label for="cliente">Cliente:</label>
+            <select id="cliente" name="cliente">
+                <option value="CUNGA">CUNGA</option>
+                <!-- Agregar más opciones de clientes si es necesario -->
+            </select>
+
+            <label for="nro-factura">Nro de Factura:</label>
+            <input type="text" id="nro-factura" name="nro-factura" value="1234567" />
+
+            <button type="submit" class="buscar-btn">
+                <span>Buscar Factura</span>
+            </button>
+        </form>
+
+        <!-- Tabla de resultados -->
+        <table class="factura-table">
+            <thead>
+                <tr>
+                    <th>N° de Factura</th>
+                    <th>N° Producto</th>
+                    <th>Total</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1233456</td>
+                    <td>2 productos</td>
+                    <td>17,500</td>
+                    <td>10/04/2024</td>
+                    <td>
+                        <button class="visualizar-btn">Visualizar</button>
+                        <button class="eliminar-btn">Eliminar</button>
+                    </td>
+                </tr>
+                <!-- Más filas según sea necesario -->
+                <tr>
+                    <td>1233456</td>
+                    <td>2 productos</td>
+                    <td>17,500</td>
+                    <td>10/04/2024</td>
+                    <td>
+                        <button class="visualizar-btn">Visualizar</button>
+                        <button class="eliminar-btn">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Enlace a los archivos de estilos y scripts -->
+<link rel="stylesheet" href="~/css/estilosFactura.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/js/funcionesFactura.js"></script>

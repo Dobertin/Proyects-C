@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Listado de Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Usamos el layout compartido
+}
+
+<div class="container">
+    <h2>Listado de Clientes</h2>
+    <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
+
+    <!-- Filtro por cliente -->
+    <form class="cliente-filter">
+        <label for="cliente">Cliente:</label>
+        <select id="cliente" name="cliente">
+            <option value="CUNGA">CUNGA</option>
+            <!-- Agregar más clientes si es necesario -->
+        </select>
+
+        <button type="submit" class="buscar-btn">
+            <span>Buscar Clientes</span>
+        </button>
+    </form>
+
+    <!-- Tabla de clientes -->
+    <table class="clientes-table">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Capitán</th>
+                <th>Porcentaje</th>
+                <th>Gasolina</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Cunga</td>
+                <td>Cunga</td>
+                <td>0</td>
+                <td>3200</td>
+                <td>
+                    <button class="editar-btn">✏️</button>
+                    <button class="eliminar-btn">❌</button>
+                </td>
+            </tr>
+            <!-- Más filas si es necesario -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Enlace a los archivos de estilos y scripts -->
+<link rel="stylesheet" href="~/css/estilos.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/js/funciones.js"></script>

@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Consolidado de Cuentas";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Usamos el layout compartido
+}
+
+<div class="container">
+    <h2>Consolidado de Cuentas</h2>
+    <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
+
+    <div class="row">
+        <!-- Selección de cliente y búsqueda -->
+        <div class="form-group">
+            <label for="cliente">Cliente :</label>
+            <select id="cliente" name="cliente">
+                <option value="CUNGA">CUNGA</option>
+                <!-- Agregar más clientes si es necesario -->
+            </select>
+
+            <button type="submit" class="buscar-btn">
+                <span>Buscar Cuentas</span>
+            </button>
+        </div>
+
+        <!-- Información de créditos y abonos -->
+        <div class="creditos-abonos">
+            <div class="creditos">
+                <h3>Total Créditos</h3>
+                <p class="total-creditos" style="color: red;">36,175.00</p>
+            </div>
+            <div class="abonos">
+                <h3>Total Abonos</h3>
+                <p class="total-abonos">0</p>
+            </div>
+
+            <div class="debe">
+                <h3>DEBE</h3>
+                <p style="color: red;">36,175.00 ¢</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Información de la última cuenta -->
+    <div class="ultima-cuenta">
+        <h3>Ultima Cuenta</h3>
+        <div>
+            <span><strong>Fecha: </strong>10/12/2024</span>
+            <span><strong>Cliente: </strong>30Jimmy</span>
+            <span><strong>Monto: </strong>1'337,212</span>
+        </div>
+        <p class="ultima-descripcion">Hasta aquí sin meter la malla de rastra y hilos y mecate 5/16</p>
+    </div>
+
+    <!-- Tabla de Créditos -->
+    <h3>Créditos</h3>
+    <table class="credito-table">
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Préstamo 1</td>
+                <td>300.00 ¢</td>
+                <td>10/11/2024 <span class="icon-buscar">🔍</span></td>
+            </tr>
+            <!-- Más filas si es necesario -->
+        </tbody>
+    </table>
+
+    <!-- Tabla de Facturas -->
+    <h3>Facturas</h3>
+    <table class="factura-table">
+        <thead>
+            <tr>
+                <th>N° de Factura</th>
+                <th>N° Productos</th>
+                <th>Total</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1233456</td>
+                <td>2 productos</td>
+                <td>17,500</td>
+                <td>10/04/2024 <span class="icon-buscar">🔍</span></td>
+            </tr>
+            <!-- Más filas si es necesario -->
+        </tbody>
+    </table>
+
+    <!-- Sección de abonos duplicados -->
+    <h3>Abonos Duplicados</h3>
+    <p>No se encontraron abonos duplicados</p>
+</div>
+
+<!-- Enlace a los archivos de estilos y scripts -->
+<link rel="stylesheet" href="~/css/estilosCuentas.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/js/funcionesCuentas.js"></script>

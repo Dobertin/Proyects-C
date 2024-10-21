@@ -20,3 +20,18 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+.sidebar {
+    width: 30%;
+    background-color: #ffffff;
+    padding: 15px;
+}
+.main-content {
+    width: 70%;
+    padding: 15px;
+}

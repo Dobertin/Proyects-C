@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Créditos";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<div class="container">
+    <h2>Créditos</h2>
+    <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
+
+    <!-- Formulario para buscar y agregar créditos -->
+    <form class="credito-form">
+        <div class="form-group">
+            <label for="cliente">Cliente:</label>
+            <select id="cliente" name="cliente">
+                <option value="CUNGA">CUNGA</option>
+                <!-- Puedes agregar más clientes aquí -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="monto">Monto:</label>
+            <input type="text" id="monto" name="monto" value="1234567" />
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" name="descripcion" value="Préstamo 1" />
+        </div>
+
+        <div class="action-buttons">
+            <button type="submit" class="buscar-btn">
+                <span>Buscar Préstamo</span>
+            </button>
+            <button type="button" class="agregar-btn">
+                <span>Agregar Préstamo</span>
+            </button>
+        </div>
+    </form>
+
+    <!-- Tabla de resultados de créditos -->
+    <table class="credito-table">
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Préstamo 1</td>
+                <td>300.00 ¢</td>
+                <td>3700</td>
+                <td>
+                    <button class="editar-btn">✏️</button>
+                    <button class="eliminar-btn">❌</button>
+                </td>
+            </tr>
+            <!-- Puedes agregar más filas de prueba -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Enlace a los archivos de estilos y scripts -->
+<link rel="stylesheet" href="~/css/estilosCredito.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/js/funcionesCredito.js"></script>
