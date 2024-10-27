@@ -18,7 +18,13 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 // Registrar repositorios específicos y UnitOfWork
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-
+builder.Services.AddScoped<IAbonoRepository, AbonoRepository>();
+builder.Services.AddScoped<ICreditoRepository, CreditoRepository>();
+builder.Services.AddScoped<IDetalleFacturaRepository, DetalleFacturaRepository>();
+builder.Services.AddScoped<IFacturaRepository, FacturaRepository>();
+builder.Services.AddScoped<IGasolinaRepository, GasolinaRepository>();
+builder.Services.AddScoped<IMovimientosCreditoRepository, MovimientosCreditoRepository>();
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
 
 var app = builder.Build();
 

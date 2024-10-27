@@ -16,6 +16,7 @@ namespace jocsan.Data
         public DbSet<DetalleFactura> DetalleFacturas { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<MovimientosCredito> movimientosCreditos { get; set; }
+        public DbSet<Gasolina> Gasolinas { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

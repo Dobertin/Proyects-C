@@ -2,102 +2,160 @@
     ViewData["Title"] = "Emitir Factura";
     Layout = "~/Views/Shared/_Layout.cshtml"; // Si tienes un layout compartido
 }
-
-<div class="container">
-
-    <div class="main-content">
-        <div class="invoice-header">
+<body>
+    <div>
+        <div class="header">
             <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
             <h2>Factura NRO 6677</h2>
         </div>
 
-        <form>
-            <div class="form-section">
-                <label for="cliente">Cliente:</label>
-                <select id="cliente" name="cliente">
+        <div class="form-section">
+            <div class="row">
+                <label for="cliente-values">Cliente:</label>
+                <select id="cliente-values">
                     <option value="CUNGA">CUNGA</option>
                 </select>
 
-                <label for="dueño">Dueño:</label>
-                <input type="text" id="dueño" value="CUNGA" readonly />
-
-                <label for="porcentaje">Porcentaje:</label>
-                <input type="number" id="porcentaje" value="15%" readonly />
-
-                <label for="producto">Producto:</label>
-                <select id="producto" name="producto">
-                    <option value="CH">CH</option>
+                <label for="porcentaje-cliente">Porcentaje:</label>
+                <select id="porcentaje-cliente">
+                    <option value="15%">15%</option>
                 </select>
 
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" value="500" />
+                <label for="producto-values">Producto:</label>
+                <select id="producto-values">
+                    <option value="1">CH</option>
+                </select>
+                <label for="cantidad-producto">Cantidad:</label>
+                <input type="number" id="cantidad-producto" value="500">
             </div>
 
-            <div class="prices-section">
+            <div class="row">
+                <label for="dueno-cliente">Dueño:</label>
+                <input type="text" id="duenio-cliente" value="CUNGA" readonly>
+
+                <label for="tercero-cliente">Tercero:</label>
+                <input type="text" id="tercero-cliente" value="18,811.00" readonly>
+            </div>
+
+            <div class="row highlight">
                 <div class="price-box">
-                    <h3>Precio Gasolina</h3>
-                    <p>3200</p>
-                    <input type="number" value="1" />
+                    <p>Precio Gasolina</p>
+                    <h3 id="precio-gasolina">3200</h3>
+                    <label for="cantidad-gasolina">Cantidad</label>
+                    <input type="number" id="cantidad-gasolina" value="1">
                 </div>
                 <div class="price-box">
-                    <h3>Precio Hielo</h3>
-                    <p>1700</p>
-                    <input type="number" value="1" />
+                    <p>Precio Hielo</p>
+                    <h3 id="precio-hielo">1700</h3>
+                    <label for="cantidad-hielo">Cantidad</label>
+                    <input type="number" id="cantidad-hielo" value="1">
                 </div>
                 <div class="price-box">
-                    <h3>Precio Producto</h3>
-                    <p>300</p>
-                    <button type="button" id="changePrice">Cambio de Precio Temporal</button>
+                    <p>Precio Producto</p>
+                    <h3 id="precio-producto">300</h3>
+                    <p id="nombre-producto">CHATARRA</p>
+                    <button class="btn" id="changePrice">Cambio de Precio Temporal</button>
+                </div>
+                <div class="price-box">
+                    <label for="regreso-gasolina">Regreso de Gasolina:</label>
+                    <input type="radio" name="gasolina" id="regreso-gasolina" />
+                    <input type="number" id="cantidadproducto" value="500">
+                </div>
+                <div class="price-box">
+                    <div>
+                        <label for="pago">Pagó con:</label>
+                        <input type="text" id="pago" value="300,000.00 ¢">
+                    </div>
+                    <div>
+                        <label for="vuelto">Vuelto:</label>
+                        <input type="text" id="vuelto" value="176,605.00 ¢" readonly>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="totals-section">
+                    <div class="totals-row">
+                        <label>Subtotal Producto:</label>
+                        <input type="text" value="150,000.00 ¢" readonly>
+                    </div>
+                    <div class="totals-row">
+                        <label>Gas y Hielo:</label>
+                        <input type="text" value="- 4,900.00 ¢" readonly>
+                    </div>
+                    <div class="totals-row">
+                        <label>Subtotal:</label>
+                        <input type="text" value="145,100.00 ¢" readonly>
+                    </div>
+                    <div class="totals-row">
+                        <label>Terceros:</label>
+                        <input type="text" value="- 200.00 ¢" readonly>
+                    </div>
+                    <div class="totals-row">
+                        <label>Peladores:</label>
+                        <input type="text" value="- 200.00 ¢" readonly>
+                    </div>
+                    <div class="totals-row">
+                        <label>Subtotal:</label>
+                        <input type="text" value="144,700.00 ¢" readonly>
+                    </div>
+                    <div class="totals-row">
+                        <label>Monto Abono:</label>
+                        <input type="text" value="- 21,705.00 ¢" readonly>
+                    </div>
+                    <div class="totals-row">
+                        <label>TOTAL:</label>
+                        <input type="text" value="123,395.00 ¢" readonly>
+                    </div>
+                    <div class="discount-row">
+                        <div class="discount-row">
+                            <label>25%  ➔ </label>
+                            <p id="decuento-total-25">36,175.00 ¢</p>
+                        </div>
+                        <div class="discount-row">
+                            <button class="btn-list" id="agregar-a-lista">AGREGAR A LA LISTA</button>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="button-row">
+                    <div class="product-list">
+                        <h3>Lista de Productos Agregados</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Chatarra</td>
+                                    <td>300.00 ¢</td>
+                                    <td>3700</td>
+                                    <td>1,110,000.00 ¢</td>
+                                    <td>
+                                        <button id="btn-info-prodcuto">🔎</button>
+                                        <button id="btn-borrar-fila">❌</button>
+                                    </td>
+                                </tr>
+                                <!-- Más filas aquí -->
+                            </tbody>
+                        </table>
+                        <div class="button-row">
+                            <button class="btn-submit" id="btn-emitir">EMITIR FACTURA</button>
+                            <button class="btn-cancel" id="btn-cancelar">CANCELAR</button>                            
+                        </div>
+                    </div>
+                </div>
 
-            <div class="totals-section">
-                <label for="subtotal-producto">Subtotal Producto:</label>
-                <input type="text" id="subtotal-producto" value="150,000.00" readonly />
-
-                <label for="gas-hielo">Gas y Hielo:</label>
-                <input type="text" id="gas-hielo" value="-4,900.00" readonly />
-
-                <label for="subtotal">Subtotal:</label>
-                <input type="text" id="subtotal" value="145,100.00" readonly />
-
-                <label for="terceros">Terceros:</label>
-                <input type="text" id="terceros" value="-200.00" readonly />
-
-                <!-- Más campos aquí según la imagen -->
+                
             </div>
-
-            <div class="action-buttons">
-                <button type="submit" class="emitir-btn">Emitir Factura</button>
-                <button type="button" class="cancel-btn">Cancelar</button>
-            </div>
-        </form>
-
-        <div class="product-list">
-            <h3>Lista de Productos Agregados</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Chatarra</td>
-                        <td>300.00</td>
-                        <td>3700</td>
-                        <td>1,110,000.00</td>
-                    </tr>
-                    <!-- Más filas según la imagen -->
-                </tbody>
-            </table>
         </div>
-    </div>
+    
 </div>
-
+</body>
 <!-- Archivos CSS y JS -->
 <link rel="stylesheet" href="~/css/estilosFactura.css" />
 <link rel="stylesheet" href="~/css/site.css" />

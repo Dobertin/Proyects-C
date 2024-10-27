@@ -1,0 +1,114 @@
+﻿
+h2 {
+    margin-bottom: 10px;
+}
+
+.form-galones {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cliente-section select {
+    padding: 5px;
+}
+
+.galones-info {
+    display: flex;
+    gap: 20px;
+}
+
+.galones-info-block {
+    text-align: center;
+}
+
+    .galones-info-block h4 {
+        margin-bottom: 5px;
+    }
+
+    .galones-info-block input {
+        display: block;
+        width: 100px;
+        padding: 5px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 5px;
+    }
+
+.negative {
+    color: red;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-box {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: 1px solid #000;
+}
+
+.contra {
+    background-color: red;
+}
+
+.afavor {
+    background-color: green;
+}
+
+.ingreso-galones {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+    .ingreso-galones label {
+        margin-right: 5px;
+    }
+
+    .ingreso-galones input {
+        padding: 5px;
+        width: 50px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+.btn-buscar, .btn-voucher {
+    padding: 10px;
+    background-color: #00CBB9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .btn-buscar:hover, .btn-voucher:hover {
+        background-color: #009C8A;
+    }
+
+.tables-section {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.pagados, .cargados {
+    width: 50%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    table th, table td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }

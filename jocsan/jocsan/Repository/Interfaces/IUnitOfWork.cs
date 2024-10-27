@@ -11,6 +11,7 @@ namespace jocsan.Repository.Interfaces
         IFacturaRepository Factura { get; }
         IMovimientosCreditoRepository MovimientosCredito { get; }
         IProductoRepository Producto { get; }
+        IGasolinaRepository Gasolina { get; }
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();
         Task RollbackTransactionAsync();

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace jocsan.Models
 {
@@ -15,6 +16,7 @@ namespace jocsan.Models
         public string? UsuarioModifica { get; set; }
         public DateTime? FechaModifica { get; set; }
 
+        [ForeignKey(nameof(IdCliente))]
         public Cliente Cliente { get; set; }
     }
 

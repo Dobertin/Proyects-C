@@ -2,12 +2,12 @@
     ViewData["Title"] = "Búsqueda de Facturas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="container">
-    <div class="main-content">
-        <h2>Búsqueda de Facturas</h2>
-        <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
-
+<body>
+    <div>
+        <div class="header">
+            <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
+            <h2>Búsqueda de Facturas</h2>
+        </div>
         <!-- Formulario de búsqueda de facturas -->
         <form class="search-form">
             <label for="cliente">Cliente:</label>
@@ -60,8 +60,7 @@
             </tbody>
         </table>
     </div>
-</div>
-
+</body>
 <!-- Enlace a los archivos de estilos y scripts -->
 <link rel="stylesheet" href="~/css/estilosFactura.css" />
 <link rel="stylesheet" href="~/css/site.css" />

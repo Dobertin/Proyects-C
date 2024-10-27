@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Gasolina";
+    Layout = "~/Views/Shared/_Layout.cshtml";  // Usa el layout compartido si tienes uno
+}
+<body>
+    <div>
+        <div class="header">
+            <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
+            <h2>Galones</h2>
+        </div>
+        <!-- Formulario de cliente y galones -->
+        <div class="form-galones">
+            <div class="cliente-section">
+                <label for="cliente">Cliente:</label>
+                <select id="cliente" name="cliente">
+                    <option value="CUNGA">CUNGA</option>
+                    <!-- Otras opciones de cliente -->
+                </select>
+            </div>
+
+            <!-- Galones y deuda -->
+            <div class="galones-info">
+                <div class="galones-info-block">
+                    <h4>Galones Pagados</h4>
+                    <input type="text" value="16,394.0" readonly />
+                    <input type="text" value="537,584.00 ¢" readonly />
+                </div>
+                <div class="galones-info-block">
+                    <h4>Galones Cargados</h4>
+                    <input type="text" value="2.0" readonly />
+                    <input type="text" value="7,200.00 ¢" readonly />
+                </div>
+                <div class="galones-info-block">
+                    <h4>Galones Deuda</h4>
+                    <input type="text" value="-16,392.0" class="negative" readonly />
+                    <input type="text" value="-530,384.00 ¢" class="negative" readonly />
+                </div>
+            </div>
+
+            <!-- Indicador contra/afavor -->
+            <div class="status-indicator">
+                <label>CONTRA</label><div class="status-box contra"></div>
+                <label>AFAVOR</label><div class="status-box afavor"></div>
+            </div>
+
+            <!-- Ingreso de galones -->
+            <div class="ingreso-galones">
+                <label for="precio">Precio:</label>
+                <input type="text" id="precio" value="5" />
+
+                <label for="monto">Monto:</label>
+                <input type="text" id="monto" value="500" />
+
+                <label for="cantidad">Cantidad:</label>
+                <input type="text" id="cantidad" value="100" />
+
+                <button class="btn-buscar">Añadir Cuenta</button>
+            </div>
+
+            <!-- Botón de voucher -->
+            <div class="voucher-section">
+                <button class="btn-voucher">Generar Voucher</button>
+            </div>
+        </div>
+
+        <!-- Tablas de pagados y cargados -->
+        <div class="tables-section">
+            <div class="pagados">
+                <h3>Pagados</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Precio</th>
+                            <th>Galones</th>
+                            <th>Monto E</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3200</td>
+                            <td>11</td>
+                            <td>300.00 ¢</td>
+                            <td>10/11/2024</td>
+                        </tr>
+                        <!-- Más filas si es necesario -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cargados">
+                <h3>Cargados</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Galones</th>
+                            <th>Monto E</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CUNGA</td>
+                            <td>11</td>
+                            <td>300.00 ¢</td>
+                            <td>10/11/2024</td>
+                        </tr>
+                        <!-- Más filas si es necesario -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Enlace a los archivos de estilos y scripts -->
+<link rel="stylesheet" href="~/css/estilosGasolina.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="~/js/funcionesGasolina.js"></script>

@@ -17,7 +17,6 @@ namespace jocsan.Models
         public DateTime FechaCreacion { get; set; }
         public string? UsuarioModifica { get; set; }
         public DateTime? FechaModifica { get; set; }
-
         public ICollection<Abono> Abonos { get; set; }
         public ICollection<Credito> Creditos { get; set; }
     }

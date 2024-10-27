@@ -3,14 +3,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace jocsan.Models
 {
-    public class Abono
+    public class Gasolina
     {
         [Key]
-        public int IdAbono { get; set; }
-        public string? Descripcion { get; set; }
+        public int IdGasolina { get; set; }
+        public string? Comentario { get; set; }
         public int IdCliente { get; set; }
-        public DateTime FechaAbono { get; set; }
-        public decimal ValorAbono { get; set; }
+        public decimal PrecioGalonPagado { get; set; }
+        public int CantGalonPagado { get; set; }
+        public decimal PrecioGalonCargado { get; set; }
+        public int CantGalonCargado { get; set; }
+        public decimal TotalGalonCargado { get; set; }
+        public decimal TotalGalonPagado { get; set; }
+        public DateTime FechaOperacion { get; set; }
         public string? UsuarioCreacion { get; set; }
         public DateTime FechaCreacion { get; set; }
         public string? UsuarioModifica { get; set; }
@@ -19,5 +24,4 @@ namespace jocsan.Models
         [ForeignKey(nameof(IdCliente))]
         public Cliente Cliente { get; set; }
     }
-
 }

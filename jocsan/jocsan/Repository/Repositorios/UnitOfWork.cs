@@ -20,6 +20,7 @@ namespace jocsan.Repository.Repositorios
             DetalleFactura = new DetalleFacturaRepository(_context);
             MovimientosCredito = new MovimientosCreditoRepository(_context);
             Producto = new ProductoRepository(_context);
+            Gasolina = new GasolinaRepository(_context);
         }
 
         public IClienteRepository Clientes { get; private set; }
@@ -29,7 +30,7 @@ namespace jocsan.Repository.Repositorios
         public IFacturaRepository Factura { get; private set; }
         public IMovimientosCreditoRepository MovimientosCredito { get; private set; }
         public IProductoRepository Producto { get; private set; }
-
+        public IGasolinaRepository Gasolina { get; private set; }
         public async Task BeginTransactionAsync()
         {
             _transaction = await _context.Database.BeginTransactionAsync();
