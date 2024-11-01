@@ -6,5 +6,6 @@ namespace jocsan.Repository.Interfaces
     {
         // Métodos adicionales específicos de Cliente
         Task<IEnumerable<Cliente>> GetClientesWithAbonosAsync();
+        Task<IEnumerable<ComboResult>> GetComboClientesAsync();
     }
 }

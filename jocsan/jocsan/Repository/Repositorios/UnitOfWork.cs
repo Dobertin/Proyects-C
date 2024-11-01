@@ -13,29 +13,30 @@ namespace jocsan.Repository.Repositorios
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-            Clientes = new ClienteRepository(_context);
+            Cliente = new ClienteRepository(_context);
             Abono = new AbonoRepository(_context);
             Factura = new FacturaRepository(_context);
-            Credito = new CreditoRepository(_context);
+            Creditos = new CreditoRepository(_context);
             DetalleFactura = new DetalleFacturaRepository(_context);
             MovimientosCredito = new MovimientosCreditoRepository(_context);
             Producto = new ProductoRepository(_context);
             Gasolina = new GasolinaRepository(_context);
+            Parametro = new ParametroRepository(_context);
         }
 
-        public IClienteRepository Clientes { get; private set; }
+        public IClienteRepository Cliente { get; private set; }
         public IAbonoRepository Abono { get; private set; }
-        public ICreditoRepository Credito { get; private set; }
+        public ICreditoRepository Creditos { get; private set; }
         public IDetalleFacturaRepository DetalleFactura { get; private set; }
         public IFacturaRepository Factura { get; private set; }
         public IMovimientosCreditoRepository MovimientosCredito { get; private set; }
         public IProductoRepository Producto { get; private set; }
         public IGasolinaRepository Gasolina { get; private set; }
+        public IParametroRepository Parametro { get; private set; }
         public async Task BeginTransactionAsync()
         {
             _transaction = await _context.Database.BeginTransactionAsync();
         }
-
         public async Task CommitTransactionAsync()
         {
             try
@@ -49,7 +50,6 @@ namespace jocsan.Repository.Repositorios
                 throw;
             }
         }
-
         public async Task RollbackTransactionAsync()
         {
             await _transaction.RollbackAsync();
@@ -58,7 +58,6 @@ namespace jocsan.Repository.Repositorios
         {
             return await _context.SaveChangesAsync();
         }
-
         public void Dispose()
         {
             _context.Dispose();

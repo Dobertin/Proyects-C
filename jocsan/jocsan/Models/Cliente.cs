@@ -9,7 +9,7 @@ namespace jocsan.Models
         public string? Nombre { get; set; }
         public string? Capitan { get; set; }
         public decimal Porcentaje { get; set; }
-        public int Gasolina { get; set; }
+        public decimal Gasolina { get; set; }
         public bool NuevaEmbarcacion { get; set; }
         public string? Peon1 { get; set; }
         public string? Peon2 { get; set; }

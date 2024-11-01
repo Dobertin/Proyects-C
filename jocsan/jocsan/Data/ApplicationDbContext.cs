@@ -9,14 +9,15 @@ namespace jocsan.Data
             : base(options)
         {
         }
-        public DbSet<Abono> Abonos { get; set; }
-        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Abono> Abono { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Credito> Creditos { get; set; }
-        public DbSet<Factura> Facturas { get; set; }
-        public DbSet<DetalleFactura> DetalleFacturas { get; set; }
-        public DbSet<Producto> Productos { get; set; }
-        public DbSet<MovimientosCredito> movimientosCreditos { get; set; }
-        public DbSet<Gasolina> Gasolinas { get; set; }
+        public DbSet<Factura> Factura { get; set; }
+        public DbSet<DetalleFactura> DetalleFactura { get; set; }
+        public DbSet<Producto> Producto { get; set; }
+        public DbSet<MovimientosCredito> MovimientosCredito { get; set; }
+        public DbSet<Gasolina> Gasolina { get; set; }
+        public DbSet<Parametro> Parametro { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

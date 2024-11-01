@@ -14,9 +14,19 @@ namespace jocsan.Repository.Repositorios
             _context = context;
         }
 
+        public async Task<IEnumerable<ComboResult>> GetComboClientesAsync()
+        {
+            return await _context.Cliente
+                        .Select(c => new ComboResult
+                        {
+                            codigo = c.IdCliente,
+                            descripcion = c.Nombre
+                        })
+                        .ToListAsync();
+        }
         public async Task<IEnumerable<Cliente>> GetClientesWithAbonosAsync()
         {
-            return await _context.Clientes.Include(c => c.Abonos).ToListAsync();
+            return await _context.Cliente.Include(c => c.Abonos).ToListAsync();
         }
     }
 }

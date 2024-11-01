@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Emitir Factura";
-    Layout = "~/Views/Shared/_Layout.cshtml"; // Si tienes un layout compartido
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <body>
     <div>
@@ -13,62 +13,63 @@
             <div class="row">
                 <label for="cliente-values">Cliente:</label>
                 <select id="cliente-values">
-                    <option value="CUNGA">CUNGA</option>
                 </select>
 
                 <label for="porcentaje-cliente">Porcentaje:</label>
                 <select id="porcentaje-cliente">
-                    <option value="15%">15%</option>
                 </select>
 
                 <label for="producto-values">Producto:</label>
                 <select id="producto-values">
-                    <option value="1">CH</option>
                 </select>
                 <label for="cantidad-producto">Cantidad:</label>
-                <input type="number" id="cantidad-producto" value="500">
+                <input type="number" id="cantidad-producto" value="0" min="0">
             </div>
 
             <div class="row">
                 <label for="dueno-cliente">Dueño:</label>
-                <input type="text" id="duenio-cliente" value="CUNGA" readonly>
+                <input type="text" id="duenio-cliente" readonly>
 
                 <label for="tercero-cliente">Tercero:</label>
-                <input type="text" id="tercero-cliente" value="18,811.00" readonly>
+                <input type="number" id="tercero-cliente" value="0" readonly>
+
+                <div class="discount-row">
+                    <button class="btn-list" id="agregar-a-lista">AGREGAR A LA LISTA</button>
+                </div>
             </div>
 
             <div class="row highlight">
                 <div class="price-box">
                     <p>Precio Gasolina</p>
-                    <h3 id="precio-gasolina">3200</h3>
+                    <h3 id="precio-gasolina">0</h3>
                     <label for="cantidad-gasolina">Cantidad</label>
-                    <input type="number" id="cantidad-gasolina" value="1">
+                    <input type="number" id="cantidad-gasolina" value="0" min="0">
                 </div>
                 <div class="price-box">
                     <p>Precio Hielo</p>
-                    <h3 id="precio-hielo">1700</h3>
+                    <h3 id="precio-hielo">0</h3>
                     <label for="cantidad-hielo">Cantidad</label>
-                    <input type="number" id="cantidad-hielo" value="1">
+                    <input type="number" id="cantidad-hielo" value="0" min="0">
                 </div>
                 <div class="price-box">
                     <p>Precio Producto</p>
-                    <h3 id="precio-producto">300</h3>
-                    <p id="nombre-producto">CHATARRA</p>
+                    <h3 id="precio-producto">0</h3>
+                    <p id="nombre-producto"></p>
                     <button class="btn" id="changePrice">Cambio de Precio Temporal</button>
                 </div>
                 <div class="price-box">
                     <label for="regreso-gasolina">Regreso de Gasolina:</label>
-                    <input type="radio" name="gasolina" id="regreso-gasolina" />
-                    <input type="number" id="cantidadproducto" value="500">
+                    <input type="checkbox" id="regreso-gasolina" />
+                    <input type="number" id="cantidad-regreso-gasolina" value="0" min="0" disabled>
                 </div>
                 <div class="price-box">
                     <div>
                         <label for="pago">Pagó con:</label>
-                        <input type="text" id="pago" value="300,000.00 ¢">
+                        <input type="number" id="pago" value="0.00" min="0">
                     </div>
                     <div>
                         <label for="vuelto">Vuelto:</label>
-                        <input type="text" id="vuelto" value="176,605.00 ¢" readonly>
+                        <input type="number" id="vuelto" value="0.00" min="0" readonly>
                     </div>
                 </div>
             </div>
@@ -76,50 +77,47 @@
                 <div class="totals-section">
                     <div class="totals-row">
                         <label>Subtotal Producto:</label>
-                        <input type="text" value="150,000.00 ¢" readonly>
+                        <input id="subtotal-producto" type="number" value="0.00" readonly>
                     </div>
                     <div class="totals-row">
                         <label>Gas y Hielo:</label>
-                        <input type="text" value="- 4,900.00 ¢" readonly>
+                        <input id="gas-hielo" type="number" value="0.00" readonly>
                     </div>
                     <div class="totals-row">
                         <label>Subtotal:</label>
-                        <input type="text" value="145,100.00 ¢" readonly>
+                        <input id="primer-subtotal" type="number" value="0.00" readonly>
                     </div>
                     <div class="totals-row">
                         <label>Terceros:</label>
-                        <input type="text" value="- 200.00 ¢" readonly>
+                        <input id="terceros" type="number" value="0.00" readonly>
                     </div>
                     <div class="totals-row">
                         <label>Peladores:</label>
-                        <input type="text" value="- 200.00 ¢" readonly>
+                        <input id="peladores" type="number" value="0.00" readonly>
                     </div>
                     <div class="totals-row">
                         <label>Subtotal:</label>
-                        <input type="text" value="144,700.00 ¢" readonly>
+                        <input id="segundo-subtotal" type="number" value="0.00" readonly>
                     </div>
                     <div class="totals-row">
                         <label>Monto Abono:</label>
-                        <input type="text" value="- 21,705.00 ¢" readonly>
+                        <input id="monto-abono" type="number" value="0.00" readonly>
                     </div>
                     <div class="totals-row">
                         <label>TOTAL:</label>
-                        <input type="text" value="123,395.00 ¢" readonly>
+                        <input id="total-general" type="number" value="0.00" readonly>
                     </div>
                     <div class="discount-row">
                         <div class="discount-row">
                             <label>25%  ➔ </label>
-                            <p id="decuento-total-25">36,175.00 ¢</p>
-                        </div>
-                        <div class="discount-row">
-                            <button class="btn-list" id="agregar-a-lista">AGREGAR A LA LISTA</button>
+                            <p id="decuento-total-25">36,175.00</p>
                         </div>
                     </div>                    
                 </div>
                 <div class="button-row">
-                    <div class="product-list">
+                    <div class="product-list table-responsive">
                         <h3>Lista de Productos Agregados</h3>
-                        <table>
+                        <table id ="table_products">
                             <thead>
                                 <tr>
                                     <th>Producto</th>
@@ -132,11 +130,10 @@
                             <tbody>
                                 <tr>
                                     <td>Chatarra</td>
-                                    <td>300.00 ¢</td>
+                                    <td>300.00</td>
                                     <td>3700</td>
-                                    <td>1,110,000.00 ¢</td>
+                                    <td>1110000.00</td>
                                     <td>
-                                        <button id="btn-info-prodcuto">🔎</button>
                                         <button id="btn-borrar-fila">❌</button>
                                     </td>
                                 </tr>

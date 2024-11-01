@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace jocsan.Controllers
 {
-    public class ClientesController : Controller
+    public class ClienteController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ClientesController(IUnitOfWork unitOfWork)
+        public ClienteController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -18,16 +18,16 @@ namespace jocsan.Controllers
         {
             return View();
         }
-        public IActionResult ListadoClientes()
+        public IActionResult ListadoCliente()
         {
             return View();
         }
 
-        // GET: Clientes/Details/5
+        // GET: Cliente/Details/5
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var cliente = await _unitOfWork.Clientes.GetByIdAsync(id);
+            var cliente = await _unitOfWork.Cliente.GetByIdAsync(id);
             if (cliente == null)
             {
                 return NotFound();
@@ -43,11 +43,11 @@ namespace jocsan.Controllers
             try
             {
                 // Crear el cliente
-                await _unitOfWork.Clientes.AddAsync(cliente);
+                await _unitOfWork.Cliente.AddAsync(cliente);
 
                 // Asociar el cliente con el crédito
                 credito.IdCliente = cliente.IdCliente;
-                await _unitOfWork.Credito.AddAsync(credito);
+                await _unitOfWork.Creditos.AddAsync(credito);
 
                 // Confirmar la transacción
                 await _unitOfWork.CommitTransactionAsync();

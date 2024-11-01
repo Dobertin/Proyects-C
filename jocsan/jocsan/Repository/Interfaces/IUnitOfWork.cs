@@ -4,14 +4,15 @@ namespace jocsan.Repository.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IClienteRepository Clientes { get; }
+        IClienteRepository Cliente { get; }
         IAbonoRepository Abono { get; }
-        ICreditoRepository Credito { get; }
+        ICreditoRepository Creditos { get; }
         IDetalleFacturaRepository DetalleFactura { get; }
         IFacturaRepository Factura { get; }
         IMovimientosCreditoRepository MovimientosCredito { get; }
         IProductoRepository Producto { get; }
         IGasolinaRepository Gasolina { get; }
+        IParametroRepository Parametro { get; }
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();
         Task RollbackTransactionAsync();

@@ -10,7 +10,7 @@ namespace jocsan.Models
         public int IdProducto { get; set; }
         public int IdFactura { get; set; }
         public decimal PrecioUnitario { get; set; }
-        public int Cantidad { get; set; }
+        public decimal Cantidad { get; set; }
         public decimal SubTotalParcial { get; set; }
         public decimal TotalParcial { get; set; }
         public string? UsuarioCreacion { get; set; }
