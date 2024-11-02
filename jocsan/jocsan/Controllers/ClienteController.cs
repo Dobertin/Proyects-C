@@ -14,16 +14,16 @@ namespace jocsan.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult AñadirCliente()
+        public IActionResult AniadirCliente()
         {
             return View();
         }
-        public IActionResult ListadoCliente()
+        public IActionResult ListadoClientes()
         {
             return View();
         }
 
-        // GET: Cliente/Details/5
+        // GET: Clientes/Details/5
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {

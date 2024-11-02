@@ -6,6 +6,7 @@ namespace jocsan.Models
     public class MovimientosCredito
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdMovimiento { get; set; }
         public int IdCredito { get; set; }
         public int IdAbono { get; set; }

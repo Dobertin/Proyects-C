@@ -6,6 +6,7 @@ namespace jocsan.Models
     public class Gasolina
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdGasolina { get; set; }
         public string? Comentario { get; set; }
         public int IdCliente { get; set; }

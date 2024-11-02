@@ -6,6 +6,7 @@ namespace jocsan.Models
     public class DetalleFactura
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdDetalleFactura { get; set; }
         public int IdProducto { get; set; }
         public int IdFactura { get; set; }
@@ -14,7 +15,7 @@ namespace jocsan.Models
         public decimal SubTotalParcial { get; set; }
         public decimal TotalParcial { get; set; }
         public string? UsuarioCreacion { get; set; }
-        public DateTime FechaCreacion { get; set; }
+        public DateTime? FechaCreacion { get; set; }
         public string? UsuarioModifica { get; set; }
         public DateTime? FechaModifica { get; set; }
 

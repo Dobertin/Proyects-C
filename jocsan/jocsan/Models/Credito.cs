@@ -6,6 +6,7 @@ namespace jocsan.Models
     public class Credito
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCredito { get; set; }
         public string? Descripcion { get; set; }
         public int IdCliente { get; set; }

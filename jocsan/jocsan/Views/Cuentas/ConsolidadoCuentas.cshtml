@@ -9,94 +9,89 @@
             <h2>Consolidado de Cuentas</h2>
         </div>
 
-        <div class="row">
-            <!-- Selección de cliente y búsqueda -->
-            <div class="form-group">
-                <label for="cliente">Cliente :</label>
-                <select id="cliente" name="cliente">
-                    <option value="CUNGA">CUNGA</option>
-                    <!-- Agregar más clientes si es necesario -->
-                </select>
+        <section class="client-section">
+            <label for="cliente-select">Cliente:</label>
+            <select id="cliente-select">
+                <option value="CUNGA">CUNGA</option>
+            </select>
+            <button class="btn-search">BUSCAR CUENTAS</button>
+        </section>
 
-                <button type="submit" class="buscar-btn">
-                    <span>Buscar Cuentas</span>
-                </button>
+        <section class="summary">
+            <div class="total-credits">
+                <h2>Total Créditos</h2>
+                <p>36,175.00 €</p>
+            </div>
+            <div class="total-abonos">
+                <h2>Total Abonos</h2>
+                <p>0 €</p>
+            </div>
+            <div class="debe">
+                <h2>DEBE</h2>
+                <p>36,175.00 €</p>
+            </div>
+        </section>
+
+        <section class="last-account">
+            <h2>ULTIMA CUENTA</h2>
+            <div class="account-details">
+                <p><strong>Fecha:</strong> 10/12/2024</p>
+                <p><strong>Cliente:</strong> 30Jimmy</p>
+                <p><strong>Monto:</strong> 1,337,212 €</p>
+                <p>Hasta aquí sin meter la maya de rastra y hilos y mecate 5/16</p>
+            </div>
+        </section>
+
+        <section class="tables-section">
+            <div class="credits">
+                <h3>CREDITOS</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descripción</th>
+                            <th>Monto</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Préstamo 1</td>
+                            <td>300.00 €</td>
+                            <td>10/11/2024</td>
+                        </tr>
+                        <!-- Más filas según sea necesario -->
+                    </tbody>
+                </table>
             </div>
 
-            <!-- Información de créditos y abonos -->
-            <div class="creditos-abonos">
-                <div class="creditos">
-                    <h3>Total Créditos</h3>
-                    <p class="total-creditos" style="color: red;">36,175.00</p>
-                </div>
-                <div class="abonos">
-                    <h3>Total Abonos</h3>
-                    <p class="total-abonos">0</p>
-                </div>
-
-                <div class="debe">
-                    <h3>DEBE</h3>
-                    <p style="color: red;">36,175.00 ¢</p>
-                </div>
+            <div class="invoices">
+                <h3>FACTURAS</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>N° de Factura</th>
+                            <th>N° Productos</th>
+                            <th>Total</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1233456</td>
+                            <td>2 productos</td>
+                            <td>17,500 €</td>
+                            <td>10/04/2024</td>
+                        </tr>
+                        <!-- Más filas según sea necesario -->
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </section>
 
-        <!-- Información de la última cuenta -->
-        <div class="ultima-cuenta">
-            <h3>Ultima Cuenta</h3>
-            <div>
-                <span><strong>Fecha: </strong>10/12/2024</span>
-                <span><strong>Cliente: </strong>30Jimmy</span>
-                <span><strong>Monto: </strong>1'337,212</span>
-            </div>
-            <p class="ultima-descripcion">Hasta aquí sin meter la malla de rastra y hilos y mecate 5/16</p>
-        </div>
-
-        <!-- Tabla de Créditos -->
-        <h3>Créditos</h3>
-        <table class="credito-table">
-            <thead>
-                <tr>
-                    <th>Descripción</th>
-                    <th>Monto</th>
-                    <th>Fecha</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Préstamo 1</td>
-                    <td>300.00 ¢</td>
-                    <td>10/11/2024 <span class="icon-buscar">🔍</span></td>
-                </tr>
-                <!-- Más filas si es necesario -->
-            </tbody>
-        </table>
-
-        <!-- Tabla de Facturas -->
-        <h3>Facturas</h3>
-        <table class="factura-table">
-            <thead>
-                <tr>
-                    <th>N° de Factura</th>
-                    <th>N° Productos</th>
-                    <th>Total</th>
-                    <th>Fecha</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1233456</td>
-                    <td>2 productos</td>
-                    <td>17,500</td>
-                    <td>10/04/2024 <span class="icon-buscar">🔍</span></td>
-                </tr>
-                <!-- Más filas si es necesario -->
-            </tbody>
-        </table>
-
-        <!-- Sección de abonos duplicados -->
-        <h3>Abonos Duplicados</h3>
-        <p>No se encontraron abonos duplicados</p>
+        <section class="duplicate-abonos">
+            <h3>ABONOS DUPLICADOS</h3>
+            <p>No se encontraron abonos duplicados</p>
+        </section>
     </div>
 </body>
 <!-- Enlace a los archivos de estilos y scripts -->

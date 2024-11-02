@@ -17,5 +17,6 @@ namespace jocsan.Repository.Interfaces
         Task CommitTransactionAsync();
         Task RollbackTransactionAsync();
         Task<int> CompleteAsync();
+        Task<int> SaveChangesAsync();
     }
 }

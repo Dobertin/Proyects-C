@@ -6,6 +6,7 @@ namespace jocsan.Models
     public class Abono
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdAbono { get; set; }
         public string? Descripcion { get; set; }
         public int IdCliente { get; set; }
