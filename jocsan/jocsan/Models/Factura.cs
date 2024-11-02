@@ -26,6 +26,7 @@ namespace jocsan.Models
         public decimal Valor13 { get; set; }
         public decimal Abono { get; set; }
         public decimal TotalVenta { get; set; }
+        public int Estado { get; set; } = 1;
         public string? UsuarioCreacion { get; set; }
         public DateTime FechaCreacion { get; set; }
         public string? UsuarioModifica { get; set; }

@@ -15,6 +15,7 @@ namespace jocsan.Models
         public bool NuevaEmbarcacion { get; set; }
         public string? Peon1 { get; set; }
         public string? Peon2 { get; set; }
+        public int Estado { get; set; } = 1;
         public string? UsuarioCreacion { get; set; }
         public DateTime FechaCreacion { get; set; }
         public string? UsuarioModifica { get; set; }

@@ -2,6 +2,10 @@
     ViewData["Title"] = "Búsqueda de Facturas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 <body>
     <div>
         <div class="header">
@@ -11,13 +15,11 @@
         <!-- Formulario de búsqueda de facturas -->
         <form class="search-form">
             <label for="cliente">Cliente:</label>
-            <select id="cliente" name="cliente">
-                <option value="CUNGA">CUNGA</option>
-                <!-- Agregar más opciones de clientes si es necesario -->
+            <select id="cliente-values">
             </select>
 
             <label for="nro-factura">Nro de Factura:</label>
-            <input type="text" id="nro-factura" name="nro-factura" value="1234567" />
+            <input type="number" id="nro-factura" name="nro-factura" value="0" min="0" />
 
             <button type="submit" class="buscar-btn">
                 <span>Buscar Factura</span>
@@ -25,7 +27,7 @@
         </form>
 
         <!-- Tabla de resultados -->
-        <table class="factura-table">
+        <table class="factura-table" id="table-factura">
             <thead>
                 <tr>
                     <th>N° de Factura</th>
@@ -36,31 +38,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1233456</td>
-                    <td>2 productos</td>
-                    <td>17,500</td>
-                    <td>10/04/2024</td>
-                    <td>
-                        <button class="visualizar-btn">Visualizar</button>
-                        <button class="eliminar-btn">Eliminar</button>
-                    </td>
-                </tr>
                 <!-- Más filas según sea necesario -->
-                <tr>
-                    <td>1233456</td>
-                    <td>2 productos</td>
-                    <td>17,500</td>
-                    <td>10/04/2024</td>
-                    <td>
-                        <button class="visualizar-btn">Visualizar</button>
-                        <button class="eliminar-btn">Eliminar</button>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>
 </body>
+
+<div id="pdfModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <iframe id="pdfViewer" style="width:100%; height:500px;"></iframe>
+    </div>
+</div>
 <!-- Enlace a los archivos de estilos y scripts -->
 <link rel="stylesheet" href="~/css/estilosBuscarFactura.css" />
 <link rel="stylesheet" href="~/css/site.css" />

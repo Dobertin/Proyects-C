@@ -1,6 +1,8 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 namespace jocsan.Models
 {
     public class PdfGenerator
@@ -98,6 +100,63 @@ namespace jocsan.Models
                 document.Add(verse);
 
                 document.Close();
+                return ms.ToArray();
+            }
+        }
+        public byte[] GenerarCreditoPdf(Credito credito)
+        {
+            using (var ms = new MemoryStream())
+            {
+                // Crear el documento PDF con tamaño de página predeterminado
+                var document = new Document(PageSize.A4);
+                var writer = PdfWriter.GetInstance(document, ms);
+                document.Open();
+
+                // Fuente para el contenido
+                var fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
+                var fontContenido = FontFactory.GetFont(FontFactory.HELVETICA, 12);
+                var fontVersiculo = FontFactory.GetFont(FontFactory.HELVETICA_OBLIQUE, 10);
+
+                // Título
+                var titulo = new Paragraph("Comprobante de crédito", fontTitulo)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingAfter = 20
+                };
+                document.Add(titulo);
+
+                // Contenido del comprobante
+                var contenido = new Paragraph
+                {
+                    Alignment = Element.ALIGN_CENTER
+                };
+                contenido.Add(new Phrase($"Descripción: {credito.Descripcion}\n", fontContenido));
+                contenido.Add(new Phrase($"Fecha: {credito.FechaCredito:dd/MM/yyyy}\n", fontContenido));
+                contenido.Add(new Phrase($"Monto: {credito.ValorCredito.ToString("C")}\n", fontContenido));
+                contenido.Add(new Phrase($"Cliente: {credito.Cliente.Nombre}\n", fontContenido));
+                document.Add(contenido);
+
+                // Espacio adicional antes del versículo
+                document.Add(new Paragraph("\n\n"));
+
+                // Versículo
+                var versiculo = new Paragraph("Romanos 13:7a y 8a", fontTitulo)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingAfter = 5
+                };
+                document.Add(versiculo);
+
+                var textoVersiculo = new Paragraph("No tengan deudas pendientes con nadie a no ser la de amarse unos a otros", fontVersiculo)
+                {
+                    Alignment = Element.ALIGN_CENTER
+                };
+                document.Add(textoVersiculo);
+
+                // Cerrar el documento
+                document.Close();
+
+                // Retornar el PDF como array de bytes
                 return ms.ToArray();
             }
         }

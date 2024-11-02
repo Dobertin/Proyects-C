@@ -12,6 +12,7 @@ namespace jocsan.Models
         public int IdCliente { get; set; }
         public DateTime FechaCredito { get; set; }
         public decimal ValorCredito { get; set; }
+        public int Estado { get; set; } = 1;
         public string? UsuarioCreacion { get; set; }
         public DateTime FechaCreacion { get; set; }
         public string? UsuarioModifica { get; set; }
