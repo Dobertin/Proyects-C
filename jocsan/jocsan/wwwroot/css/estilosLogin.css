@@ -1,79 +1,97 @@
-﻿/* Estilos generales para el formulario de login */
-body, html {
-    height: 100%;
-    margin: 0;
+﻿/* General container styling */
+body {
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #f0f4f8;
 }
 
 .login-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-}
-
-header h1 {
-    margin-bottom: 40px;
-    font-size: 24px;
-    font-weight: normal;
+    width: 100%;
+    max-width: 400px;
+    background: #ffffff;
+    padding: 2em;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .login-main {
-    background-color: white;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 100%;
+}
+
+/* Title styling */
+h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 2.5em;
+    color: #2a7b9b;
+    margin-bottom: 0.3em;
 }
 
 h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #333;
+    margin: 0.5em 0 1em;
 }
 
 p {
-    margin-bottom: 20px;
+    font-size: 1em;
     color: #666;
+    margin-bottom: 1.5em;
 }
 
+/* Form styling */
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1em;
 }
 
 .form-group {
+    display: flex;
+    flex-direction: column;
     text-align: left;
 }
 
 label {
-    font-size: 14px;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 0.5em;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
+input[type="email"],
+input[type="password"] {
+    padding: 0.8em;
+    font-size: 1em;
     border: 1px solid #ccc;
     border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+        border-color: #2a7b9b;
+    }
+
+/* Button styling */
 .login-btn {
-    background-color: black;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
+    padding: 0.8em;
+    font-size: 1em;
+    color: #fff;
+    background: #2a7b9b;
     border: none;
-    cursor: pointer;
     border-radius: 4px;
-    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
     .login-btn:hover {
-        background-color: #333;
+        background: #236b89;
     }

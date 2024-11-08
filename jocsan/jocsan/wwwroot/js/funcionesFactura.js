@@ -448,6 +448,8 @@ agregarAListaBtn.addEventListener('click', function () {
         const table = document.getElementById('table_products').getElementsByTagName('tbody')[0];
         const newRow = table.insertRow();
 
+        // Agregar la clase de estilo para las filas
+        newRow.classList.add('border-bottom');
         const cellProducto = newRow.insertCell(0);
         const cellPrecio = newRow.insertCell(1);
         const cellCantidad = newRow.insertCell(2);
@@ -464,10 +466,10 @@ agregarAListaBtn.addEventListener('click', function () {
         cellTotal.innerText = subtotalProducto.toFixed(2);
         cellHidden.innerText = productoSeleccionado; // Almacenar el valor oculto del producto seleccionado
 
-        // Crear el botón de eliminar y agregarlo a la celda de acciones
+        // Crear el botón de eliminar con ícono y agregarlo a la celda de acciones
         const deleteButton = document.createElement('button');
-        deleteButton.innerText = "❌";
-        deleteButton.className = "btn-borrar-fila";
+        deleteButton.className = "btn btn-danger btn-sm"; // Estilizar el botón
+        deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>'; // Ícono de Font Awesome
         cellAcciones.appendChild(deleteButton);
 
         subtotalProductoInput.value = "0.00";

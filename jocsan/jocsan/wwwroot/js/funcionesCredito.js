@@ -22,9 +22,18 @@ async function cargarClientes() {
 
 // Función para inicializar el DataTable
 function inicializarDataTable() {
+    //return $('#table-credito').DataTable({
+    //    paging: true,
+    //    pageLength: 10,
+    //    searching: false,
+    //    info: false,
+    //    language: {
+    //        emptyTable: "No hay datos disponibles"
+    //    }
+    //});
     return $('#table-credito').DataTable({
-        paging: true,
-        pageLength: 10,
+        paging: false,
+        pageLength: false,
         searching: false,
         info: false,
         language: {
@@ -57,8 +66,8 @@ function buscarPrestamos(table) {
                         credito.descripcion,
                         `${credito.valorCredito.toLocaleString("es-CR", { style: "currency", currency: "CRC" })}`,
                         credito.fechaCredito,
-                        `<button class="editar-btn" data-id="${credito.idCredito}">🔎</button>
-                         <button class="eliminar-btn" data-id="${credito.idCredito}">❌</button>`
+                        `<button class="editar-btn btn btn-success" data-id="${credito.idCredito}"><i class="fa fa-search" aria-hidden="true"></i></button>
+                         <button class="eliminar-btn btn btn-danger" data-id="${credito.idCredito}"><i class="fa fa-trash" aria-hidden="true"></i></button>`
                     ]).draw(false);
                 });
             }
