@@ -11,25 +11,28 @@ namespace jocsan.Models
         {
             using (var ms = new MemoryStream())
             {
-                var document = new Document(PageSize.A4);
+                // Definir tamaño de página personalizado de 80 mm de ancho
+                var pageWidth = 80f * 2.83f; // 80 mm en puntos
+                var pageSize = new Rectangle(pageWidth, PageSize.A4.Height); // Mantener la altura ajustable para contenido largo
+                var document = new Document(pageSize, 10, 10, 10, 10);
+
                 PdfWriter.GetInstance(document, ms);
                 document.Open();
 
-                // Configuración de la fuente
-                var titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
-                var subtitleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
-                var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+                // Configuración de las fuentes en tamaños más pequeños
+                var titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
+                var subtitleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 7);
+                var textFont = FontFactory.GetFont(FontFactory.HELVETICA, 7);
 
                 // Título
                 var title = new Paragraph("DIOS TE AMA NO LO DUDES | # Factura: " + factura.IdFactura, titleFont);
                 title.Alignment = Element.ALIGN_CENTER;
                 document.Add(title);
 
-                // Espacio
                 document.Add(new Paragraph(" "));
 
                 // Información del capitán y datos principales
-                var infoTable = new PdfPTable(2);
+                var infoTable = new PdfPTable(2) { WidthPercentage = 100 };
                 infoTable.AddCell(new PdfPCell(new Phrase("Capitán:", subtitleFont)) { Border = 0 });
                 infoTable.AddCell(new PdfPCell(new Phrase(factura.Cliente.Capitan, textFont)) { Border = 0 });
                 infoTable.AddCell(new PdfPCell(new Phrase("Dueño:", subtitleFont)) { Border = 0 });
@@ -46,13 +49,12 @@ namespace jocsan.Models
                 infoTable.AddCell(new PdfPCell(new Phrase(factura.Hielo.ToString(), textFont)) { Border = 0 });
                 document.Add(infoTable);
 
-                // Espacio
                 document.Add(new Paragraph(" "));
 
                 // Tabla de productos
-                var productosTable = new PdfPTable(4);
+                var productosTable = new PdfPTable(4) { WidthPercentage = 100 };
                 productosTable.AddCell(new PdfPCell(new Phrase("Producto", subtitleFont)));
-                productosTable.AddCell(new PdfPCell(new Phrase("Cantidad", subtitleFont)));
+                productosTable.AddCell(new PdfPCell(new Phrase("Cant.", subtitleFont)));
                 productosTable.AddCell(new PdfPCell(new Phrase("Precio", subtitleFont)));
                 productosTable.AddCell(new PdfPCell(new Phrase("Total", subtitleFont)));
 
@@ -63,14 +65,12 @@ namespace jocsan.Models
                     productosTable.AddCell(new PdfPCell(new Phrase(detalle.PrecioUnitario.ToString("C"), textFont)));
                     productosTable.AddCell(new PdfPCell(new Phrase(detalle.TotalParcial.ToString("C"), textFont)));
                 }
-
                 document.Add(productosTable);
 
-                // Espacio
                 document.Add(new Paragraph(" "));
 
-                // Subtotales y totales
-                var totalsTable = new PdfPTable(2);
+                // Tabla de totales
+                var totalsTable = new PdfPTable(2) { WidthPercentage = 100 };
                 totalsTable.AddCell(new PdfPCell(new Phrase("Subtotal Producto:", subtitleFont)) { Border = 0 });
                 totalsTable.AddCell(new PdfPCell(new Phrase(factura.SubTotalProd.ToString("C"), textFont)) { Border = 0 });
                 totalsTable.AddCell(new PdfPCell(new Phrase("G+H:", subtitleFont)) { Border = 0 });
@@ -92,10 +92,11 @@ namespace jocsan.Models
                 totalsTable.AddCell(new PdfPCell(new Phrase("Total:", subtitleFont)) { Border = 0 });
                 totalsTable.AddCell(new PdfPCell(new Phrase(factura.TotalVenta.ToString("C"), textFont)) { Border = 0 });
                 document.Add(totalsTable);
-                // Espacio
+
                 document.Add(new Paragraph(" "));
+
                 // Versículo
-                var verse = new Paragraph("1 Juan 3:16 - Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.", textFont);
+                var verse = new Paragraph("1 Juan 3:16 - Porque de tal manera amó Dios al mundo...", textFont);
                 verse.Alignment = Element.ALIGN_CENTER;
                 document.Add(verse);
 
@@ -103,32 +104,37 @@ namespace jocsan.Models
                 return ms.ToArray();
             }
         }
+
         public byte[] GenerarCreditoPdf(Credito credito)
         {
             using (var ms = new MemoryStream())
             {
-                // Crear el documento PDF con tamaño de página predeterminado
-                var document = new Document(PageSize.A4);
+                // Definir un tamaño de página personalizado de 80 mm de ancho
+                var pageWidth = 80f * 2.83f; // 80 mm en puntos (aprox. 3.15 pulgadas)
+                var pageSize = new Rectangle(pageWidth, PageSize.A7.Height); // Ajuste la altura según sea necesario
+                var document = new Document(pageSize, 10, 10, 10, 10); // Márgenes de 10 puntos
+
                 var writer = PdfWriter.GetInstance(document, ms);
                 document.Open();
 
-                // Fuente para el contenido
-                var fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
-                var fontContenido = FontFactory.GetFont(FontFactory.HELVETICA, 12);
-                var fontVersiculo = FontFactory.GetFont(FontFactory.HELVETICA_OBLIQUE, 10);
+                // Fuente para el contenido con tamaños reducidos
+                var fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
+                var fontContenido = FontFactory.GetFont(FontFactory.HELVETICA, 8);
+                var fontVersiculo = FontFactory.GetFont(FontFactory.HELVETICA_OBLIQUE, 7);
 
                 // Título
                 var titulo = new Paragraph("Comprobante de crédito", fontTitulo)
                 {
                     Alignment = Element.ALIGN_CENTER,
-                    SpacingAfter = 20
+                    SpacingAfter = 15
                 };
                 document.Add(titulo);
 
                 // Contenido del comprobante
                 var contenido = new Paragraph
                 {
-                    Alignment = Element.ALIGN_CENTER
+                    Alignment = Element.ALIGN_LEFT,
+                    SpacingAfter = 10
                 };
                 contenido.Add(new Phrase($"Descripción: {credito.Descripcion}\n", fontContenido));
                 contenido.Add(new Phrase($"Fecha: {credito.FechaCredito:dd/MM/yyyy}\n", fontContenido));
@@ -137,7 +143,7 @@ namespace jocsan.Models
                 document.Add(contenido);
 
                 // Espacio adicional antes del versículo
-                document.Add(new Paragraph("\n\n"));
+                document.Add(new Paragraph(" ", fontContenido));
 
                 // Versículo
                 var versiculo = new Paragraph("Romanos 13:7a y 8a", fontTitulo)
@@ -160,5 +166,6 @@ namespace jocsan.Models
                 return ms.ToArray();
             }
         }
+
     }
 }
