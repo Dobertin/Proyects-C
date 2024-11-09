@@ -59,8 +59,8 @@ function cargarFacturas() {
                         factura.numproductos,
                         factura.total.toLocaleString("es-CR", { style: "currency", currency: "CRC" }),
                         factura.fecha,
-                        `<button class="visualizar-btn" data-id="${factura.idFactura}">Visualizar</button>
-                         <button class="eliminar-btn" data-id="${factura.idFactura}">Eliminar</button>`
+                        `<button class="visualizar-btn" data-id="${factura.idFactura}"><i class="fa fa-check me-2"></i>Visualizar</button>
+                         <button class="eliminar-btn" data-id="${factura.idFactura}"><i class="fa fa-times me-2"></i>Eliminar</button>`
                     ]).draw(false);
                 });
             }
@@ -147,16 +147,27 @@ function eliminarFactura(event) {
 
 // Document Ready para inicializar DataTable y eventos
 $(document).ready(function () {
-    // Inicializar DataTable con paginado de 10 registros
+    //// Inicializar DataTable con paginado de 10 registros
+    //$('#table-factura').DataTable({
+    //    paging: true,
+    //    pageLength: 10,
+    //    searching: false,
+    //    info: false,
+    //    language: {
+    //        emptyTable: "No hay datos disponibles"
+    //    }
+    //})
+
+    // Inicializar DataTable sin paginación y otras configuraciones
     $('#table-factura').DataTable({
-        paging: true,
-        pageLength: 10,
-        searching: false,
-        info: false,
+        paging: false, // Desactivar la paginación (Previous/Next)
+        lengthChange: false, // Quitar la opción de "Show 10 entries"
+        searching: false, // Desactivar la búsqueda
+        info: false, // Desactivar la información de número de filas
         language: {
             emptyTable: "No hay datos disponibles"
         }
-    })
+    });
 
     // Delegar eventos de Visualizar y Eliminar en el DataTable
     $('#table-factura').on('click', '.visualizar-btn', visualizarFactura);

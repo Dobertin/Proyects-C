@@ -3,149 +3,276 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
 <body>
     <div>
-        <div class="header">
-            <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
-            <h2 id ="numero-factura">Factura NRO </h2>
+        <div class="header bg-white text-dark p-3 mb-3 rounded d-flex align-items-center justify-content-between shadow-sm" style="border: 1px solid #ccc;">
+            <p class="mb-0">Hoy es <strong>@DateTime.Now.ToString("dd/MM/yyyy")</strong></p>
+            <div class="mx-auto" style="width: 80%; text-align: center;">
+                <h3 id="numero-factura" class="mb-0 border border-dark rounded-1 d-inline px-3">Factura NRO</h3>
+            </div>
         </div>
 
-        <div class="form-section">
-            <div class="row">
-                <label for="cliente-values">Cliente:</label>
-                <select id="cliente-values">
-                </select>
+        <div class="bg-white p-4 rounded shadow-sm" style="border: 1px solid #ccc;">
 
-                <label for="porcentaje-cliente">Porcentaje:</label>
-                <select id="porcentaje-cliente">
-                </select>
+            <div class="row g-3 mb-3">
+                <div class="col-3 d-flex align-items-center">
+                    <label for="cliente-values" class="form-label mb-0 me-3">Cliente:</label>
+                    <select id="cliente-values" class="form-select w-100 border border-dark">
+                        <!-- Opciones aquí -->
+                    </select>
+                </div>
 
-                <label for="producto-values">Producto:</label>
-                <select id="producto-values">
-                </select>
-                <label for="cantidad-producto">Cantidad:</label>
-                <input type="number" id="cantidad-producto" value="0" min="0">
-            </div>
+                <div class="col-3 d-flex align-items-center">
+                    <label for="porcentaje-cliente" class="form-label mb-0 me-3">Porcentaje:</label>
+                    <select id="porcentaje-cliente" class="form-select w-100 border border-dark">
+                        <!-- Opciones aquí -->
+                    </select>
+                </div>
 
-            <div class="row">
-                <label for="dueno-cliente">Dueño:</label>
-                <input type="text" id="duenio-cliente" readonly>
+                <div class="col-3 d-flex align-items-center">
+                    <label for="producto-values" class="form-label mb-0 me-3">Producto:</label>
+                    <select id="producto-values" class="form-select w-100 border border-dark">
+                        <!-- Opciones aquí -->
+                    </select>
+                </div>
 
-                <label for="tercero-cliente">Tercero:</label>
-                <input type="number" id="tercero-cliente" value="0" readonly>
-
-                <div class="discount-row">
-                    <button class="btn-list" id="agregar-a-lista">AGREGAR A LA LISTA</button>
+                <div class="col-3 d-flex align-items-center">
+                    <label for="cantidad-producto" class="form-label mb-0 me-3">Cantidad:</label>
+                    <input type="number" id="cantidad-producto" class="form-control w-100 border border-dark" value="0" min="0" style="border-radius: 15px;">
                 </div>
             </div>
 
-            <div class="row highlight">
-                <div class="price-box">
-                    <p>Precio Gasolina</p>
-                    <h3 id="precio-gasolina">0</h3>
-                    <label for="cantidad-gasolina">Cantidad</label>
-                    <input type="number" id="cantidad-gasolina" value="0" min="0">
+            <div class="row g-3 mb-3">
+                <div class="col-3 d-flex align-items-center">
+                    <label for="dueno-cliente" class="form-label mb-0 me-3">Dueño:</label>
+                    <input type="text" id="duenio-cliente" class="form-control w-100 border border-dark" disabled>
                 </div>
-                <div class="price-box">
-                    <p>Precio Hielo</p>
-                    <h3 id="precio-hielo">0</h3>
-                    <label for="cantidad-hielo">Cantidad</label>
-                    <input type="number" id="cantidad-hielo" value="0" min="0">
+
+                <div class="col-3 d-flex align-items-center">
+                    <label for="tercero-cliente" class="form-label mb-0 me-3">Tercero:</label>
+                    <input type="number" id="tercero-cliente" class="form-control w-100 border border-dark" value="0" disabled>
                 </div>
-                <div class="price-box">
-                    <p>Precio Producto</p>
-                    <h3 id="precio-producto">0</h3>
-                    <p id="nombre-producto"></p>
-                    <button class="btn" id="changePrice">Cambio de Precio Temporal</button>
-                </div>
-                <div class="price-box">
-                    <label for="regreso-gasolina">Regreso de Gasolina:</label>
-                    <input type="checkbox" id="regreso-gasolina" />
-                    <input type="number" id="cantidad-regreso-gasolina" value="0" min="0" disabled>
-                </div>
-                <div class="price-box">
-                    <div>
-                        <label for="pago">Pagó con:</label>
-                        <input type="number" id="pago" value="0.00" min="0">
-                    </div>
-                    <div>
-                        <label for="vuelto">Vuelto:</label>
-                        <input type="number" id="vuelto" value="0.00" min="0" readonly>
-                    </div>
+
+                <div class="col-3 d-flex justify-content-end align-items-center ms-auto">
+                    <button class="btn-verde w-65" id="agregar-a-lista">
+                        <i class="fa fa-plus me-2"></i>AGREGAR A LA LISTA
+                    </button>
                 </div>
             </div>
-            <div class="row">
-                <div class="totals-section">
-                    <div class="totals-row">
-                        <label>Subtotal Producto:</label>
-                        <input id="subtotal-producto" type="number" value="0.00" readonly>
-                    </div>
-                    <div class="totals-row">
-                        <label>Gas y Hielo:</label>
-                        <input id="gas-hielo" type="number" value="0.00" readonly>
-                    </div>
-                    <div class="totals-row">
-                        <label>Subtotal:</label>
-                        <input id="primer-subtotal" type="number" value="0.00" readonly>
-                    </div>
-                    <div class="totals-row">
-                        <label>Terceros:</label>
-                        <input id="terceros" type="number" value="0" >
-                    </div>
-                    <div class="totals-row">
-                        <label>Peladores:</label>
-                        <input id="peladores" type="number" value="0">
-                    </div>
-                    <div class="totals-row">
-                        <label>Subtotal:</label>
-                        <input id="segundo-subtotal" type="number" value="0.00" readonly>
-                    </div>
-                    <div class="totals-row">
-                        <label>Monto Abono:</label>
-                        <input id="monto-abono" type="number" value="0.00" readonly>
-                    </div>
-                    <div class="totals-row">
-                        <label>TOTAL:</label>
-                        <input id="total-general" type="number" value="0.00" readonly>
-                    </div>
-                    <div class="discount-row">
-                        <div class="discount-row">
-                            <label>25%  ➔ </label>
-                            <p id="decuento-total-25">0.00</p>
+         
+            <div class="row p-3 g-3">
+                <!-- Bloque izquierdo (Precio Gasolina, Precio Hielo, Precio Producto) -->
+                <div class="col-md-8 d-flex">
+                    <!-- Bloque Precio Gasolina -->
+                    <div class="col-md-4 price-box text-center p-3">
+                        <div class="p-3" style="background-color: #d4f8e2; display: inline-block; border-radius: 5px;">
+                            <p class="mb-1 fw-bold">Precio Gasolina</p>
+                            <h3 id="precio-gasolina" class="fw-bold m-0 text-start">0</h3>
                         </div>
-                    </div>                    
-                </div>
-                <div class="button-row">
-                    <div class="product-list table-responsive">
-                        <h3>Lista de Productos Agregados</h3>
-                        <table id ="table_products">
-                            <thead>
-                                <tr>
-                                    <th>Producto</th>
-                                    <th>Precio</th>
-                                    <th>Cantidad</th>
-                                    <th>Total</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Más filas aquí -->
-                            </tbody>
-                        </table>
-                        <div class="button-row">
-                            <button class="btn-submit" id="btn-emitir">EMITIR FACTURA</button>
-                            <button class="btn-cancel" id="btn-cancelar">CANCELAR</button>                            
+
+                        <div class="d-flex flex-column align-items-center mt-3">
+                            <label for="cantidad-gasolina" class="form-label mb-0">Cantidad</label>
+                            <input type="number" id="cantidad-gasolina" class="form-control w-75 border border-dark" style="border-radius: 15px; text-align: center;" value="0" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Bloque Precio Hielo -->
+                    <div class="col-md-4 price-box text-center p-3">
+                        <!-- Contenedor del precio con fondo amarillo claro -->
+                        <div class="p-3" style="background-color: #fff9c4; display: inline-block; border-radius: 5px;">
+                            <p class="mb-1 fw-bold">Precio Hielo</p>
+                            <h3 id="precio-hielo" class="fw-bold m-0 text-start">0</h3>
+                        </div>
+
+                        <!-- Campo de cantidad con label arriba y centrado -->
+                        <div class="d-flex flex-column align-items-center mt-3">
+                            <label for="cantidad-hielo" class="form-label mb-0 ">Cantidad</label>
+                            <input type="number" id="cantidad-hielo" class="form-control w-75 border border-dark" style="border-radius: 15px; text-align: center;" value="0" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Bloque Precio Producto -->
+                    <div class="col-md-4 price-box text-center p-3">
+                        <!-- Contenedor del precio con fondo azul claro -->
+                        <div class="p-3" style="background-color: #e1f5fe; display: inline-block; border-radius: 5px;">
+                            <p class="mb-1 fw-bold">Precio Producto</p>
+                            <h3 id="precio-producto" class="fw-bold m-0 text-start">0</h3>
+                        </div>
+                        
+                        <!-- Campo de cantidad con label arriba y centrado -->
+                        <div class="d-flex flex-column align-items-center mt-3">
+                            <p id="nombre-producto" class="form-label mb-0 fw-bold"></p>
+
+                            <button class="btn-verde w-75 text-white" id="changePrice">
+                                <i class="fa fa-pencil"></i>
+                                Cambio Precio Temporal
+                            </button>
+                            
                         </div>
                     </div>
                 </div>
 
-                
+                <!-- Bloque derecho (Regreso de Gasolina, Pagó con, Vuelto) -->
+                <div class="col-md-4">
+                    <div class="price-box mb-3 p-3 border border-dark rounded">
+                        <!-- Regreso de Gasolina -->
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label for="regreso-gasolina" class="form-label mb-0" style="min-width: 130px;">Regreso de Gasolina:</label>
+                            <div class="form-check form-switch me-3">
+                                <input class="form-check-input" type="checkbox" id="regreso-gasolina" role="switch">
+                            </div>
+                            <input type="number" id="cantidad-regreso-gasolina" class="form-control border border-dark" value="0" min="0" style="width: 100px;" disabled>
+                        </div>
+                    </div>
+
+                    <div class="price-box p-3 border border-dark rounded">
+                        <!-- Pagó con -->
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label for="pago" class="form-label mb-0" style="min-width: 130px;">Pagó con:</label>
+                            <input type="number" id="pago" class="form-control border border-dark" value="0.00" min="0" style="width: 100px;">
+                        </div>
+
+                        <!-- Vuelto -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label for="vuelto" class="form-label mb-0" style="min-width: 130px;">Vuelto:</label>
+                            <input type="number" id="vuelto" class="form-control border border-dark" value="0.00" min="0" style="width: 100px;" disabled>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row p-3 g-3">
+
+                <div class="totals-section col-md-5 p-4">
+                    <div class="d-flex flex-column">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label for="subtotal-producto" class="form-label" style="min-width:200px;">Subtotal Producto:</label>
+                                    <input id="subtotal-producto" type="number" class="form-control border border-dark text-end" value="0.00" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label for="gas-hielo" class="form-label" style="min-width:200px;">Gas y Hielo:</label>
+                                    <input id="gas-hielo" type="number" class="form-control border border-dark text-end" value="0.00" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label for="primer-subtotal" class="form-label" style="min-width:200px;">Subtotal:</label>
+                                    <input id="primer-subtotal" type="number" class="form-control border border-dark text-end" value="0.00" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label for="terceros" class="form-label" style="min-width:200px;">Terceros:</label>
+                                    <input id="terceros" type="number" class="form-control border border-dark text-end" value="0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label for="peladores" class="form-label" style="min-width:200px;">Peladores:</label>
+                                    <input id="peladores" type="number" class="form-control border border-dark text-end" value="0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label for="segundo-subtotal" class="form-label" style="min-width:200px;">Subtotal:</label>
+                                    <input id="segundo-subtotal" type="number" class="form-control border border-dark text-end" value="0.00" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label for="monto-abono" class="form-label" style="min-width:200px;">Monto Abono:</label>
+                                    <input id="monto-abono" type="number" class="form-control border border-dark text-end" value="0.00" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <label for="total-general" class="form-label" style="min-width:200px;">TOTAL:</label>
+                                    <input id="total-general" type="number" class="form-control border border-dark text-end" value="0.00" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="discount-row mb-3 d-flex justify-content-start">
+                            <div class="d-inline-flex justify-content-between align-items-center border border-dark rounded p-2">
+                                <label for="decuento-total-25" class="form-label mb-0 fw-bold" style="min-width: 60px;">25% ➔</label>
+                                <p id="decuento-total-25" class="form-control-plaintext mb-0" style="font-weight: bold; color: green;">0.00</p>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="button-row p-3">
+                        <div class="product-list table-responsive">
+                            <h3 class="mb-4 text-center">Lista de Productos Agregados</h3>
+                            <hr />
+                            <table id="table_products" class="table table-hover">
+                                <thead class="bg-white border-bottom">
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th>Total</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                            <div class="button-row text-end mt-4">
+                                <button class="btn-verde" id="btn-emitir">
+                                    <i class="fa fa-check me-2"></i>
+                                    EMITIR FACTURA
+                                </button>
+                                <button class="btn-rojo" id="btn-cancelar">
+                                    <i class="fa fa-times me-2"></i>
+                                    CANCELAR
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     
 </div>
 </body>
 <!-- Archivos CSS y JS -->
-<link rel="stylesheet" href="~/css/estilosFactura.css" />
+<link rel="stylesheet" href="~/css/estilosFactura.css" /> 
 <link rel="stylesheet" href="~/css/site.css" />
 <script src="~/js/funcionesFactura.js"></script>

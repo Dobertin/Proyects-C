@@ -2,25 +2,24 @@
     ViewData["Title"] = "Ingreso";
     Layout = null;  // No se utiliza un layout para esta página de login
 }
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
+<!-- HTML -->
 <div class="login-container">
-    <header>
-        <h1>Sistema de Pesca</h1>
-    </header>
-
     <main class="login-main">
-        <h2>Ingreso</h2>
+        <h1>Sistema de Pesca</h1>
+        <h2>Ingreso al portal</h2>
         <p>Inicia sesión para continuar</p>
 
         <form class="login-form" method="post" action="/Home/Login">
             <div class="form-group">
                 <label for="correo">Correo Electrónico</label>
-                <input type="email" id="correo" name="correo" value="hola@ventas.com" required />
+                <input type="email" id="correo" name="correo" placeholder="Ingrese su e-mail" required />
             </div>
 
             <div class="form-group">
                 <label for="contraseña">Contraseña</label>
-                <input type="password" id="contraseña" name="contraseña" value="******" required />
+                <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña" required />
             </div>
 
             <button type="submit" class="login-btn">Ingreso</button>

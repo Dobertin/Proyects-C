@@ -2,15 +2,15 @@
     margin-bottom: 20px;
 }
 
-    .search-form label {
-        margin-right: 10px;
-        font-weight: bold;
-    }
+.search-form label {
+    margin-right: 10px;
+    font-weight: bold;
+}
 
-    .search-form input, .search-form select {
-        padding: 5px;
-        margin-right: 15px;
-    }
+.search-form input, .search-form select {
+    padding: 5px;
+    margin-right: 15px;
+}
 
 .buscar-btn {
     background-color: #00CBB9;
@@ -21,6 +21,22 @@
     border-radius: 5px;
     font-weight: bold;
 }
+
+.buscar-btn:hover {
+    background-color: #0ab3a4;
+}
+
+/* Bordes solo para los contornos exteriores de la tabla */
+#table-factura {
+    border: 1px solid #000; /* Bordes exteriores */
+    border-collapse: collapse; /* Asegura que los bordes externos se combinen */
+}
+
+/* Quitar bordes de las celdas internas */
+#table-factura th, #table-factura td {
+    border: none; /* Quita los bordes de las celdas internas */
+}
+
 
 .factura-table {
     width: 100%;
@@ -71,7 +87,7 @@
     width: 80%;
     max-width: 800px;
 }
-
+/*
 .close-btn {
     color: #aaa;
     float: right;
@@ -79,3 +95,4 @@
     font-weight: bold;
     cursor: pointer;
 }
+*/
