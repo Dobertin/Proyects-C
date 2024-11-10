@@ -251,5 +251,6 @@ INSERT INTO dbo.Parametro VALUES( 1, '33 %', 0.33,null, 'system', getdate(), nul
 INSERT INTO dbo.Parametro VALUES( 1, '50 %', 0.5,null, 'system', getdate(), null, null);
 INSERT INTO dbo.Parametro VALUES( 1, '100 %', 1,null, 'system', getdate(), null, null);
 INSERT INTO dbo.Parametro VALUES( 2, 'precio Hielo', 1700,null, 'system', getdate(), null, null);
+INSERT INTO dbo.Parametro VALUES( 3, 'precio Gasolina', 3200,null, 'system', getdate(), null, null);
 
 GO;
