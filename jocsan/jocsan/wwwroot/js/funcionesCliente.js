@@ -33,14 +33,14 @@
             alert("El nombre del capitán es obligatorio");
             return;
         }
-        if (isNaN(porcentaje) || porcentaje <= 0) {
-            alert("Porcentaje debe ser un número entero positivo");
-            return;
-        }
-        if (isNaN(gasolina) || gasolina <= 0) {
-            alert("Gasolina debe ser un número entero positivo");
-            return;
-        }
+        //if (isNaN(porcentaje) || porcentaje <= 0) {
+        //    alert("Porcentaje debe ser un número entero positivo");
+        //    return;
+        //}
+        //if (isNaN(gasolina) || gasolina <= 0) {
+        //    alert("Gasolina debe ser un número entero positivo");
+        //    return;
+        //}
 
         // Construir la entidad Cliente
         const cliente = {
