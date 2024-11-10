@@ -83,8 +83,7 @@ CREATE TABLE [dbo].[Factura] (
   [UsuarioCreacion] [varchar](20)NOT NULL,
   [FechaCreacion] [datetime] NOT NULL,
   [UsuarioModifica] [varchar](20),
-  [FechaModifica] [datetime],
-  [estado] [int] DEFAULT 1 NULL
+  [FechaModifica] [datetime]
 );
 
 CREATE TABLE [dbo].[DetalleFactura] (

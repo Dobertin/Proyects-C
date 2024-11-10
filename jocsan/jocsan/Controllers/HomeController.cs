@@ -44,7 +44,7 @@ namespace jocsan.Controllers
         {
             // Lógica para autenticar al usuario
             //if (true)
-            if (correo == "hola@ventas.com" && contraseña == "123456")
+            if (correo == "usuario@jocsan.com" && contraseña == "123456")
             {
                 // Autenticación exitosa
                 return RedirectToAction("Index", "Home");

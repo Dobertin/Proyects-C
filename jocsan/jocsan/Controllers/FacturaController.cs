@@ -39,6 +39,12 @@ namespace jocsan.Controllers
             var listadoPorcentaje = await _unitOfWork.Parametro.GetObtenerPreciohieloAsync();
             return Ok(listadoPorcentaje);
         }
+        [HttpGet("/Factura/Parametro/preciogasolina")]
+        public async Task<IActionResult> ObtenerPreciogasolinaAsync()
+        {
+            var listadoPorcentaje = await _unitOfWork.Parametro.GetObtenerPrecioGasolinaAsync();
+            return Ok(listadoPorcentaje);
+        }
         [HttpGet("/Factura/producto/listar")]
         public async Task<IActionResult> ObtenerProductosAsync()
         {

@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cargarPorcentajes();
     cargarProductos();
     cargarHielo();
+    cargarGasolina();
     obtenerUltimaFactura();
 });
 // Función para limpiar todos los controles
@@ -325,7 +326,7 @@ async function obtenerDatosCliente(idcliente) {
 
         // Asigna los valores obtenidos a los elementos del HTML
         document.getElementById('duenio-cliente').value = cliente.nombre; // Asigna el nombre del cliente
-        document.getElementById('precio-gasolina').innerText = cliente.gasolina; 
+        //document.getElementById('precio-gasolina').innerText = cliente.gasolina; 
     } catch (error) {
         console.error('Error obteniendo datos del cliente:', error);
     }
@@ -413,6 +414,19 @@ async function cargarHielo() {
 
         productos.forEach(producto => {
             document.getElementById('precio-hielo').innerText = producto.codigo;
+        });
+    } catch (error) {
+        console.error('Error cargando productos:', error);
+    }
+}
+
+async function cargarGasolina() {
+    try {
+        const response = await fetch('/Factura/Parametro/preciogasolina'); // Llama a la API
+        const productos = await response.json();
+
+        productos.forEach(producto => {
+            document.getElementById('precio-gasolina').innerText = producto.codigo;
         });
     } catch (error) {
         console.error('Error cargando productos:', error);

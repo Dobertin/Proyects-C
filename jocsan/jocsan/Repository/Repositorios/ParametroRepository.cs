@@ -35,6 +35,17 @@ namespace jocsan.Repository.Repositorios
                        })
                        .ToListAsync();
         }
+        public async Task<IEnumerable<ComboResultDecimal>> GetObtenerPrecioGasolinaAsync()
+        {
+            return await _context.Parametro
+                       .Where(c => c.TipParametro == 3)  // Filtro primero por TipParametro
+                       .Select(c => new ComboResultDecimal
+                       {
+                           codigo = c.ValorN,
+                           descripcion = c.Descripcion
+                       })
+                       .ToListAsync();
+        }
     }
 }
 

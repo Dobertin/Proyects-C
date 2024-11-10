@@ -6,5 +6,6 @@ namespace jocsan.Repository.Interfaces
     {
         Task<IEnumerable<ComboResultDecimal>> GetObtenerPorcentajesAsync();
         Task<IEnumerable<ComboResultDecimal>> GetObtenerPreciohieloAsync();
+        Task<IEnumerable<ComboResultDecimal>> GetObtenerPrecioGasolinaAsync();        
     }
 }
