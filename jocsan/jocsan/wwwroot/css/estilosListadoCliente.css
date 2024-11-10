@@ -48,3 +48,12 @@
 .editar-btn {
     color: green;
 }
+
+.table.dataTable.no-footer {
+    border-bottom: none !important;
+}
+#clienteModal {
+    padding-left:17%;
+    max-width: 1250px; /* Ancho máximo del modal */
+    width: 100%; /* Asegura que se centre correctamente */
+}

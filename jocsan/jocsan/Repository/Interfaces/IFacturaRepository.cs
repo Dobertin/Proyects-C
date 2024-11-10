@@ -9,5 +9,6 @@ namespace jocsan.Repository.Interfaces
         Task<IEnumerable<FacturaResults>> ObtenerFacturasAsync(FacturaQuery facturaQuery);
         Task<int> ObtenerUltimoNumeroFacturaAsync();
         Task EliminarFacturaAsync(int idFactura);
+        Task<FacturaResultsExtended> ObtenerFacturasPorClienteAsync(int idcliente);
     }
 }

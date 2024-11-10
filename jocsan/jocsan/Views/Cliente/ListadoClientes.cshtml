@@ -2,29 +2,22 @@
     ViewData["Title"] = "Listado de Clientes";
     Layout = "~/Views/Shared/_Layout.cshtml"; // Usamos el layout compartido
 }
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <body>
-
     <div >
-        <div class="header">
-            <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
-            <h2>Listado de Clientes</h2>
+        <div class="header bg-white text-dark p-3 mb-3 rounded d-flex align-items-center justify-content-between shadow-sm" style="border: 1px solid #ccc;">
+            <p class="mb-0">Hoy es <strong>@DateTime.Now.ToString("dd/MM/yyyy")</strong></p>
+            <div class="mx-auto" style="width: 80%; text-align: center;">
+                <h3 class="mb-0">Listado de Clientes</h3>
+            </div>
         </div>
-
-        <!-- Filtro por cliente -->
-        <form class="cliente-filter">
-            <label for="cliente">Cliente:</label>
-            <select id="cliente" name="cliente">
-                <option value="CUNGA">CUNGA</option>
-                <!-- Agregar más clientes si es necesario -->
-            </select>
-
-            <button type="submit" class="buscar-btn">
-                <span>Buscar Clientes</span>
-            </button>
-        </form>
-
-        <!-- Tabla de clientes -->
-        <table class="clientes-table">
+        <div class="bg-white p-4 rounded shadow-sm" style="border: 1px solid #ccc;">        
+            <!-- Tabla de clientes -->
+            <table class="table" id="clientesTable">
             <thead>
                 <tr>
                     <th>Cliente</th>
@@ -35,21 +28,107 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Cunga</td>
-                    <td>Cunga</td>
-                    <td>0</td>
-                    <td>3200</td>
-                    <td>
-                        <button class="editar-btn">✏️</button>
-                        <button class="eliminar-btn">❌</button>
-                    </td>
-                </tr>
                 <!-- Más filas si es necesario -->
             </tbody>
         </table>
+        </div>
     </div>
 </body>
+
+<!-- Modal para Editar Cliente -->
+<div id="clienteModal" class="modal modal-dialog-centered" style="display: none;">
+    <div class="modal-content" style="padding: 21px;border: 1px solid;">
+        <span class="close-btn" style="padding-left: 100%;">&times;</span>
+        <form class="cliente-form">
+            <div class="d-flex justify-content-center align-items-center gap-4">
+                <!-- Nueva embarcación -->
+                <div class="form-group text-center">
+                    <label for="nueva-embarcacion">Nueva Embarcación</label>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="nueva-embarcacion" role="switch">
+                    </div>
+                </div>
+
+                <!-- Peón 1 -->
+                <div class="form-group text-center">
+                    <label for="peon1">PEON 1</label>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="peon-primero" role="switch">
+                    </div>
+                </div>
+
+                <div class="form-group text-center">
+                    <label for="peon1">Nombre</label>
+                    <input type="text" id="peon1-nombre" name="peon2-nombre" class="form-control text-center" value="" />
+                </div>
+
+                <!-- Peón 2 -->
+                <div class="form-group text-center">
+                    <label for="peon2">PEON 2</label>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="peon-segundo" role="switch">
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <label for="peon2">Nombre</label>
+                    <input type="text" id="peon2-nombre" name="peon2-nombre" class="form-control text-center" value="" />
+                </div>
+            </div>
+            <div class="justify-content-center align-items-center gap-4">
+                <div class="row">
+                    <!-- Campo Cliente -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="cliente">Cliente:</label>
+                            <input type="text" id="cliente" name="cliente" class="form-control" value="" />
+                        </div>
+                    </div>
+
+                    <!-- Campo Capitán -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="capitan">Capitán:</label>
+                            <input type="text" id="capitan" name="capitan" class="form-control" value="" />
+                        </div>
+                    </div>
+
+                    <!-- Campo Porcentaje -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="porcentaje">Porcentaje:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="number" id="porcentaje" name="porcentaje" class="form-control me-2" value="" />
+                                <span>%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campo Gasolina -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="gasolina">Gasolina:</label>
+                            <input type="number" id="gasolina" name="gasolina" class="form-control" value="" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón para agregar cliente -->
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center mt-4">
+                        <button type="submit" class="agregar-btn" id="guardar">
+                            <i class="fa fa-plus me-2"></i>
+                            guardar
+                        </button>
+                        <button type="submit" class="agregar-btn" id="cancelar">
+                            <i class="fa fa-plus me-2"></i>
+                            cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <!-- Enlace a los archivos de estilos y scripts -->
 <link rel="stylesheet" href="~/css/estilosListadoCliente.css" />
 <link rel="stylesheet" href="~/css/site.css" />

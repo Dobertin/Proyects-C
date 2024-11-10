@@ -7,4 +7,9 @@
         public decimal ValorCredito { get; set; }
         public string FechaCredito { get; set; }
     }
+    public class CreditoResultsExtended
+    {
+        public List<CreditoResults> Creditos { get; set; }
+        public decimal TotalValorCreditos { get; set; }
+    }
 }

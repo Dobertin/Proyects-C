@@ -45,3 +45,7 @@ input[type="checkbox"] {
     border-radius: 5px;
     font-weight: bold;
 }
+.form-check-input:checked {
+    background-color: #00CBB9;
+    border-color: #00CBB9;
+}

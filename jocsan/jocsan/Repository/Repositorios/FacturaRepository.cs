@@ -7,6 +7,7 @@ using jocsan.Models.results;
 using jocsan.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace jocsan.Repository.Repositorios
 {
@@ -73,6 +74,39 @@ namespace jocsan.Repository.Repositorios
             // Marcar la entidad como modificada y guardar cambios
             _context.Factura.Update(factura);
             await _context.SaveChangesAsync();
+        }
+        public async Task<FacturaResultsExtended> ObtenerFacturasPorClienteAsync(int idcliente)
+        {
+            var query = _context.Factura.AsQueryable();
+
+            query = query.Where(f => f.Estado == 1);
+
+            // Aplicar filtros solo si los valores están definidos (no nulos o no cero)
+            if (idcliente > 0)
+            {
+                query = query.Where(f => f.IdCliente == idcliente).OrderByDescending(c => c.FechaVenta);
+            }
+
+            var data = await query
+                .Select(f => new FacturaResults
+                {
+                    IdFactura = f.IdFactura,
+                    Numproductos = _context.DetalleFactura
+                                            .Where(df => df.IdFactura == f.IdFactura)
+                                            .Count() + " Productos",
+                    Total = f.TotalVenta,
+                    Fecha = f.FechaVenta.ToString("dd/MM/yyyy")
+                })
+                .ToListAsync();
+            var totalValor = data.Sum(a => a.Total);
+
+            var resultados = new FacturaResultsExtended
+            {
+                Facturas = data,
+                TotalValorFactura = totalValor
+            };
+
+            return resultados;
         }
     }
 }

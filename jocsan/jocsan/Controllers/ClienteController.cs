@@ -22,44 +22,74 @@ namespace jocsan.Controllers
         {
             return View();
         }
-
-        // GET: Clientes/Details/5
-        [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        [HttpGet("/Clientes/clientes/listar")]
+        public async Task<IActionResult> ObtenerClientesAsync()
         {
-            var cliente = await _unitOfWork.Cliente.GetByIdAsync(id);
-            if (cliente == null)
-            {
-                return NotFound();
-            }
-            return View(cliente);
+            var listadocliente = await _unitOfWork.Cliente.ObtenerInformacionClientesAsync();
+            return Ok(listadocliente);
         }
-
-        //Crear un cliente dentro de una transacción
-        public async Task<IActionResult> CreateClienteWithCredito(Cliente cliente, Credito credito)
+        [HttpGet("/Clientes/clientes/{idCliente}")]
+        public async Task<IActionResult> ObtenerClientesporIDAsync(int idCliente)
         {
-            await _unitOfWork.BeginTransactionAsync();
-
+            var cliente = await _unitOfWork.Cliente.GetbyIDAsync(idCliente);
+            return Ok(cliente);
+        }
+        [HttpDelete("/Clientes/eliminar/{idcliente}")]
+        public async Task<IActionResult> EliminarCreditosAsync(int idcliente)
+        {
             try
             {
-                // Crear el cliente
-                await _unitOfWork.Cliente.AddAsync(cliente);
-
-                // Asociar el cliente con el crédito
-                credito.IdCliente = cliente.IdCliente;
-                await _unitOfWork.Creditos.AddAsync(credito);
-
-                // Confirmar la transacción
-                await _unitOfWork.CommitTransactionAsync();
-
-                return RedirectToAction("Index");
+                // Actualizar Factura en vez de eliminar
+                await _unitOfWork.Cliente.EliminarClienteAsync(idcliente);
+                return Ok("Cliente eliminada correctamente.");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Si algo falla, hacer rollback de la transacción
-                await _unitOfWork.RollbackTransactionAsync();
-                return View("Error");
+                return StatusCode(500, $"Error al eliminar la factura: {ex.Message}");
             }
         }
+        [HttpPost]
+        public async Task<IActionResult> AddClienteAsync(Cliente cliente)
+        {
+            try
+            {
+                // Asignar valores de auditoría si aplican
+                cliente.FechaCreacion = DateTime.Now;
+                cliente.Estado = 1;
+                cliente.UsuarioCreacion ??= "System"; // Asignar el usuario actual si corresponde
+
+                await _unitOfWork.BeginTransactionAsync();
+                await _unitOfWork.Cliente.AddAsync(cliente);
+                await _unitOfWork.CommitTransactionAsync();
+                return Ok("Cliente Agregado Correctamente");
+            }
+            catch (Exception ex)
+            {
+                await _unitOfWork.RollbackTransactionAsync();
+                return BadRequest("Error" + ex.Message);
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditarAsync(Cliente cliente)
+        {
+            try
+            {
+                // Asignar valores de auditoría si aplican
+                cliente.FechaModifica = DateTime.Now;
+                cliente.Estado = 1;
+                cliente.UsuarioModifica ??= "System"; // Asignar el usuario actual si corresponde
+
+                await _unitOfWork.BeginTransactionAsync();
+                _unitOfWork.Cliente.Update(cliente);
+                await _unitOfWork.CommitTransactionAsync();
+                return Ok("");
+            }
+            catch (Exception ex)
+            {
+                await _unitOfWork.RollbackTransactionAsync();
+                return BadRequest("Error" + ex.Message);
+            }
+        }
+
     }
 }

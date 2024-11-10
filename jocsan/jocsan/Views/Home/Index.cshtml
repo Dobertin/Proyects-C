@@ -1,9 +1,45 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";  // Usa el layout compartido si tienes uno
 }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenidos a Marinos del Pacífico</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        .banner {
+            background-image: url('img\pesca.jpg'); /* Reemplaza con una imagen relevante */
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .banner h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
 <body>
-<div>
-    <h1 class="display-6">Bienvenido al portal</h1>
-</div>
+
+    <!-- Banner de Bienvenida -->
+    <section class="banner">
+        <div class="container">
+            <h1>Bienvenidos a Jocsan Web</h1>
+            <p>La mejor opción para su negocio.</p>
+            <a href="#productos" class="btn btn-light btn-lg mt-3"></a>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
-<link rel="stylesheet" href="~/css/site.css" />
+</html>

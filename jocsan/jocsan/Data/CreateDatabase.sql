@@ -41,7 +41,8 @@ CREATE TABLE [dbo].[Creditos] (
   [UsuarioCreacion] [varchar](20)NOT NULL,
   [FechaCreacion] [datetime] NOT NULL,
   [UsuarioModifica] [varchar](20),
-  [FechaModifica] [datetime] 
+  [FechaModifica] [datetime],
+  [estado] [int] DEFAULT 1 NULL
 );
 
 CREATE TABLE [dbo].[Cliente] (
@@ -57,7 +58,8 @@ CREATE TABLE [dbo].[Cliente] (
   [UsuarioCreacion] [varchar](20)NOT NULL,
   [FechaCreacion] [datetime] NOT NULL,
   [UsuarioModifica] [varchar](20),
-  [FechaModifica] [datetime] 
+  [FechaModifica] [datetime],
+  [estado] [int] DEFAULT 1 NULL
 );
 
 CREATE TABLE [dbo].[Factura] (
@@ -81,7 +83,8 @@ CREATE TABLE [dbo].[Factura] (
   [UsuarioCreacion] [varchar](20)NOT NULL,
   [FechaCreacion] [datetime] NOT NULL,
   [UsuarioModifica] [varchar](20),
-  [FechaModifica] [datetime] 
+  [FechaModifica] [datetime],
+  [estado] [int] DEFAULT 1 NULL
 );
 
 CREATE TABLE [dbo].[DetalleFactura] (
@@ -150,49 +153,45 @@ ALTER TABLE [dbo].[DetalleFactura]  WITH CHECK ADD  CONSTRAINT [FK_DetalleFactur
 ALTER TABLE [dbo].[Gasolina]  WITH CHECK ADD  CONSTRAINT [Gasolina_Cliente_FK] FOREIGN KEY([idCliente]) REFERENCES [dbo].[Cliente]([idCliente]);
 GO;
 
-INSERT INTO dbo.Cliente VALUES('CUNGA','CUNGA','0','3200','1','JEOVANY','carro','system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('30jimmy','JIMMY','0','3200','1','PEYTON',null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('30jimmy','PELON','0','3200','1','JOSIAS','casa','system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('30jimmy','TOÑO','0','3200','1','PEPE','NOSE','system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('1LEO','LEO','0.03','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('2022ISMAEL','ISMAEL','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('1RONNY','RONNY','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('32JOEL','JOEL','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('2023alejandro','ALEJANDRO','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('2022EZEQUIEL','EZEQUIEL','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('MANGO','MANGO','0.33','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('2022CHEVECO','CHEVECO','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('ALBERT','ALBERT','0.33','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('2024pepin','PEPINalan','0.33','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('2024pepin','PEPINalan','0.33','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('ROSBYN','ROSBYN','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('ROBERTO','ROBERTO','0.25','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('ANDREY','ANDREY','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('CACHO','CACHO','0.5','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('IGLESIA','IGLESIA','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('TIO OLDE','TIO OLDE','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('ARIOC','ARIOC','0.5','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('JULI','JULI','0.25','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('DILAN','DILAN','0.33','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('30jimmy','TINGO','0.25','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('SERGIO','SERGIO','0.33','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('JORDI','JORDI','0.25','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('JORDI','JORDI','0.25','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('RAMON','RAMON','0.25','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('prueba','prueba','0.25','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('ALBERT','40ALBERT','0.25','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('30jimmy','TINGO','0.25','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('MARIO','MARIO','0.05','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('GENGO','GENGO','0.25','3600','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('2024pepin','2024pepin','0.25','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('2sergio','2sergio','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('lote Jimmy','lote jimmy','0','3200','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('joel','joel','0','0','0',null,null,'system',getdate(), null, null);
-INSERT INTO dbo.Cliente VALUES('chira','chira','0','3600','0',null,null,'system',getdate(), null, null);
-
-INSERT INTO dbo.Abono VALUES('SIN DESCRIPCION', 1, '2024-10-18', '582', 'system', GETDATE(), NULL, NULL);
-INSERT INTO dbo.Creditos VALUES('Prestamo de prueba', 1, '2024-10-18', '32132', 'system', GETDATE(), NULL, NULL);
-
+INSERT INTO dbo.Cliente VALUES('CUNGA','CUNGA','0','3200','1','JEOVANY','carro','system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('30jimmy','JIMMY','0','3200','1','PEYTON',null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('30jimmy','PELON','0','3200','1','JOSIAS','casa','system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('30jimmy','TOÑO','0','3200','1','PEPE','NOSE','system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('1LEO','LEO','0.03','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('2022ISMAEL','ISMAEL','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('1RONNY','RONNY','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('32JOEL','JOEL','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('2023alejandro','ALEJANDRO','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('2022EZEQUIEL','EZEQUIEL','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('MANGO','MANGO','0.33','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('2022CHEVECO','CHEVECO','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('ALBERT','ALBERT','0.33','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('2024pepin','PEPINalan','0.33','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('2024pepin','PEPINalan','0.33','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('ROSBYN','ROSBYN','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('ROBERTO','ROBERTO','0.25','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('ANDREY','ANDREY','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('CACHO','CACHO','0.5','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('IGLESIA','IGLESIA','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('TIO OLDE','TIO OLDE','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('ARIOC','ARIOC','0.5','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('JULI','JULI','0.25','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('DILAN','DILAN','0.33','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('30jimmy','TINGO','0.25','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('SERGIO','SERGIO','0.33','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('JORDI','JORDI','0.25','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('JORDI','JORDI','0.25','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('RAMON','RAMON','0.25','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('prueba','prueba','0.25','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('ALBERT','40ALBERT','0.25','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('30jimmy','TINGO','0.25','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('MARIO','MARIO','0.05','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('GENGO','GENGO','0.25','3600','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('2024pepin','2024pepin','0.25','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('2sergio','2sergio','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('lote Jimmy','lote jimmy','0','3200','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('joel','joel','0','0','0',null,null,'system',getdate(), null, null,1);
+INSERT INTO dbo.Cliente VALUES('chira','chira','0','3600','0',null,null,'system',getdate(), null, null,1);
 
 INSERT INTO dbo.Producto VALUES('PP','PP',1700,'system',getdate(),null,null);
 INSERT INTO dbo.Producto VALUES('CL','CLASE',1100,'system',getdate(),null,null);

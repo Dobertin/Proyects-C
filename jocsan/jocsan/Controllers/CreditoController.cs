@@ -34,13 +34,13 @@ namespace jocsan.Controllers
             try
             {
                 // Obtener Credito principal
-                Credito credito = await _unitOfWork.Creditos.GetByIdAsync(idcredito);
+                Credito credito = await _unitOfWork.Creditos.GetbyIDAsync(idcredito);
                 if (credito == null)
                 {
                     return NotFound("Factura no encontrada");
                 }
 
-                credito.Cliente = await _unitOfWork.Cliente.GetByIdAsync(credito.IdCliente);
+                credito.Cliente = await _unitOfWork.Cliente.GetbyIDAsync(credito.IdCliente);
 
                 // Generar el PDF del Credito
                 var pdfGenerator = new PdfGenerator();
@@ -88,7 +88,7 @@ namespace jocsan.Controllers
                 var pdfGenerator = new PdfGenerator();
 
                 //Agregar el cliente y el producto a la clase principal
-                credito.Cliente = await _unitOfWork.Cliente.GetByIdAsync(credito.IdCliente);
+                credito.Cliente = await _unitOfWork.Cliente.GetbyIDAsync(credito.IdCliente);
 
                 var pdfBytes = pdfGenerator.GenerarCreditoPdf(credito);
 

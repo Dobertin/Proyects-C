@@ -22,22 +22,18 @@ async function cargarClientes() {
 
 // Función para inicializar el DataTable
 function inicializarDataTable() {
-    //return $('#table-credito').DataTable({
-    //    paging: true,
-    //    pageLength: 10,
-    //    searching: false,
-    //    info: false,
-    //    language: {
-    //        emptyTable: "No hay datos disponibles"
-    //    }
-    //});
     return $('#table-credito').DataTable({
-        paging: false,
-        pageLength: false,
-        searching: false,
-        info: false,
+        paging: true,         // Activa la paginación
+        pageLength: 10,       // Define 10 filas por página
+        searching: false,     // Desactiva la búsqueda si no es necesaria
+        lengthChange: false,
+        info: true,           // Muestra la información de paginación
         language: {
-            emptyTable: "No hay datos disponibles"
+            emptyTable: "No hay datos disponibles",
+            paginate: {
+                previous: "Anterior",
+                next: "Siguiente"
+            }
         }
     });
 }

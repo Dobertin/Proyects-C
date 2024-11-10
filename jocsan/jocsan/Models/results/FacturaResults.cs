@@ -7,4 +7,9 @@
         public decimal Total { get; set; }
         public string Fecha { get; set; }
     }
+    public class FacturaResultsExtended
+    {
+        public List<FacturaResults> Facturas { get; set; }
+        public decimal TotalValorFactura { get; set; }
+    }
 }

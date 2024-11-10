@@ -20,12 +20,10 @@ namespace jocsan.Repository.Repositorios
         {
             return await _dbSet.ToListAsync();
         }
-
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetbyIDAsync(int id)
         {
             return await _dbSet.FindAsync(id);
         }
-
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
         {
             return await _dbSet.Where(predicate).ToListAsync();

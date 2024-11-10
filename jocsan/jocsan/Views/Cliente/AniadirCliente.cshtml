@@ -2,63 +2,104 @@
     ViewData["Title"] = "Añadir Cliente";
     Layout = "~/Views/Shared/_Layout.cshtml"; // Usamos el layout compartido
 }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
     <div>
-        <div class="header">
-            <p>Hoy es @DateTime.Now.ToString("dd/MM/yyyy")</p>
-            <h2>Añadir Cliente</h2>
+        <div class="header bg-white text-dark p-3 mb-3 rounded d-flex align-items-center justify-content-between shadow-sm" style="border: 1px solid #ccc;">
+            <p class="mb-0">Hoy es <strong>@DateTime.Now.ToString("dd/MM/yyyy")</strong></p>
+            <div class="mx-auto" style="width: 80%; text-align: center;">
+                <h3 class="mb-0">Añadir Cliente</h3>
+            </div>
         </div>
+        <div class="bg-white p-4 rounded shadow-sm" style="border: 1px solid #ccc;">
+            <!-- Formulario para añadir cliente -->
+            <form class="cliente-form">
+            <div class="d-flex justify-content-center align-items-center gap-4">
+                <!-- Nueva embarcación -->
+                <div class="form-group text-center">
+                    <label for="nueva-embarcacion">Nueva Embarcación</label>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="nueva-embarcacion" role="switch">
+                    </div>
+                </div>
 
-        <!-- Formulario para añadir cliente -->
-        <form class="cliente-form">
-            <!-- Nueva embarcación -->
-            <div class="form-group">
-                <label for="nueva-embarcacion">Nueva Embarcación</label>
-                <input type="checkbox" id="nueva-embarcacion" name="nueva-embarcacion" />
-            </div>
-
-            <!-- Peones -->
-            <div class="peones">
-                <div class="form-group">
+                <!-- Peón 1 -->
+                <div class="form-group text-center">
                     <label for="peon1">PEON 1</label>
-                    <input type="checkbox" id="peon1" name="peon1" />
-                    <input type="text" id="peon1-nombre" name="peon1-nombre" value="PRIMER PEON" />
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="peon-primero" role="switch">
+                    </div>
                 </div>
-                <div class="form-group">
+
+                <div class="form-group text-center">
+                    <label for="peon1">Nombre</label>
+                    <input type="text" id="peon1-nombre" name="peon2-nombre" class="form-control text-center" value="" />
+                </div>
+
+                <!-- Peón 2 -->
+                <div class="form-group text-center">
                     <label for="peon2">PEON 2</label>
-                    <input type="checkbox" id="peon2" name="peon2" />
-                    <input type="text" id="peon2-nombre" name="peon2-nombre" value="SEGUNDO PEON" />
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="peon-segundo" role="switch">
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <label for="peon2">Nombre</label>
+                    <input type="text" id="peon2-nombre" name="peon2-nombre" class="form-control text-center" value="" />
                 </div>
             </div>
+            <div class="justify-content-center align-items-center gap-4">
+                <div class="row">
+                    <!-- Campo Cliente -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="cliente">Cliente:</label>
+                            <input type="text" id="cliente" name="cliente" class="form-control" value="" />
+                        </div>
+                    </div>
 
-            <!-- Campos de cliente -->
-            <div class="form-group">
-                <label for="cliente">Cliente:</label>
-                <input type="text" id="cliente" name="cliente" value="CLIENTE NUEVO" />
-            </div>
+                    <!-- Campo Capitán -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="capitan">Capitán:</label>
+                            <input type="text" id="capitan" name="capitan" class="form-control" value="" />
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label for="capitan">Capitán:</label>
-                <input type="text" id="capitan" name="capitan" value="NUEVO" />
-            </div>
+                    <!-- Campo Porcentaje -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="porcentaje">Porcentaje:</label>
+                            <div class="d-flex align-items-center">
+                                <input type="number" id="porcentaje" name="porcentaje" class="form-control me-2" value="" />
+                                <span>%</span>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label for="porcentaje">Porcentaje:</label>
-                <input type="text" id="porcentaje" name="porcentaje" value="12 %" />
-            </div>
+                    <!-- Campo Gasolina -->
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group">
+                            <label for="gasolina">Gasolina:</label>
+                            <input type="number" id="gasolina" name="gasolina" class="form-control" value="" />
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label for="gasolina">Gasolina:</label>
-                <input type="text" id="gasolina" name="gasolina" value="1200" />
-            </div>
-
-            <!-- Botón para agregar cliente -->
-            <div class="action-buttons">
-                <button type="submit" class="agregar-btn">
-                    <span>Agregar Cliente</span>
-                </button>
+                <!-- Botón para agregar cliente -->
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center mt-4">
+                        <button type="submit" class="agregar-btn" id="agregar-cliente">
+                            <i class="fa fa-plus me-2"></i>
+                            Añadir Cliente
+                        </button>
+                    </div>
+                </div>
             </div>
         </form>
+        </div>
     </div>
 </body>
 <!-- Enlace a los archivos de estilos y scripts -->

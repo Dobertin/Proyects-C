@@ -148,26 +148,20 @@ function eliminarFactura(event) {
 // Document Ready para inicializar DataTable y eventos
 $(document).ready(function () {
     //// Inicializar DataTable con paginado de 10 registros
-    //$('#table-factura').DataTable({
-    //    paging: true,
-    //    pageLength: 10,
-    //    searching: false,
-    //    info: false,
-    //    language: {
-    //        emptyTable: "No hay datos disponibles"
-    //    }
-    //})
-
-    // Inicializar DataTable sin paginación y otras configuraciones
     $('#table-factura').DataTable({
-        paging: false, // Desactivar la paginación (Previous/Next)
-        lengthChange: false, // Quitar la opción de "Show 10 entries"
-        searching: false, // Desactivar la búsqueda
-        info: false, // Desactivar la información de número de filas
+        paging: true,
+        pageLength: 10,
+        searching: false,
+        lengthChange: false,
+        info: false,
         language: {
-            emptyTable: "No hay datos disponibles"
+            emptyTable: "No hay datos disponibles",
+            paginate: {
+                previous: "Anterior",
+                next: "Siguiente"
+            }
         }
-    });
+    })
 
     // Delegar eventos de Visualizar y Eliminar en el DataTable
     $('#table-factura').on('click', '.visualizar-btn', visualizarFactura);
