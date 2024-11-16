@@ -386,59 +386,5 @@ $(document).ready(function () {
             }
         });
     });
-
-    // Evento para descargar créditos
-    $("#descargar-creditos").on("click", function () {
-        const idCliente = $("#cliente-select").val();
-        //$.ajax({
-        //    url: `/Cuentas/DescargarCreditos/${idCliente}`,
-        //    type: "GET",
-        //    xhrFields: {
-        //        responseType: 'blob'
-        //    },
-        //    success: function (blob) {
-        //        const fileName = `Creditos_${idCliente}.pdf`;
-        //        const url = window.URL.createObjectURL(blob);
-        //        const a = document.createElement('a');
-        //        a.href = url;
-        //        a.download = fileName;
-        //        document.body.appendChild(a);
-        //        a.click();
-        //        a.remove();
-        //        window.URL.revokeObjectURL(url);
-        //    },
-        //    error: function (xhr, status, error) {
-        //        console.error("Error al descargar créditos:", xhr.responseText);
-        //        alert("Hubo un problema al descargar los créditos.");
-        //    }
-        //});
-    });
-
-    // Evento para descargar abonos
-    $("#descargar-abonos").on("click", function () {
-        const idCliente = $("#cliente-select").val();
-        //$.ajax({
-        //    url: `/Cuentas/DescargarAbonos/${idCliente}`,
-        //    type: "GET",
-        //    xhrFields: {
-        //        responseType: 'blob'
-        //    },
-        //    success: function (blob) {
-        //        const fileName = `Abonos_${idCliente}.pdf`;
-        //        const url = window.URL.createObjectURL(blob);
-        //        const a = document.createElement('a');
-        //        a.href = url;
-        //        a.download = fileName;
-        //        document.body.appendChild(a);
-        //        a.click();
-        //        a.remove();
-        //        window.URL.revokeObjectURL(url);
-        //    },
-        //    error: function (xhr, status, error) {
-        //        console.error("Error al descargar abonos:", xhr.responseText);
-        //        alert("Hubo un problema al descargar los abonos.");
-        //    }
-        //});
-    });
 });
 
