@@ -85,6 +85,138 @@ $("#agregarCuentaBtn").on("click", function () {
     });
 });
 
+document.getElementById("descargar-creditos").addEventListener("click", function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const tableCredito = $('#table-credito').DataTable();
+    const rows = tableCredito.rows({ search: 'applied' }).data(); // Obtener las filas visibles de la tabla
+    const header = ["Descripción", "Monto", "Fecha"];
+    const tableData = [];
+    let totalMonto = 0;
+
+    // Recorrer las filas de la tabla y preparar los datos para el PDF
+    rows.each(function (rowData) {
+        const descripcion = rowData[0]; // Columna Descripción
+        const monto = parseFloat(rowData[1]) || 0; // Columna Monto
+        const fecha = rowData[2]; // Columna Fecha
+
+        totalMonto += monto; // Sumar el monto
+        tableData.push([descripcion, monto.toFixed(2), fecha]);
+    });
+
+    // Agregar encabezado
+    doc.setFontSize(14);
+    doc.text("Reporte de Créditos", 105, 20, null, null, "center");
+
+    // Agregar tabla
+    doc.autoTable({
+        head: [header],
+        body: tableData,
+        startY: 30
+    });
+
+    // Agregar la suma total al final
+    doc.setFontSize(12);
+    doc.text(`Total Monto: ${totalMonto.toFixed(2)} CRC`, 14, doc.lastAutoTable.finalY + 10);
+
+    // Descargar el archivo PDF
+    doc.save("Reporte_Creditos.pdf");
+});
+document.getElementById("descargar-abonos").addEventListener("click", function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const tableCredito = $('#table-abono').DataTable();
+    const rows = tableCredito.rows({ search: 'applied' }).data(); // Obtener las filas visibles de la tabla
+    const header = ["Descripción", "Monto", "Fecha"];
+    const tableData = [];
+    let totalMonto = 0;
+
+    // Recorrer las filas de la tabla y preparar los datos para el PDF
+    rows.each(function (rowData) {
+        const descripcion = rowData[0]; // Columna Descripción
+        const monto = parseFloat(rowData[1]) || 0; // Columna Monto
+        const fecha = rowData[2]; // Columna Fecha
+
+        totalMonto += monto; // Sumar el monto
+        tableData.push([descripcion, monto.toFixed(2), fecha]);
+    });
+
+    // Agregar encabezado
+    doc.setFontSize(14);
+    doc.text("Reporte de Abonos", 105, 20, null, null, "center");
+
+    // Agregar tabla
+    doc.autoTable({
+        head: [header],
+        body: tableData,
+        startY: 30
+    });
+
+    // Agregar la suma total al final
+    doc.setFontSize(12);
+    doc.text(`Total Monto: ${totalMonto.toFixed(2)} CRC`, 14, doc.lastAutoTable.finalY + 10);
+
+    // Descargar el archivo PDF
+    doc.save("Reporte_Abonos.pdf");
+});
+
+document.getElementById("descargar-cuentas").addEventListener("click", function () {
+    // Verificar que jsPDF esté disponible
+    if (!window.jspdf) {
+        console.error("jsPDF no está cargado.");
+        alert("Error: jsPDF no está disponible. Verifica la inclusión de la biblioteca.");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Obtener los valores de los elementos
+    const fecha = new Date().toLocaleDateString();
+    const cliente = document.getElementById("cliente-select").selectedOptions[0].text || "";
+    const montoCredito = document.getElementById("total-creditos").innerText || "";
+    const montoAbonos = document.getElementById("total-abonos").innerText || "";
+    const fechaAnterior = document.getElementById("fecha-ultima-cuenta").innerText || "";
+    const montoCuentaAnterior = document.getElementById("fecha-ultima-monto").innerText || "";
+    const textoDeuda = document.getElementById("texto-deuda").innerText || "";
+    const montoDeudaActual = document.getElementById("deuda-total").innerText || "";
+
+    // Configuración del documento
+    doc.setFontSize(10);
+    doc.text("Reporte de Cuentas", 105, 10, null, null, "center");
+
+    // Estructura de la tabla
+    const tableData = [
+        [{ content: "FECHA", styles: { halign: 'center', fillColor: [220, 220, 220] } }, fecha],
+        [{ content: "CLIENTE", styles: { halign: 'center', fillColor: [220, 220, 220] } }, cliente],
+        [{ content: "MONTO DE CREDITO", styles: { halign: 'center', fillColor: [220, 220, 220] } }, montoCredito],
+        [{ content: "MONTO DE ABONOS", styles: { halign: 'center', fillColor: [220, 220, 220] } }, montoAbonos],
+        [{ content: "FECHA CUENTA ANTERIOR A ESTA", styles: { halign: 'center', fillColor: [220, 220, 220] } }, fechaAnterior],
+        [{ content: "MONTO DE CUENTA ANTERIOR", styles: { halign: 'center', fillColor: [220, 220, 220] } }, montoCuentaAnterior],
+        [{ content: "MONTO ACTUAL DE DEUDA", styles: { halign: 'center', fillColor: [220, 220, 220] } }, `${textoDeuda} ${montoDeudaActual}`]
+    ];
+
+    // Generar la tabla con los datos
+    doc.autoTable({
+        body: tableData,
+        startY: 20,
+        theme: 'grid',
+        styles: {
+            fontSize: 10,
+            halign: 'center',
+            cellPadding: 2,
+        },
+        columnStyles: {
+            0: { cellWidth: 70 },
+            1: { cellWidth: 110 }
+        },
+    });
+
+    // Descargar el PDF
+    doc.save("Reporte_Cuentas.pdf");
+});
 
 
 // Document ready para cargar clientes y manejar el evento de búsqueda
@@ -201,31 +333,36 @@ $(document).ready(function () {
                 });
                 tableFactura.draw();
 
+                // Mostrar botones si hay datos
+                if (data.creditoTotal.creditos.length > 0) {
+                    $("#descargar-creditos").show();
+                    $("#descargar-cuentas").show();
+                }
+                if (data.abonoTotal.abonos.length > 0) {
+                    $("#descargar-abonos").show();
+                    $("#descargar-cuentas").show();
+                }
+
                 // Función para manejar los botones de "ver" en las tablas
                 $(".editar-btn").on("click", function () {
                     const id = $(this).data("id");
                     const origen = $(this).data("origen");
 
-                    // Enviar la solicitud AJAX para obtener el PDF
                     $.ajax({
                         url: '/Cuentas/VerDocumento',
                         type: 'POST',
                         data: { id: id, tipodoc: origen },
                         xhrFields: {
-                            responseType: 'blob' // Indica que esperamos un blob como respuesta
+                            responseType: 'blob'
                         },
                         success: function (blob) {
-                            // Crear una URL para el blob y asignarla al iframe
                             const pdfUrl = URL.createObjectURL(blob);
                             $('#pdfViewer').attr('src', pdfUrl);
-
-                            // Mostrar el modal
                             $('#pdfModal').show();
 
-                            // Limpiar la URL del blob cuando se cierre el modal
                             $('.close-btn').on('click', function () {
                                 $('#pdfModal').hide();
-                                URL.revokeObjectURL(pdfUrl); // Liberar la URL del Blob
+                                URL.revokeObjectURL(pdfUrl);
                             });
                         },
                         error: function (xhr, status, error) {
@@ -235,15 +372,13 @@ $(document).ready(function () {
                     });
                 });
 
-                // Cerrar el modal al hacer clic fuera de él
                 window.onclick = function (event) {
                     const modal = document.getElementById('pdfModal');
                     if (event.target == modal) {
                         modal.style.display = 'none';
-                        $('#pdfViewer').attr('src', ''); // Limpiar la fuente del iframe
+                        $('#pdfViewer').attr('src', '');
                     }
                 };
-
             },
             error: function (xhr, status, error) {
                 console.error("Error al obtener datos:", xhr.responseText);
@@ -252,4 +387,58 @@ $(document).ready(function () {
         });
     });
 
+    // Evento para descargar créditos
+    $("#descargar-creditos").on("click", function () {
+        const idCliente = $("#cliente-select").val();
+        //$.ajax({
+        //    url: `/Cuentas/DescargarCreditos/${idCliente}`,
+        //    type: "GET",
+        //    xhrFields: {
+        //        responseType: 'blob'
+        //    },
+        //    success: function (blob) {
+        //        const fileName = `Creditos_${idCliente}.pdf`;
+        //        const url = window.URL.createObjectURL(blob);
+        //        const a = document.createElement('a');
+        //        a.href = url;
+        //        a.download = fileName;
+        //        document.body.appendChild(a);
+        //        a.click();
+        //        a.remove();
+        //        window.URL.revokeObjectURL(url);
+        //    },
+        //    error: function (xhr, status, error) {
+        //        console.error("Error al descargar créditos:", xhr.responseText);
+        //        alert("Hubo un problema al descargar los créditos.");
+        //    }
+        //});
+    });
+
+    // Evento para descargar abonos
+    $("#descargar-abonos").on("click", function () {
+        const idCliente = $("#cliente-select").val();
+        //$.ajax({
+        //    url: `/Cuentas/DescargarAbonos/${idCliente}`,
+        //    type: "GET",
+        //    xhrFields: {
+        //        responseType: 'blob'
+        //    },
+        //    success: function (blob) {
+        //        const fileName = `Abonos_${idCliente}.pdf`;
+        //        const url = window.URL.createObjectURL(blob);
+        //        const a = document.createElement('a');
+        //        a.href = url;
+        //        a.download = fileName;
+        //        document.body.appendChild(a);
+        //        a.click();
+        //        a.remove();
+        //        window.URL.revokeObjectURL(url);
+        //    },
+        //    error: function (xhr, status, error) {
+        //        console.error("Error al descargar abonos:", xhr.responseText);
+        //        alert("Hubo un problema al descargar los abonos.");
+        //    }
+        //});
+    });
 });
+

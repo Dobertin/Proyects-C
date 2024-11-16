@@ -3,6 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; // Usamos el layout compartido
 }
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <body>
@@ -80,6 +83,22 @@
                         </div>
                     </section>
                 </div>
+                <div class="col-md-6">
+                    <section class="client-section mb-3">
+                        <button id="descargar-creditos" type="submit" class="btn btn-primary btn-search ms-2 hidden">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Descargar Creditos</span>
+                        </button>
+                        <button id="descargar-abonos" type="submit" class="btn btn-primary btn-search ms-2 hidden">
+                            <i class="fa-solid fa-download"></i>
+                            <span>descargar Abonos</span>
+                        </button>
+                        <button id="descargar-cuentas" type="submit" class="btn btn-primary btn-search ms-2 hidden">
+                            <i class="fa-solid fa-download"></i>
+                            <span>descargar Cuentas</span>
+                        </button>
+                    </section>
+                </div>
             </div>
 
             <section class="tables-section mb-3 ">
@@ -155,7 +174,7 @@
                     <div class="action-buttons d-flex justify-content-center mt-4 gap-3">
                         <button type="button" class="agregar-btn" id="agregarCuentaBtn">
                             <i class="fa fa-plus me-2"></i>
-                            <span>Agregar Cuenta</span>
+                            <span>Agregar Abono</span>
                         </button>
                     </div>
                 </div>

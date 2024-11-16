@@ -141,3 +141,6 @@ table {
     .agregar-btn:hover {
         background-color: #0ab3a4;
     }
+.hidden {
+    display: none;
+}
