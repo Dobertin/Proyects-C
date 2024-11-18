@@ -1,0 +1,241 @@
+﻿@{
+    ViewData["Title"] = "Administracion";
+}
+<style>
+  p{
+      font-size: 18px;
+  }
+
+</style>
+
+<section class="container mb-3">
+    <h2 class="mb-4">Roles de usuarios</h2>
+    <div class="row text-center">
+        <div class="col-md-2">
+            <img src="/img/usuarioadmin.jpg" alt="Administrador"
+                 class="img-fluid rounded-circle mb-2"
+                 style="width: 150px; height: 150px; cursor: pointer;"
+                 data-bs-toggle="modal" data-bs-target="#modalAdministrador">
+            <p>Administrador</p>
+        </div>
+
+        <div class="col-md-2">
+            <img src="/img/usuarioadmin.jpg" alt="Administrador"
+                 class="img-fluid rounded-circle mb-2"
+                 style="width: 150px; height: 150px; cursor: pointer;"
+                 data-bs-toggle="modal" data-bs-target="#modalAdministrador">
+            <p>Supervisor</p>
+        </div>
+
+        <div class="col-md-2">
+            <img src="/img/usuarioadmin.jpg" alt="Administrador"
+                 class="img-fluid rounded-circle mb-2"
+                 style="width: 150px; height: 150px; cursor: pointer;"
+                 data-bs-toggle="modal" data-bs-target="#modalAdministrador">
+            <p>Vendedor</p>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+        <h2 class="mb-0">Usuarios</h2>
+        <div class="d-flex">
+            <input type="text" class="form-control me-2" placeholder="Buscar usuario" style="width: 200px;">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUsuario">
+                <i class="bi bi-plus"></i> Agregar
+            </button>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-2">
+            <div class="d-flex flex-column align-items-center" data-bs-toggle="modal" data-bs-target="#modalUsuario" style="cursor: pointer;">
+                <img src="/img/persona.jpg" alt="Administrador" class="img-fluid rounded-circle mb-2" style="width: 150px; height: 150px; object-fit: cover;">
+                <p>Alfredo</p>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="d-flex flex-column align-items-center" data-bs-toggle="modal" data-bs-target="#modalUsuario" style="cursor: pointer;">
+                <img src="/img/mujer.jpg" alt="Administrador" class="img-fluid rounded-circle mb-2" style="width: 150px;; height: 150px;; object-fit: cover;">
+                <p>Alfredo</p>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="d-flex flex-column align-items-center" data-bs-toggle="modal" data-bs-target="#modalUsuario" style="cursor: pointer;">
+                <img src="/img/persona.jpg" alt="Administrador" class="img-fluid rounded-circle mb-2" style="width: 150px;; height: 150px;; object-fit: cover;">
+                <p>Alfredo</p>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="d-flex flex-column align-items-center" data-bs-toggle="modal" data-bs-target="#modalUsuario" style="cursor: pointer;">
+                <img src="/img/mujer.jpg" alt="Administrador" class="img-fluid rounded-circle mb-2" style="width: 150px;; height: 150px;; object-fit: cover;">
+                <p>Alfredo</p>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="d-flex flex-column align-items-center" data-bs-toggle="modal" data-bs-target="#modalUsuario" style="cursor: pointer;">
+                <img src="/img/persona.jpg" alt="Administrador" class="img-fluid rounded-circle mb-2" style="width: 150px;; height: 150px;; object-fit: cover;">
+                <p>Alfredo</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<div class="modal fade" id="modalAdministrador" tabindex="-1" aria-labelledby="modalAdministradorLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 25px;">
+                <!-- Título y etiqueta -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="modal-title" id="modalAdministradorLabel">Usuario Administrador</h5>
+                    <span class="badge bg-secondary" style="padding: 0.5rem 1rem; width: 150px;">Alfredo</span>
+                </div>
+                <!-- Texto de edición de roles -->
+                <p class="mb-3 text-center">Editar Roles</p>
+                <!-- Campos de Rol y Usuarios -->
+                <div class="row mb-3 text-center">
+                    <div class="col-md-5">
+                        <label for="selectRol" class="form-label">Rol</label>
+                        <select id="selectRol" class="form-select">
+                            <option>Administrador</option>
+                            <option>Supervisor</option>
+                            <option>Vendedor</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mt-3">
+                        <i class="bi bi-arrows" style="font-size:45px;"></i>
+                    </div>
+                    
+                    <div class="col-md-5">
+                        <label for="selectUsuarios" class="form-label">Usuarios</label>
+                        <select id="selectUsuarios" class="form-select">
+                            <option>Alfredo</option>
+                            <option>Carla</option>
+                            <option>Pedro</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Botón de asignar -->
+                <div class="text-center">
+                    <button type="button" class="btn btn-outline-danger">Asignar Rol</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="modalUsuarioLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 25px;">
+                <!-- Título y etiqueta -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="modal-title" id="modalAdministradorLabel">Usuario Administrador</h5>
+                    <span class="badge bg-secondary" style="padding: 0.5rem 1rem; width: 180px;">Alfredo</span>
+                </div>
+                <!-- Texto de edición de roles -->
+                <p class="mb-3 text-center" style="font-size: 21px;">Agregar nuevo Usuario</p>
+                
+                <div class="container mt-4">
+                    <div class="row">
+                        <!-- Sección : Formulario de usuario -->
+                        <div class="col-md-6">
+                            <form>
+                                <!-- Campo Nombre -->
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+                                </div>
+
+                                <!-- Campo Apellidos -->
+                                <div class="mb-3">
+                                    <label for="apellidos" class="form-label">Apellidos</label>
+                                    <input type="text" class="form-control" id="apellidos" placeholder="Ingresa tus apellidos">
+                                </div>
+
+                                <div class="row mb-3">
+                                    <!-- Campo Email -->
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Ingresa email">
+                                    </div>
+
+                                    <!-- Campo # Teléfono -->
+                                    <div class="col-md-6">
+                                        <label for="telefono" class="form-label"># Teléfono</label>
+                                        <input type="tel" class="form-control" id="telefono" placeholder="Ingresa teléfono">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <!-- Campo Email -->
+                                    <div class="col-md-6">
+                                        <label for="usuario" class="form-label">Usuario</label>
+                                        <input type="text" class="form-control" id="usuario" placeholder="Ingresa Usuario">
+                                    </div>
+
+                                    <!-- Campo # Teléfono -->
+                                    <div class="col-md-6">
+                                        <label for="contraseña" class="form-label">Contraseña</label>
+                                        <input type="password" class="form-control" id="contraseña" placeholder="Ingresa Clave">
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <!-- Sección : Foto y botones -->
+                        <div class="col-md-6">
+                            <div class="d-flex flex-column align-items-center">
+                                <!-- Sección : Foto y botones -->
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <!-- Foto redondeada -->
+                                    <img src="/img/persona.jpg" alt="Usuario" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+
+                                    <!-- Botón para cargar foto -->
+                                    <button class="btn btn-outline-primary mb-3 ms-3">Cargar Foto</button>
+                                </div>
+                                <div class="col d-flex justify-content-center align-items-center gap-3">
+                                    <!-- Combo Tienda -->
+                                    <div class="mb-3 text-center">
+                                        <label for="selectTienda" class="form-label">Tienda</label>
+                                        <select id="selectTienda" class="form-select">
+                                            <option>Tienda 1</option>
+                                            <option>Tienda 2</option>
+                                            <option>Tienda 3</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Combo Rol -->
+                                    <div class="mb-3 text-center">
+                                        <label for="selectRol" class="form-label">Rol</label>
+                                        <select id="selectRol" class="form-select">
+                                            <option>Administrador</option>
+                                            <option>Supervisor</option>
+                                            <option>Vendedor</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+
+                                <!-- Botones -->
+                                <div class="d-flex justify-content-between gap-4">
+                                    <button class="btn btn-success">Agregar</button>
+                                    <button class="btn btn-danger">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

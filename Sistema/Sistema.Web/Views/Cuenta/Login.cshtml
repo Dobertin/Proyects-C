@@ -1,0 +1,98 @@
+﻿<!-- Views/Account/Login.cshtml -->
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/css/accountStyle.css" rel="stylesheet" />
+
+    <style>
+        /* Estilos del header */
+        .header-container {
+            height: 80px;
+        }
+
+        .header-logo {
+            max-height: 60px;
+        }
+        /* Estilos del contenido principal */
+        .main-content {
+            height: calc(100vh - 80px); /* Resta la altura del header para ocupar el resto */
+        }
+
+        .slogan {
+            font-size: 2.5rem;
+            color: #555;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-form {
+            min-width: 400px;
+        }
+
+        .text-login{
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-container d-flex align-items-center">
+        <div class="container-fluid">
+            <div class="row w-100 align-items-center">
+                <!-- Logo a la izquierda -->
+                <div class="col-auto">
+                    <img src="~/img/iconoprincipal.png" alt="Logo" class="header-logo">
+                </div>
+
+                <!-- Título centrado -->
+                <div class="col text-center">
+                    <h1 class="mb-0">Sistema Web</h1>
+                </div>
+
+                <!-- Espacio vacío a la derecha -->
+                <div class="col-auto">
+                    <!-- Este espacio puede ser usado para algo en el futuro si lo deseas -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <div class="container-fluid main-content d-flex align-items-center">
+        <div class="row w-100">
+            <!-- Columna Izquierda con Imagen y Slogan -->
+            <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+                <img src="~/img/login.jpg" alt="Imagen" class="img-fluid" style="max-width: 80%; height: auto;">
+                <p class="slogan">Impulsamos tus ventas</p>
+            </div>
+
+            <!-- Columna Derecha con Formulario de Login -->
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <form class="login-form" method="post">
+                    <div class="mb-4 ">
+                        <label for="username" class="form-label text-login">Usuario: </label>
+                        <input type="text" class="form-control form-control-lg border border-black border-2 shadow-none" id="username" placeholder="Ingrese su usuario">
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label text-login">Contraseña: </label>
+                        <input type="password" class="form-control form-control-lg border border-black border-2 shadow-none" id="password" placeholder="Ingrese su contraseña">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Administracion";
+}
+
+<h2 class="text-center">Administración de clientes</h2>
+
+<div class="row mt-4">
+    <!-- Sección Izquierda: Formulario -->
+    <div class="col-md-5">
+        <div class="mb-4 shadow p-3">
+            <p style="font-size: 18px;" class="text-center fw-bold">Agregar nuevo cliente</p>
+            <form>
+                <!-- Campo Nombre -->
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                </div>
+                <!-- Campo Apellidos -->
+                <div class="mb-3">
+                    <label for="apellidos" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
+                </div>
+                <!-- Campo Email y Teléfono -->
+                <div class="mb-3 d-flex">
+                    <div class="me-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email">
+                    </div>
+                    <div class="flex-grow-1">
+                        <label for="telefono" class="form-label"># Teléfono</label>
+                        <input type="tel" class="form-control" id="telefono" placeholder="Teléfono">
+                    </div>
+                </div>
+                <!-- Campo Edad y Botón Agregar -->
+                <div class="mb-3 d-flex">
+                    <div class="me-3">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="edad" placeholder="Edad">
+                    </div>
+                    <div class="flex-grow-1 mt-4 text-center">
+                        <button type="submit" class="btn btn-success">Agregar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sección Derecha: Buscador y Tabla -->
+    <div class="col-md-7">
+        <!-- Buscador -->
+        <div class="mb-4">
+            <input type="text" class="form-control" id="buscar" placeholder="Buscar...">
+        </div>
+
+        <!-- Tabla de Clientes -->
+        <table class="table">
+            <thead style="background-color: #2b78c2; color: white;">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Juan</td>
+                    <td>Pérez</td>
+                    <td>juan.perez@example.com</td>
+                    <td>987654321</td>
+                    <td>35</td>
+                </tr>
+                <tr>
+                    <td>Ana</td>
+                    <td>López</td>
+                    <td>ana.lopez@example.com</td>
+                    <td>123456789</td>
+                    <td>28</td>
+                </tr>
+                <tr>
+                    <td>Pedro</td>
+                    <td>Gómez</td>
+                    <td>pedro.gomez@example.com</td>
+                    <td>112233445</td>
+                    <td>40</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
