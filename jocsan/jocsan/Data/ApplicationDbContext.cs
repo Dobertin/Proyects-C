@@ -18,6 +18,7 @@ namespace jocsan.Data
         public DbSet<MovimientosCredito> MovimientosCredito { get; set; }
         public DbSet<Gasolina> Gasolina { get; set; }
         public DbSet<Parametro> Parametro { get; set; }
+        public DbSet<Vuelto> Vuelto { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

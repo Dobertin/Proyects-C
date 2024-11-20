@@ -1,0 +1,151 @@
+﻿
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+    header p {
+        font-size: 14px;
+        color: #888;
+    }
+
+    header h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+.summary h2, .summary p {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.client-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+    .client-section label {
+        font-weight: bold;
+    }
+
+    .client-section select {
+        padding: 5px;
+        font-size: 16px;
+    }
+
+.btn-search {
+    padding: 8px 16px;
+    background-color: #00CBB9;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    text-align: center;
+}
+
+    .summary div {
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+.total-credits, .debe {
+    background-color: #FFE6E6;
+}
+
+.total-abonos {
+    background-color: #E8F5E9;
+}
+
+.total-cuentas {
+    background-color: #f6f764;
+}
+
+.summary h2 {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.summary p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.last-account {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+    .last-account h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+.account-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.tables-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .tables-section h3 {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table.dataTable.no-footer {
+    border-bottom: none !important;
+}
+
+.duplicate-abonos {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .duplicate-abonos h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .duplicate-abonos p {
+        font-size: 14px;
+        color: #888;
+    }
+
+.agregar-btn {
+    background-color: #00CBB9;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+    .agregar-btn:hover {
+        background-color: #0ab3a4;
+    }
+
+.hidden {
+    display: none;
+}
