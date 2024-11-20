@@ -171,7 +171,13 @@ document.getElementById("descargar-cuentas").addEventListener("click", function 
     }
 
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+
+    // Configuración de la página para una impresora térmica de 80mm de ancho
+    const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: [80, 200] // 80mm de ancho y largo ajustable; el largo es solo un estimado
+    });
 
     // Obtener los valores de los elementos
     const fecha = new Date().toLocaleDateString();
@@ -183,9 +189,9 @@ document.getElementById("descargar-cuentas").addEventListener("click", function 
     const textoDeuda = document.getElementById("texto-deuda").innerText || "";
     const montoDeudaActual = document.getElementById("deuda-total").innerText || "";
 
-    // Configuración del documento
-    doc.setFontSize(10);
-    doc.text("Reporte de Cuentas", 105, 10, null, null, "center");
+    // Título y configuración del documento
+    doc.setFontSize(12);
+    doc.text("Reporte de Cuentas", 40, 10, null, null, "center");
 
     // Estructura de la tabla
     const tableData = [
@@ -206,17 +212,19 @@ document.getElementById("descargar-cuentas").addEventListener("click", function 
         styles: {
             fontSize: 10,
             halign: 'center',
-            cellPadding: 2,
+            cellPadding: 1,
         },
+        margin: { left: 5, right: 5 },
         columnStyles: {
-            0: { cellWidth: 70 },
-            1: { cellWidth: 110 }
+            0: { cellWidth: 35 },
+            1: { cellWidth: 35 }
         },
     });
 
     // Descargar el PDF
     doc.save("Reporte_Cuentas.pdf");
 });
+
 
 
 // Document ready para cargar clientes y manejar el evento de búsqueda

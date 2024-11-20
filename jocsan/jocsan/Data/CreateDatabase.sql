@@ -7,6 +7,20 @@ go;
 use Jocsan;
 go;
 
+CREATE TABLE Jocsan.dbo.Vuelto (
+	idVuelto int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	idCliente int NOT NULL,
+	monto decimal(18,2) NULL,
+	comentario varchar(500) COLLATE Modern_Spanish_CI_AS NULL,
+	fechaVuelto datetime NULL,
+	UsuarioCreacion varchar(20) COLLATE Modern_Spanish_CI_AS NOT NULL,
+	FechaCreacion datetime NOT NULL,
+	UsuarioModifica varchar(20) COLLATE Modern_Spanish_CI_AS NULL,
+	FechaModifica datetime NULL,
+	estado int DEFAULT 1 NULL,
+	tipoVuelto smallint NULL	
+);
+
 CREATE TABLE [dbo].[Abono] (
   [idAbono] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
   [descripcion] varchar(200),
@@ -150,6 +164,7 @@ ALTER TABLE [dbo].[Factura]  WITH CHECK ADD  CONSTRAINT [FK_FacturaidCliente] FO
 ALTER TABLE [dbo].[DetalleFactura]  WITH CHECK ADD  CONSTRAINT [FK_DetalleFacturaidFactura] FOREIGN KEY([idFactura]) REFERENCES [dbo].[Factura]([idFactura]);
 ALTER TABLE [dbo].[DetalleFactura]  WITH CHECK ADD  CONSTRAINT [FK_DetalleFacturaidProducto] FOREIGN KEY([idProducto]) REFERENCES [dbo].[Producto]([idProducto]);
 ALTER TABLE [dbo].[Gasolina]  WITH CHECK ADD  CONSTRAINT [Gasolina_Cliente_FK] FOREIGN KEY([idCliente]) REFERENCES [dbo].[Cliente]([idCliente]);
+ALTER TABLE [dbo].[Vuelto] WITH CHECK ADD  CONSTRAINT [Cuentas_Cliente_FK] FOREIGN KEY (idCliente) REFERENCES [dbo].[Cliente]([idCliente]);
 GO;
 
 INSERT INTO dbo.Cliente VALUES('CUNGA','CUNGA','0','3200','1','JEOVANY','carro','system',getdate(), null, null,1);

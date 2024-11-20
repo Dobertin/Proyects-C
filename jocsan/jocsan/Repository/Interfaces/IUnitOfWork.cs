@@ -13,6 +13,7 @@ namespace jocsan.Repository.Interfaces
         IProductoRepository Producto { get; }
         IGasolinaRepository Gasolina { get; }
         IParametroRepository Parametro { get; }
+        IVueltoRepository Vuelto { get; }
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();
         Task RollbackTransactionAsync();

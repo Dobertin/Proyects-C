@@ -293,5 +293,67 @@ namespace jocsan.Models
                 return ms.ToArray();
             }
         }
+
+        public byte[] GenerarVueltoPdf(Vuelto vuelto)
+        {
+            using (var ms = new MemoryStream())
+            {
+                // Definir un tamaño de página personalizado de 80 mm de ancho
+                var pageWidth = 80f * 2.83f; // 80 mm en puntos (aprox. 3.15 pulgadas)
+                var pageSize = new Rectangle(pageWidth, PageSize.A7.Height); // Ajuste la altura según sea necesario
+                var document = new Document(pageSize, 10, 10, 10, 10); // Márgenes de 10 puntos
+
+                var writer = PdfWriter.GetInstance(document, ms);
+                document.Open();
+
+                // Fuente para el contenido con tamaños reducidos
+                var fontTitulo = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10);
+                var fontContenido = FontFactory.GetFont(FontFactory.HELVETICA, 8);
+                var fontVersiculo = FontFactory.GetFont(FontFactory.HELVETICA_OBLIQUE, 7);
+
+                // Título
+                var titulo = new Paragraph("Comprobante", fontTitulo)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingAfter = 15
+                };
+                document.Add(titulo);
+
+                // Contenido del comprobante
+                var contenido = new Paragraph
+                {
+                    Alignment = Element.ALIGN_LEFT,
+                    SpacingAfter = 10
+                };
+                contenido.Add(new Phrase($"Descripción: {vuelto.Comentario}\n", fontContenido));
+                contenido.Add(new Phrase($"Fecha: {vuelto.FechaVuelto:dd/MM/yyyy}\n", fontContenido));
+                contenido.Add(new Phrase($"Monto: {vuelto.Monto.ToString("C", new System.Globalization.CultureInfo("es-CR"))}\n", fontContenido));
+                contenido.Add(new Phrase($"Cliente: {vuelto.Cliente.Nombre}\n", fontContenido));
+                document.Add(contenido);
+
+                // Espacio adicional antes del versículo
+                document.Add(new Paragraph(" ", fontContenido));
+
+                // Versículo
+                var versiculo = new Paragraph("Proverbios 13:11", fontTitulo)
+                {
+                    Alignment = Element.ALIGN_CENTER,
+                    SpacingAfter = 5
+                };
+                document.Add(versiculo);
+
+                var textoVersiculo = new Paragraph("El dinero mal habido pronto se acaba; quien ahorra,\r\npoco a poco se enriquece", fontVersiculo)
+                {
+                    Alignment = Element.ALIGN_CENTER
+                };
+                document.Add(textoVersiculo);
+
+                // Cerrar el documento
+                document.Close();
+
+                // Retornar el PDF como array de bytes
+                return ms.ToArray();
+            }
+        }
     }
 }

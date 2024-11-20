@@ -22,6 +22,7 @@ namespace jocsan.Repository.Repositorios
             Producto = new ProductoRepository(_context);
             Gasolina = new GasolinaRepository(_context);
             Parametro = new ParametroRepository(_context);
+            Vuelto = new VueltoRepository(_context);
         }
 
         public IClienteRepository Cliente { get; private set; }
@@ -33,6 +34,7 @@ namespace jocsan.Repository.Repositorios
         public IProductoRepository Producto { get; private set; }
         public IGasolinaRepository Gasolina { get; private set; }
         public IParametroRepository Parametro { get; private set; }
+        public IVueltoRepository Vuelto { get; private set; }
         public async Task BeginTransactionAsync()
         {
             _transaction = await _context.Database.BeginTransactionAsync();
