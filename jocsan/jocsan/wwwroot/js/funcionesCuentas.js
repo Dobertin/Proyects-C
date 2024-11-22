@@ -125,10 +125,14 @@ document.getElementById("descargar-creditos").addEventListener("click", function
 });
 document.getElementById("descargar-abonos").addEventListener("click", function () {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: [80, 200] // Tamaño adecuado para impresoras térmicas de 80mm
+    });
 
-    const tableCredito = $('#table-abono').DataTable();
-    const rows = tableCredito.rows({ search: 'applied' }).data(); // Obtener las filas visibles de la tabla
+    const tableAbono = $('#table-abono').DataTable();
+    const rows = tableAbono.rows({ search: 'applied' }).data(); // Obtener las filas visibles de la tabla
     const header = ["Descripción", "Monto", "Fecha"];
     const tableData = [];
     let totalMonto = 0;
@@ -144,19 +148,31 @@ document.getElementById("descargar-abonos").addEventListener("click", function (
     });
 
     // Agregar encabezado
-    doc.setFontSize(14);
-    doc.text("Reporte de Abonos", 105, 20, null, null, "center");
+    doc.setFontSize(12);
+    doc.text("Reporte de Abonos", 40, 10, null, null, "center");
 
     // Agregar tabla
     doc.autoTable({
         head: [header],
         body: tableData,
-        startY: 30
+        startY: 20,
+        theme: 'grid',
+        styles: {
+            fontSize: 10,
+            cellPadding: 1,
+            halign: 'center'
+        },
+        margin: { left: 5, right: 5 },
+        columnStyles: {
+            0: { cellWidth: 30 },
+            1: { cellWidth: 20 },
+            2: { cellWidth: 25 }
+        }
     });
 
     // Agregar la suma total al final
-    doc.setFontSize(12);
-    doc.text(`Total Monto: ${totalMonto.toFixed(2)} CRC`, 14, doc.lastAutoTable.finalY + 10);
+    doc.setFontSize(10);
+    doc.text(`Total Monto: ${totalMonto.toFixed(2)} CRC`, 5, doc.lastAutoTable.finalY + 10);
 
     // Descargar el archivo PDF
     doc.save("Reporte_Abonos.pdf");
@@ -217,6 +233,7 @@ document.getElementById("descargar-cuentas").addEventListener("click", function 
     // Descargar el PDF
     doc.save("Reporte_Cuentas.pdf");
 });
+
 
 
 // Document ready para cargar clientes y manejar el evento de búsqueda
