@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Sistema.Database.Context;
 using Sistema.Database.Entities;
 using Sistema.Database.Interfaces;
 using System;
@@ -12,19 +13,19 @@ namespace Sistema.Database.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext _context;
+        private readonly MiContexto _context;
         private IDbContextTransaction _transaction;
 
-        public IGenericRepository<Rol> Roles { get; }
-        public IGenericRepository<Tienda> Tiendas { get; }
-        public IGenericRepository<Usuario> Usuarios { get; }
+        public IGenericRepository<Rol> Rol { get; }
+        public IGenericRepository<Tienda> Tienda { get; }
+        public IGenericRepository<Usuario> Usuario { get; }
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(MiContexto context)
         {
             _context = context;
-            Roles = new GenericRepository<Rol>(context);
-            Tiendas = new GenericRepository<Tienda>(context);
-            Usuarios = new GenericRepository<Usuario>(context);
+            Rol = new GenericRepository<Rol>(context);
+            Tienda = new GenericRepository<Tienda>(context);
+            Usuario = new GenericRepository<Usuario>(context);
         }
 
         public async Task SaveAsync()

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sistema.Database.Context;
 using Sistema.Database.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Sistema.Database.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly DbContext _context;
+        private readonly MiContexto _context;
         private readonly DbSet<T> _dbSet;
 
-        public GenericRepository(DbContext context)
+        public GenericRepository(MiContexto context)
         {
             _context = context;
             _dbSet = context.Set<T>();

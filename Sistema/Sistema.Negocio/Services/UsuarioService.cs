@@ -19,19 +19,19 @@ namespace Sistema.Negocio.Services
 
         public async Task<IEnumerable<Usuario>> ObtenerUsuariosAsync()
         {
-            return await _unitOfWork.Usuarios.GetAllAsync();
+            return await _unitOfWork.Usuario.GetAllAsync();
         }
 
         public async Task CambiarTiendaAsync(int idUsuario, int idTienda, int idAdmin)
         {
             // Lógica de validación antes de usar UnitOfWork
-            var usuario = await _unitOfWork.Usuarios.GetByIdAsync(idUsuario);
+            var usuario = await _unitOfWork.Usuario.GetByIdAsync(idUsuario);
             if (usuario == null) throw new Exception("Usuario no encontrado.");
 
             usuario.IdTienda = idTienda;
             usuario.UsuarioActualizacion = idAdmin;
 
-            _unitOfWork.Usuarios.Update(usuario);
+            _unitOfWork.Usuario.Update(usuario);
             await _unitOfWork.SaveAsync();
         }
     }

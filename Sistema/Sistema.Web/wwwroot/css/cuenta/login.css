@@ -1,0 +1,27 @@
+﻿/* Estilos del header */
+.header-container {
+    height: 80px;
+}
+
+.header-logo {
+    max-height: 60px;
+}
+/* Estilos del contenido principal */
+.main-content {
+    height: calc(100vh - 80px); /* Resta la altura del header para ocupar el resto */
+}
+
+.slogan {
+    font-size: 2.5rem;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-form {
+    min-width: 400px;
+}
+
+.text-login {
+    font-size: 1.4rem;
+}

@@ -6,14 +6,23 @@ namespace Sistema.Web.Controllers
     public class UsuariosController : Controller
     {
         private readonly UsuarioService _usuarioService;
-        public UsuariosController(UsuarioService usuarioService)
+        private readonly RolService _rolService;
+        public UsuariosController(UsuarioService usuarioService, RolService rolService)
         {
             _usuarioService = usuarioService;
+            _rolService = rolService;
         }
 
         public IActionResult Administracion()
         {
             return View();
+        }
+
+        [HttpGet("/Rol/ObtenerCombo")]
+        public async Task<IActionResult> ObtenerComboRolAsync()
+        {
+            var datocombo = await _rolService.ObtenerComboRolAsync();
+            return Ok(datocombo);
         }
 
         [HttpGet("/Usuarios/Obtener")]

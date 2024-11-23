@@ -10,7 +10,7 @@ namespace Sistema.Database.Context
 {
     public class MiContexto : DbContext
     {
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Rol> Rol { get; set; }
         public DbSet<Tienda> Tienda { get; set; }
 

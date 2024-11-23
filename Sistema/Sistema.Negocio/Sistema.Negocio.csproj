@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Database\Sistema.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Querys\" />
+  </ItemGroup>
+
 </Project>

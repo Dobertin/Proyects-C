@@ -9,9 +9,9 @@ namespace Sistema.Database.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<Rol> Roles { get; }
-        IGenericRepository<Tienda> Tiendas { get; }
-        IGenericRepository<Usuario> Usuarios { get; }
+        IGenericRepository<Rol> Rol { get; }
+        IGenericRepository<Tienda> Tienda { get; }
+        IGenericRepository<Usuario> Usuario { get; }
         Task SaveAsync();
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();
