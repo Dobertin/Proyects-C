@@ -2,4 +2,150 @@
     ViewData["Title"] = "Administracion";
 }
 
-<h2>Admin</h2>
+
+<div class="container mt-4">
+    <!-- Bloque de filtros -->
+    <div class="shadow p-4 mb-4">
+        <div class="row mb-3 align-items-center">
+            <!-- Primera fila -->
+            <div class="col-md-1">
+                <p class="mb-0">TIENDA:</p>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select border border-dark">
+                    <option value="1">Tienda 1</option>
+                    <option value="2">Tienda 2</option>
+                    <option value="3">Tienda 3</option>
+                </select>
+            </div>
+            <div class="col-md-7 text-end">
+                <h4 class="text-uppercase mb-0">Administración de Ventas</h4>
+            </div>
+        </div>
+        <div class="row mb-3 align-items-center">
+            <!-- Segunda fila -->
+            <div class="col-md-1">
+                <p class="mb-0">Cliente:</p>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select border border-dark">
+                    <option value="1">Cliente 1</option>
+                    <option value="2">Cliente 2</option>
+                    <option value="3">Cliente 3</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <p class="mb-0">Nro de Factura:</p>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control border border-dark" placeholder="Ej: 12345">
+            </div>
+            <div class="col-md-3 text-center">
+                <button class="btn btn-primary w-100">
+                    <i class="bi bi-search me-2"></i>Buscar Factura
+                </button>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <!-- Tercera fila -->
+            <div class="col-md-1">
+                <p class="mb-0">Producto:</p>
+            </div>
+            <div class="col-md-3">
+                <select class="form-select border border-dark">
+                    <option value="1">Producto 1</option>
+                    <option value="2">Producto 2</option>
+                    <option value="3">Producto 3</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <p class="mb-0">Fecha Inicio:</p>
+            </div>
+            <div class="col-md-3">
+                <input type="date" class="form-control border border-dark">
+            </div>
+            <div class="col-md-1 text-end">
+                <p class="mb-0">Fecha Fin:</p>
+            </div>
+            <div class="col-md-2">
+                <input type="date" class="form-control border border-dark">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bloque de tabla -->
+    <div>
+        <table class="table text-center">
+            <thead style="background-color: #2b78c2; color: white;">
+                <tr>
+                    <th scope="col">N° de Factura</th>
+                    <th scope="col">N° de Producto</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Datos ficticios -->
+                <tr>
+                    <td>12345</td>
+                    <td>001</td>
+                    <td>$100.00</td>
+                    <td>2024-11-20</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm me-2">
+                            <i class="bi bi-pencil-square me-1"></i>Visualizar
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash me-1"></i>Eliminar
+                        </button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>12346</td>
+                    <td>002</td>
+                    <td>$200.00</td>
+                    <td>2024-11-19</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm me-2">
+                            <i class="bi bi-pencil-square me-1"></i>Visualizar
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash me-1"></i>Eliminar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12347</td>
+                    <td>003</td>
+                    <td>$150.00</td>
+                    <td>2024-11-18</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm me-2">
+                            <i class="bi bi-pencil-square me-1"></i>Visualizar
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash me-1"></i>Eliminar
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12348</td>
+                    <td>004</td>
+                    <td>$300.00</td>
+                    <td>2024-11-17</td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm me-2">
+                            <i class="bi bi-pencil-square me-1"></i>Visualizar
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm">
+                            <i class="bi bi-trash me-1"></i>Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

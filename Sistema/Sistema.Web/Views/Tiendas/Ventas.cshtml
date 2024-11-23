@@ -1,5 +1,229 @@
 ﻿@{
     ViewData["Title"] = "Ventas";
 }
+<style>
+    .label {
+        width: 80px; /* Ancho fijo para las etiquetas */
+        text-align: start; /* Alinear texto a la derecha */
+    }
 
-<h2>Ventas</h2>
+    .select-fixed {
+        width: 200px; /* Ancho fijo para los select */
+    }
+
+    .input-fixed {
+        width: 200px; /* Ancho fijo para el input */
+    }
+
+    input, select {
+        width: 100%; /* Que se adapten al contenedor */
+    }
+
+</style>
+
+<div class="container d-flex align-items-center">
+    <div class="row w-100">
+        <!-- Lado izquierdo -->
+        <div class="col-6 d-flex flex-column shadow p-4">
+            <!-- Bloque para Título y Select -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="me-3">TIENDA</h3>
+                <select class="form-select w-50 border border-dark">
+                    <option value="1">Seleccione</option>
+                    <option value="2">Tienda 2</option>
+                    <option value="3">Tienda 3</option>
+                    <option value="4">Tienda 4</option>
+                </select>
+            </div>
+
+            <div class="d-flex align-items-center mt-3 mb-3">
+                <p class="label me-3 mb-0">Cliente:</p>
+                <select class="form-select select-fixed border border-dark">
+                    <option value="1">CUNGA</option>
+                    <option value="2">Opción 2</option>
+                    <option value="3">Opción 3</option>
+                    <option value="4">Opción 4</option>
+                </select>
+            </div>
+
+            <div class="d-flex align-items-center mb-3">
+                <p class="label me-3 mb-0">Producto:</p>
+                <select class="form-select select-fixed border border-dark">
+                    <option value="1">CUNGA</option>
+                    <option value="2">Opción 2</option>
+                    <option value="3">Opción 3</option>
+                    <option value="4">Opción 4</option>
+                </select>
+            </div>
+
+            <div class="d-flex align-items-center mb-4">
+                <p class="label me-3 mb-0">Cantidad:</p>
+                <input type="number" class="form-control input-fixed me-3 border border-dark" min="1" placeholder="Cantidad" value="500">
+                <button class="btn btn-primary">
+                    <i class="bi bi-plus-lg me-2"></i> Agregar a la lista
+                </button>
+
+            </div>
+
+            <div class="">
+                <div class="row align-items-center mt-3 mb-3">
+                    <p class="col-5 mb-0">Subtotal:</p>
+                    <div class="col-7">
+                        <input type="text" class="form-control text-end border border-dark" value="150,000.00" disabled>
+                    </div>
+                </div>
+                <div class="row align-items-center mb-3">
+                    <p class="col-5 mb-0">IGV:</p>
+                    <div class="col-7">
+                        <input type="text" class="form-control text-end border border-dark" value="5,100.00" disabled>
+                    </div>
+                </div>
+                <div class="row align-items-center mb-3 fw-bold">
+                    <p class="col-5 mb-0">TOTAL:</p>
+                    <div class="col-7">
+                        <input type="text" class="form-control fw-bold text-end border border-dark" value="155,100.00" disabled>
+                    </div>
+                </div>
+                <div class="row align-items-center mb-3">
+                    <p class="col-5 mb-0">Tipo pago:</p>
+                    <div class="col-7">
+                        <select class="form-select border border-dark">
+                            <option value="1">Efectivo</option>
+                            <option value="2">Tarjeta</option>
+                            <option value="3">Transferencia</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row align-items-center mb-3">
+                    <p class="col-5 mb-0">Pago con:</p>
+                    <div class="col-7">
+                        <input type="number" class="form-control text-end border border-dark" value="200,705.00" placeholder="Monto">
+                    </div>
+                </div>
+                <div class="row align-items-center mb-3 fw-bold">
+                    <p class="col-5 mb-0">Vuelto:</p>
+                    <div class="col-7">
+                        <input type="text" class="form-control fw-bold text-end border border-dark" value="4,900.00" disabled>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Bloque final -->
+            <div class="text-center mt-4">
+                <p style="font-size: 20px;">¿Problemas en el cobro/entrega?</p>
+                <div class="form-check form-switch d-flex align-items-center justify-content-around mb-3 ">
+                    <input class="form-check-input me-2 " type="checkbox" id="problemasSwitch">
+                    <label class="form-check-label " for="problemasSwitch" style="font-size: 20px;">Detalle:</label>
+                </div>
+
+                <textarea class="form-control border border-dark" rows="4" placeholder="Escriba aquí el detalle..."></textarea>
+            </div>
+        </div>
+
+        <!-- Lado derecho -->
+        <div class="col-6 d-flex flex-column p-4">
+            <!-- Título -->
+            <div class="text-center mb-4">
+                <h1 class="text-uppercase" style="padding:40px;">Nueva Venta</h1>
+            </div>
+
+            <!-- Tabla -->
+            <div>
+                <h4 class="mb-3 text-center" style="">Lista de Productos Agregados</h4>
+                <table class="table text-center">
+                    <thead style="background-color: #2b78c2; color: white;">
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Datos ficticios -->
+                        <tr>
+                            <td>Producto 1</td>
+                            <td>$10.00</td>
+                            <td>2</td>
+                            <td>$20.00</td>
+                            <td>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Producto 2</td>
+                            <td>$15.00</td>
+                            <td>1</td>
+                            <td>$15.00</td>
+                            <td>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Producto 3</td>
+                            <td>$8.00</td>
+                            <td>3</td>
+                            <td>$24.00</td>
+                            <td>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Producto 4</td>
+                            <td>$12.00</td>
+                            <td>2</td>
+                            <td>$24.00</td>
+                            <td>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Producto 5</td>
+                            <td>$7.00</td>
+                            <td>5</td>
+                            <td>$35.00</td>
+                            <td>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Producto 6</td>
+                            <td>$5.00</td>
+                            <td>4</td>
+                            <td>$20.00</td>
+                            <td>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Botones finales -->
+            <div class="d-flex justify-content-center mt-4 gap-4">
+                <button class="btn btn-danger">
+                    <i class="bi bi-x-circle me-2"></i>Cancelar
+                </button>
+                <button class="btn btn-success">
+                    <i class="bi bi-check-circle me-2"></i>Emitir Factura
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
