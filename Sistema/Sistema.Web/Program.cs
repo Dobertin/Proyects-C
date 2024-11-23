@@ -1,7 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using Sistema.Database.Context;
+using Sistema.Database.Interfaces;
+using Sistema.Database.Repository;
+using Sistema.Negocio.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<MiContexto>(options =>
+    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<UsuarioService>();
 
 var app = builder.Build();
 
