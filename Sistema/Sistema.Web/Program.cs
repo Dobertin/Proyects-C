@@ -10,7 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MiContexto>(options =>
-    options.UseMySQL(builder.Configuration.GetConnectionString("MySQLConnection")));
+{
+    options.UseMySql(builder.Configuration.GetConnectionString("MySQLConnection"),
+        new MySqlServerVersion(new Version(9, 1, 0)))  // Asegúrate de especificar la versión correcta de MySQL
+        .EnableSensitiveDataLogging() // Mover este método al nivel correcto
+        .EnableDetailedErrors();      // Mover este método al nivel correcto
+});
 
 // Registrar repositorio genérico
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

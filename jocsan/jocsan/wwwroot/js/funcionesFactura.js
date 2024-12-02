@@ -37,6 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // Función para limpiar todos los controles
 async function Limpiarcontroles() {
+    // Elimina todas las filas de la tabla con id 'table_products'
+    const table = document.getElementById('table_products').getElementsByTagName('tbody')[0];
+    while (table.rows.length > 0) {
+        table.deleteRow(0);
+    }
     tercerosInput.value = 0;
     peladoresInput.value = 0;
     subtotalProductoInput.value = "0.00";
@@ -46,8 +51,12 @@ async function Limpiarcontroles() {
     cantidadHieloInput.value = 0;
     cantidadRegresoGasolina.value = "0.00";
     pagoInput.value = 0;
-    // Actualizar el resto de los cálculos
-    actualizarSubtotal();
+    primerSubtotalInput.value = "0.00";
+    segundoSubtotalInput.value = "0.00";
+    montoAbonoInput.value = "0.00";
+    totalGeneralInput.value = "0.00";
+    primerSubtotalGeneral = 0; 
+    descuentoTotal25.innerText = "0.00";
 }
 // Cambiar el precio del producto temporalmente
 changePriceBtn.addEventListener("click", function () {

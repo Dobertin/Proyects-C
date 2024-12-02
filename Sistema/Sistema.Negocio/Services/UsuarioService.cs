@@ -1,4 +1,5 @@
-﻿using Sistema.Database.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Sistema.Database.Entities;
 using Sistema.Database.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,32 @@ namespace Sistema.Negocio.Services
         {
             _unitOfWork = unitOfWork;
         }
+        public async Task<Usuario> Authenticate(string username, string password)
+        {
+            try
+            {
+                // Obtener el usuario por el nombre de usuario
+                var user = await _unitOfWork.Usuario.FindAsync(u => u.UsuarioNombre == username);
 
+                // Verificar si el usuario existe y la contraseña hasheada coincide con la proporcionada
+                if (!(user == null || !BCrypt.Net.BCrypt.Verify(password, user.Contrasena)))
+                {
+                    return user;
+                }
+
+                // Si no hay coincidencia o el usuario no existe, devuelve null
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
+        }
         public async Task<IEnumerable<Usuario>> ObtenerUsuariosAsync()
         {
             return await _unitOfWork.Usuario.GetAllAsync();
         }
-
         public async Task CambiarTiendaAsync(int idUsuario, int idTienda, int idAdmin)
         {
             // Lógica de validación antes de usar UnitOfWork
@@ -35,5 +56,4 @@ namespace Sistema.Negocio.Services
             await _unitOfWork.SaveAsync();
         }
     }
-
 }

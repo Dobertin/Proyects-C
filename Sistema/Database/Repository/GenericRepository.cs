@@ -4,6 +4,7 @@ using Sistema.Database.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +25,10 @@ namespace Sistema.Database.Repository
         {
             return await _dbSet.ToListAsync();
         }
-
+        public async Task<T> FindAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _dbSet.FirstOrDefaultAsync(predicate);
+        }
         public async Task<T> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);

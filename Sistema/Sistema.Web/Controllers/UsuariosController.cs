@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sistema.Negocio.Querys;
 using Sistema.Negocio.Services;
 
 namespace Sistema.Web.Controllers
@@ -16,8 +17,7 @@ namespace Sistema.Web.Controllers
         public IActionResult Administracion()
         {
             return View();
-        }
-
+        }        
         [HttpGet("/Rol/ObtenerCombo")]
         public async Task<IActionResult> ObtenerComboRolAsync()
         {
