@@ -520,11 +520,15 @@ function actualizarSubtotal() {
 
     // Obtener todas las filas de la tabla
     const rows = document.getElementById('table_products').getElementsByTagName('tbody')[0].rows;
-
+    
+    
     // Sumar los valores de cada subtotal en la tabla
     for (let i = 0; i < rows.length; i++) {
         const totalCell = rows[i].cells[3];
         primerSubtotalGeneral += parseFloat(totalCell.innerText) || 0;
+    }
+    if (rows.length == 0) {
+        primerSubtotalGeneral = 0;
     }
     const primerSubtotaltemp = primerSubtotalGeneral - parseFloat(gasHieloInput.value) || 0;
     // Asignar el valor total al primer subtotal
