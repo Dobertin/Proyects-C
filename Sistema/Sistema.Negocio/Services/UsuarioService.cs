@@ -35,7 +35,7 @@ namespace Sistema.Negocio.Services
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             
         }
