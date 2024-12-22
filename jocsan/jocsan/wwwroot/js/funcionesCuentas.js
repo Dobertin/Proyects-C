@@ -286,79 +286,88 @@ $(document).ready(function () {
             url: `/Cuentas/cuentas/${idCliente}`,
             type: "GET",
             success: function (data) {
+                console.log(data);
+
                 // Mostrar totales de créditos, abonos y descripción de la cuenta
-                $("#total-creditos").text(data.creditoTotal.totalValorCreditos.toFixed(2));
-                $("#total-abonos").text(data.abonoTotal.totalValorAbono.toFixed(2));
-                $("#total-factura").text(data.facturasTotal.totalValorFactura.toFixed(2));
-                $("#descripcion-cuenta").text(data.ultimaCuenta.comentario);
-                $("#fecha-ultima-monto").text(data.ultimaCuenta.monto.toFixed(2));
-                $("#fecha-ultima-cuenta").text(data.ultimaCuenta.fechaCuenta);
-                $("#fecha-ultima-cliente").text(data.ultimaCuenta.nomCliente);
+                $("#total-creditos").text((data.creditoTotal?.totalValorCreditos || 0).toFixed(2));
+                $("#total-abonos").text((data.abonoTotal?.totalValorAbono || 0).toFixed(2));
+                $("#total-factura").text((data.facturasTotal?.totalValorFactura || 0).toFixed(2));
+                $("#descripcion-cuenta").text(data.ultimaCuenta?.comentario || "N/A");
+                $("#fecha-ultima-monto").text((data.ultimaCuenta?.monto || 0).toFixed(2));
+                $("#fecha-ultima-cuenta").text(data.ultimaCuenta?.fechaCuenta || "N/A");
+                $("#fecha-ultima-cliente").text(data.ultimaCuenta?.nomCliente || "N/A");
 
                 // Calcular la deuda total
                 const deudaTotal = (
-                    data.creditoTotal.totalValorCreditos -
-                    data.abonoTotal.totalValorAbono -
-                    data.facturasTotal.totalValorFactura
+                    (data.creditoTotal?.totalValorCreditos || 0) -
+                    (data.abonoTotal?.totalValorAbono || 0) -
+                    (data.facturasTotal?.totalValorFactura || 0)
                 ).toFixed(2);
 
                 // Actualizar el valor y texto de la deuda total
                 $("#deuda-total").text(Math.abs(deudaTotal).toFixed(2));
 
                 if (deudaTotal < 0) {
-                    $("#texto-deuda").text("SE Le DEBE");
+                    $("#texto-deuda").text("SE LE DEBE").css("color", "red");
                     $("#deuda-total").css("color", "red");
                 } else {
-                    $("#texto-deuda").text("DEBE");
+                    $("#texto-deuda").text("DEBE").css("color", "green");
                     $("#deuda-total").css("color", "green");
                 }
 
                 // Tabla de créditos
                 tableCredito.clear();
-                data.creditoTotal.creditos.forEach(credito => {
-                    tableCredito.row.add([
-                        credito.descripcion,
-                        `${credito.valorCredito.toFixed(2)}`,
-                        credito.fechaCredito,
-                        `<button class="editar-btn btn btn-success" data-id="${credito.idCredito}" data-origen="credito"><i class="fa fa-search" aria-hidden="true"></i></button>`
-                    ]);
-                });
+                if (data.creditoTotal?.creditos?.length > 0) {
+                    data.creditoTotal.creditos.forEach(credito => {
+                        tableCredito.row.add([
+                            credito.descripcion || "N/A",
+                            `${(credito.valorCredito || 0).toFixed(2)}`,
+                            credito.fechaCredito || "N/A",
+                            `<button class="editar-btn btn btn-success" data-id="${credito.idCredito}" data-origen="credito"><i class="fa fa-search" aria-hidden="true"></i></button>`
+                        ]);
+                    });
+                } else {
+                    tableCredito.row.add(["No hay datos disponibles", "", "", ""]);
+                }
                 tableCredito.draw();
 
                 // Tabla de abonos
                 tableAbono.clear();
-                data.abonoTotal.abonos.forEach(abono => {
-                    tableAbono.row.add([
-                        abono.descripcion,
-                        `${abono.valorAbono.toFixed(2)}`,
-                        abono.fechaAbono,
-                        `<button class="editar-btn btn btn-success" data-id="${abono.idAbono}" data-origen="abono"><i class="fa fa-search" aria-hidden="true"></i></button>`
-                    ]);
-                });
+                if (data.abonoTotal?.abonos?.length > 0) {
+                    data.abonoTotal.abonos.forEach(abono => {
+                        tableAbono.row.add([
+                            abono.descripcion || "N/A",
+                            `${(abono.valorAbono || 0).toFixed(2)}`,
+                            abono.fechaAbono || "N/A",
+                            `<button class="editar-btn btn btn-success" data-id="${abono.idAbono}" data-origen="abono"><i class="fa fa-search" aria-hidden="true"></i></button>`
+                        ]);
+                    });
+                } else {
+                    tableAbono.row.add(["No hay datos disponibles", "", "", ""]);
+                }
                 tableAbono.draw();
 
                 // Tabla de facturas
                 tableFactura.clear();
-                data.facturasTotal.facturas.forEach(factura => {
-                    tableFactura.row.add([
-                        factura.idFactura,
-                        factura.numproductos,
-                        `${factura.total.toFixed(2)}`,
-                        factura.fecha,
-                        `<button class="editar-btn btn btn-success" data-id="${factura.idFactura}" data-origen="factura"><i class="fa fa-search" aria-hidden="true"></i></button>`
-                    ]);
-                });
+                if (data.facturasTotal?.facturas?.length > 0) {
+                    data.facturasTotal.facturas.forEach(factura => {
+                        tableFactura.row.add([
+                            factura.idFactura || "N/A",
+                            factura.numproductos || "N/A",
+                            `${(factura.total || 0).toFixed(2)}`,
+                            factura.fecha || "N/A",
+                            `<button class="editar-btn btn btn-success" data-id="${factura.idFactura}" data-origen="factura"><i class="fa fa-search" aria-hidden="true"></i></button>`
+                        ]);
+                    });
+                } else {
+                    tableFactura.row.add(["No hay datos disponibles", "", "", "", ""]);
+                }
                 tableFactura.draw();
 
                 // Mostrar botones si hay datos
-                if (data.creditoTotal.creditos.length > 0) {
-                    $("#descargar-creditos").show();
-                    $("#descargar-cuentas").show();
-                }
-                if (data.abonoTotal.abonos.length > 0) {
-                    $("#descargar-abonos").show();
-                    $("#descargar-cuentas").show();
-                }
+                $("#descargar-creditos").toggle(data.creditoTotal?.creditos?.length > 0);
+                $("#descargar-abonos").toggle(data.abonoTotal?.abonos?.length > 0);
+                $("#descargar-cuentas").toggle(data.facturasTotal?.facturas?.length > 0);
 
                 // Función para manejar los botones de "ver" en las tablas
                 $(".editar-btn").on("click", function () {
@@ -403,5 +412,6 @@ $(document).ready(function () {
             }
         });
     });
+
 });
 

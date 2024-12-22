@@ -165,7 +165,7 @@ function actualizarCalculos() {
 
     // Calcular el subtotal del producto
     const subtotalProducto = cantidadProducto * precioProductoValor ;
-    subtotalProductoInput.value = subtotalProducto.toFixed(2);
+    //subtotalProductoInput.value = subtotalProducto.toFixed(2);
 
     // Realizar las operaciones paso a paso
     let primerSubtotal = primerSubtotalGeneral+ subtotalProducto - parseFloat(gasHieloInput.value) || 0;
@@ -461,59 +461,75 @@ agregarAListaBtn.addEventListener('click', function () {
     const nombreProducto = document.getElementById('nombre-producto').innerText;
     const precioProducto = parseFloat(document.getElementById('precio-producto').innerText) || 0;
     const cantidadProducto = parseFloat(document.getElementById('cantidad-producto').value) || 0;
-    const subtotalProducto = parseFloat(document.getElementById('subtotal-producto').value) || 0;
+    const subtotalProducto = precioProducto * cantidadProducto;
     const productoSelect = document.getElementById('producto-values');
     const productoSeleccionado = productoSelect.options[productoSelect.selectedIndex].value;
 
     // Validar que los valores no estén vacíos
     if (nombreProducto && precioProducto > 0 && cantidadProducto > 0 && subtotalProducto > 0) {
-        // Crear una nueva fila y celdas para la tabla
         const table = document.getElementById('table_products').getElementsByTagName('tbody')[0];
-        const newRow = table.insertRow();
+        let productoExiste = false;
 
-        // Agregar la clase de estilo para las filas
-        newRow.classList.add('border-bottom');
-        const cellProducto = newRow.insertCell(0);
-        const cellPrecio = newRow.insertCell(1);
-        const cellCantidad = newRow.insertCell(2);
-        const cellTotal = newRow.insertCell(3);
-        const cellAcciones = newRow.insertCell(4);
-        // Crear una celda oculta para almacenar el valor seleccionado del producto
-        const cellHidden = newRow.insertCell(5);
-        cellHidden.style.display = 'none'; // Ocultar la celda
+        // Verificar si el producto ya existe en la tabla
+        for (let i = 0; i < table.rows.length; i++) {
+            const row = table.rows[i];
+            const productoEnFila = row.cells[0].innerText; // Nombre del producto en la fila
+            if (productoEnFila === nombreProducto) {
+                const cantidadActual = parseFloat(row.cells[2].innerText) || 0; // Cantidad actual en la fila
+                const nuevoTotalCantidad = cantidadActual + cantidadProducto;
+                const nuevoSubtotal = precioProducto * nuevoTotalCantidad;
 
-        // Asignar los valores a las celdas
-        cellProducto.innerText = nombreProducto;
-        cellPrecio.innerText = precioProducto.toFixed(2);
-        cellCantidad.innerText = cantidadProducto;
-        cellTotal.innerText = subtotalProducto.toFixed(2);
-        cellHidden.innerText = productoSeleccionado; // Almacenar el valor oculto del producto seleccionado
+                // Actualizar la cantidad y el subtotal en la fila existente
+                row.cells[2].innerText = nuevoTotalCantidad;
+                row.cells[3].innerText = nuevoSubtotal.toFixed(2);
 
-        // Crear el botón de eliminar con ícono y agregarlo a la celda de acciones
-        const deleteButton = document.createElement('button');
-        deleteButton.className = "btn btn-danger btn-sm"; // Estilizar el botón
-        deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>'; // Ícono de Font Awesome
-        cellAcciones.appendChild(deleteButton);
+                productoExiste = true;
+                break;
+            }
+        }
 
-        subtotalProductoInput.value = "0.00";
+        // Si el producto no existe, agregar una nueva fila
+        if (!productoExiste) {
+            const newRow = table.insertRow();
+
+            // Agregar la clase de estilo para las filas
+            newRow.classList.add('border-bottom');
+            const cellProducto = newRow.insertCell(0);
+            const cellPrecio = newRow.insertCell(1);
+            const cellCantidad = newRow.insertCell(2);
+            const cellTotal = newRow.insertCell(3);
+            const cellAcciones = newRow.insertCell(4);
+            const cellHidden = newRow.insertCell(5);
+            cellHidden.style.display = 'none'; // Ocultar la celda
+
+            // Asignar los valores a las celdas
+            cellProducto.innerText = nombreProducto;
+            cellPrecio.innerText = precioProducto.toFixed(2);
+            cellCantidad.innerText = cantidadProducto;
+            cellTotal.innerText = subtotalProducto.toFixed(2);
+            cellHidden.innerText = productoSeleccionado; // Almacenar el valor oculto del producto seleccionado
+
+            // Crear el botón de eliminar con ícono y agregarlo a la celda de acciones
+            const deleteButton = document.createElement('button');
+            deleteButton.className = "btn btn-danger btn-sm"; // Estilizar el botón
+            deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>'; // Ícono de Font Awesome
+            cellAcciones.appendChild(deleteButton);
+
+            // Escuchar el evento de clic para eliminar la fila
+            deleteButton.addEventListener('click', function () {
+                newRow.remove(); // Eliminar la fila
+                actualizarSubtotal();
+            });
+        }
+
+        // Limpiar los campos después de agregar el producto
         cantidadProductoInput.value = 0;
-        //gasHieloInput.value = "0.00";
-        //cantidadGasolinaInput.value = 0;
-        //cantidadHieloInput.value = 0;
-        //cantidadRegresoGasolina.value = "0.00";
-        pagoInput.value = 0;
-        // Actualizar el resto de los cálculos
         actualizarSubtotal();
-        // Escuchar el evento de clic para eliminar la fila
-        deleteButton.addEventListener('click', function () {
-            newRow.remove(); // Eliminar la fila
-            actualizarSubtotal();
-        });
-
     } else {
         alert("Por favor, ingrese un producto con cantidad y precio válidos.");
     }
 });
+
 
 // Función para actualizar el primer subtotal
 function actualizarSubtotal() {    
@@ -521,7 +537,7 @@ function actualizarSubtotal() {
     // Obtener todas las filas de la tabla
     const rows = document.getElementById('table_products').getElementsByTagName('tbody')[0].rows;
     
-    
+    primerSubtotalGeneral = 0;
     // Sumar los valores de cada subtotal en la tabla
     for (let i = 0; i < rows.length; i++) {
         const totalCell = rows[i].cells[3];
@@ -530,6 +546,7 @@ function actualizarSubtotal() {
     if (rows.length == 0) {
         primerSubtotalGeneral = 0;
     }
+    subtotalProductoInput.value = primerSubtotalGeneral.toFixed(2);
     const primerSubtotaltemp = primerSubtotalGeneral - parseFloat(gasHieloInput.value) || 0;
     // Asignar el valor total al primer subtotal
     primerSubtotalInput.value = primerSubtotaltemp.toFixed(2);

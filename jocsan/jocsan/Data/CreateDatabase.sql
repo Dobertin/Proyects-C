@@ -51,7 +51,6 @@ CREATE TABLE [dbo].[Creditos] (
   [idCliente] int,
   [fechaCredito] datetime,
   [valorCredito] [decimal](18, 2),
-  [estado] [int] DEFAULT 1 NULL,
   [UsuarioCreacion] [varchar](20)NOT NULL,
   [FechaCreacion] [datetime] NOT NULL,
   [UsuarioModifica] [varchar](20),
@@ -68,7 +67,6 @@ CREATE TABLE [dbo].[Cliente] (
   [nuevaEmbarcacion] bit,
   [peon1] varchar(50),
   [peon2] varchar(50),
-  [estado] [int] DEFAULT 1 NULL,
   [UsuarioCreacion] [varchar](20)NOT NULL,
   [FechaCreacion] [datetime] NOT NULL,
   [UsuarioModifica] [varchar](20),
@@ -136,7 +134,7 @@ CREATE TABLE [dbo].[Gasolina] (
 	[totalGalonPagado] [decimal](18,2) NULL,
 	[fechaOperacion] [datetime] NOT NULL,
 	[comentario] [varchar](500) NULL,
-	[UsuarioCreacion] {varchar](20) NOT NULL,
+	[UsuarioCreacion] [varchar](20) NOT NULL,
 	[FechaCreacion] [datetime] NULL,
 	[UsuarioModifica] [varchar](20) NULL,
 	[FechaModifica] [datetime] NULL
@@ -243,8 +241,8 @@ INSERT INTO dbo.Producto VALUES('pan','pampano',500,'system',getdate(),null,null
 INSERT INTO dbo.Producto VALUES('pp3','pepe',1800,'system',getdate(),null,null);
 INSERT INTO dbo.Producto VALUES('RO','ROBALO',2000,'system',getdate(),null,null);
 
-INSERT INTO dbo.Factura VALUES(1, '2024-10-06', 0.15, 1, 1, 50580150, 4900, 50575250, 200, 200, 50574850, 12643712.5, 6574730.5, 7586227.5, 25287025, 'system', getdate(), '', '');
-INSERT INTO dbo.Factura VALUES(3, '2024-10-03', 0, 0, 0, 2033, 0, 2033, 0, 0, 2033, 508.25, 264.29, 0, 2033, 'system', getdate(), '', '');
+INSERT INTO dbo.Factura VALUES(1, '2024-10-06', 0.15, 1, 1, 50580150, 4900, 50575250, 200, 200, 50574850, 12643712.5, 6574730.5, 7586227.5, 25287025, 1,'system', getdate(), '', '');
+INSERT INTO dbo.Factura VALUES(3, '2024-10-03', 0, 0, 0, 2033, 0, 2033, 0, 0, 2033, 508.25, 264.29, 0, 2033,1, 'system', getdate(), '', '');
 
 INSERT INTO dbo.DetalleFactura VALUES(4, 1, 300, 3700, 1110000, 1110000, 'system', getdate(), '', '');
 INSERT INTO dbo.DetalleFactura VALUES(5, 1, 300, 900, 270000, 270000, 'system', getdate(), '', '');
