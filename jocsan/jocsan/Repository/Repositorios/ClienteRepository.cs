@@ -30,7 +30,7 @@ namespace jocsan.Repository.Repositorios
                         .Select(c => new ComboResult
                         {
                             codigo = c.IdCliente,
-                            descripcion = c.Nombre
+                            descripcion = c.Capitan
                         })
                         .ToListAsync();
         }
